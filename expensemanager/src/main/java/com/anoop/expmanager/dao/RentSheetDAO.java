@@ -1,0 +1,17 @@
+package com.anoop.expmanager.dao;
+
+import java.util.List;
+
+import com.anoop.expmanager.model.RentSheet;
+
+public interface RentSheetDAO {
+	public List<RentSheet> getCurrentMonthRentSheetDetails();
+
+	public List<RentSheet> getRentSheetHistory();
+
+	public List<RentSheet> getRentSheetHistoryPerMonthAndYear(int month, int year);
+
+	public void saveRentSheet(Object rentPaid);
+
+	public RentSheet getLastMonthRentSheetPerUser(long userID);
+}
