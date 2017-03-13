@@ -1,5 +1,7 @@
 package com.anoop.expmanager.services.impl;
 
+import com.anoop.expmanager.services.service.UserService;
+import com.anoop.expmanager.util.UserSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -20,27 +22,19 @@ import java.util.Set;
  */
 @Service("sessionObjectsService")
 public class SessionObjectsService {
-/*
-
-    @Autowired
-    RolesService rolesService;
 
     @Autowired
     UserService userService;
 
     private UserSession userSession = new UserSession();
 
-    private Roles roles;
-
     private Authentication authentication;;
 
     public void setSessionObjects(HttpServletRequest request)throws Exception{
-
         setCurrentUser();
-        populateMenu();
         request.getSession().setAttribute("userSession",userSession);
         UserSession usr = (UserSession)request.getSession().getAttribute("userSession");
-        System.out.println("user session >>"+usr.getUser().getEmail());
+        System.out.println("user session >>"+usr.getUser().getDisplayName());
 
     }
 
@@ -53,7 +47,7 @@ public class SessionObjectsService {
         else
             System.out.println("Authentication is null");
     }
-
+    /*
     public void populateMenu()throws Exception{
         authentication =SecurityContextHolder.getContext().getAuthentication();
 
@@ -70,9 +64,7 @@ public class SessionObjectsService {
             userSession.setMenuList(menuList);
         }
 
-    }
-
-*/
+    }*/
 
 
 }

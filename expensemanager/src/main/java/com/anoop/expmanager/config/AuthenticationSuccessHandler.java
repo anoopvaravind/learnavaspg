@@ -39,13 +39,13 @@ public class AuthenticationSuccessHandler extends SimpleUrlAuthenticationSuccess
                                         Authentication authentication)
             throws ServletException, IOException {
         getRedirectStrategy().sendRedirect(request, response, HOME_PAGE);
-        /*SavedRequest savedRequest = requestCache.getRequest(request, response);
+        /*SavedRequest savedRequest = requestCache.getRequest(request, response);   */
 
         try {
             sessionObjectsService.setSessionObjects(request);
         } catch (Exception e) {
             e.printStackTrace();
-        }
+        } /*
         if (savedRequest == null) {
             getRedirectStrategy().sendRedirect(request, response, HOME_PAGE);
 

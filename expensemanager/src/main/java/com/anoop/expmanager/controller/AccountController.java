@@ -3,6 +3,7 @@ package com.anoop.expmanager.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -11,11 +12,16 @@ import org.springframework.web.bind.annotation.RestController;
 import com.anoop.expmanager.model.Account;
 import com.anoop.expmanager.services.service.AccountService;
 
-@RestController
-@RequestMapping(value = "/account")
+@Controller
+@RequestMapping(value = "/app/account")
 public class AccountController {
 	@Autowired
 	private AccountService accountService;
+
+    @RequestMapping(value = "/", method = RequestMethod.GET)
+    public String account() {
+        return "account";
+    }
 
 	@RequestMapping(value = "/current", method = RequestMethod.GET)
 	public Account getCurrentAccountDetails() {

@@ -3,6 +3,7 @@ package com.anoop.expmanager.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,11 +13,16 @@ import org.springframework.web.bind.annotation.RestController;
 import com.anoop.expmanager.model.RentSheet;
 import com.anoop.expmanager.services.service.RentService;
 
-@RestController
-@RequestMapping(value = "/rent")
+@Controller
+@RequestMapping(value = "/app/rent")
 public class RentController {
 	@Autowired
 	private RentService rentService;
+
+    @RequestMapping(value = "/", method = RequestMethod.GET)
+    public String rent() {
+        return "rent";
+    }
 
 	@RequestMapping(value = "/currentmonthpaid", method = RequestMethod.GET)
 	public List<RentSheet> getCurrentMonthSheetDetails() {

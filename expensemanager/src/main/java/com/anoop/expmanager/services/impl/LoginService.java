@@ -28,6 +28,7 @@ public class LoginService implements UserDetailsService {
 
     public UserDetails loadUserByUsername(String userName) throws UsernameNotFoundException {
         try {
+            System.out.println("userName"+userName);
             User user = userDao.getUserByUserName(userName);
             System.out.println("user"+user);
             System.out.println("user"+user.getUsername());
