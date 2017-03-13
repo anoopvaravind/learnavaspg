@@ -5,7 +5,6 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -20,15 +19,13 @@ import javax.servlet.http.HttpServletResponse;
  * To change this template use File | Settings | File Templates.
  */
 @Controller
-public class HelloController {
+public class MainController {
 
-    @GetMapping("/app/")
-    public String hello(Model model) {
-
-        model.addAttribute("name", "John Doe");
-
-        return "welcome";
+   @RequestMapping(value = {"/app", "/app/","/app/home"})
+    public String home(Model model) {
+        return "home";
     }
+
     @RequestMapping(value = "/login", method = RequestMethod.GET)
     public String loginPage() {
         return "login";
