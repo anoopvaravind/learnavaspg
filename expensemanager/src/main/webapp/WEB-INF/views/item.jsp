@@ -16,6 +16,8 @@
     <link href="<c:url value='/css/sb-admin.css' />" rel="stylesheet"></link>
     <link href="<c:url value='/font-awesome/css/font-awesome.min.css' />" rel="stylesheet"></link>
     <link href="<c:url value='/css/plugins/morris.css' />" rel="stylesheet"></link>
+	<link href = "https://code.jquery.com/ui/1.10.4/themes/ui-lightness/jquery-ui.css"
+         rel = "stylesheet">
     <!-- Bootstrap Core CSS -->
 
 
@@ -25,7 +27,15 @@
     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
-
+	
+  <style>
+form label.error {
+        color: red;
+}
+form input.error {
+        border: 1px solid red;		
+}
+</style>
 
 </head>
 
@@ -215,16 +225,16 @@
             <div class="row">
                 <div class="col-lg-6">
 
-                    <form role="form">
+                    <form role="form" name="itemForm">
                         <div class="form-group">
                             <label>Item Name</label>
-                            <input class="form-control" placeholder="Enter item">
+                            <input name="itemname" id="itemname" class="form-control" placeholder="Enter item">
                         </div>
 
                         <div class="form-group">
                             <label>Select Category</label>
-                            <select class="form-control">
-                                <option>Food</option>
+                            <select class="form-control" id="categoryselector">
+                                <!--<option>Food</option>
                                 <option>Electricity</option>
                                 <option>Internet</option>
                                 <option>Gas</option>
@@ -232,15 +242,19 @@
                                 <option>Newspaper</option>
                                 <option>Maintanence</option>
                                 <option>New Things</option>
-                                <option>Other</option>
+                                <option>Other</option>-->
                             </select>
+                        </div>
+						<div class="form-group">
+                            <label>Date</label>
+                           <input name="date" id="date" class="form-control" id="datepicker">
                         </div>
                         <div class="form-group">
                             <label>Comments</label>
                             <input class="form-control" placeholder="Enter comment">
                         </div>
-                        <button type="submit" class="btn btn-primary">Submit</button>
-                        <button type="reset" class="btn btn-primary">Reset</button>
+                        <button type="submit" class="btn btn-primary" id="submitButton">Submit</button>
+                        <button type="reset" class="btn btn-primary" id="resetbutton">Reset</button>
                         <br></br>
                         <br></br>
 
@@ -262,6 +276,9 @@
 <!-- /#wrapper -->
 
 <!-- jQuery -->
+
+
+<!-- jQuery -->
 <script src="<c:url value='/js/jquery.js' />"></script>
 
 <!-- Bootstrap Core JavaScript -->
@@ -272,6 +289,22 @@
 <script src="<c:url value='/js/plugins/morris/morris.min.js' />"></script>
 <script src="<c:url value='/js/plugins/morris/morris-data.js' />"></script>
 
+<!-- Date Picker-->
+
+<script src = "https://code.jquery.com/jquery-1.10.2.js"></script>
+<script src = "https://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+
+<script src="<c:url value='/js/item.js' />"></script>
+<script src="<c:url value='/js/jquery.validate.min.js' />"></script>
+
+	<!-- <script>
+$(document).ready(function(){
+    $("#resetbutton").click(function(){
+        alert("Hellooo");
+    });
+});
+
+</script>-->
 </body>
 
 </html>
