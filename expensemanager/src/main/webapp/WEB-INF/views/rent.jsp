@@ -15,6 +15,7 @@
     <link href="<c:url value='/css/sb-admin.css' />" rel="stylesheet"></link>
     <link href="<c:url value='/font-awesome/css/font-awesome.min.css' />" rel="stylesheet"></link>
     <link href="<c:url value='/css/plugins/morris.css' />" rel="stylesheet"></link>
+
     <!-- Bootstrap Core CSS -->
 
 
@@ -25,7 +26,14 @@
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 
-
+	<style>
+        form label.error {
+            color: red;
+        }
+        form input.error {
+            border: 1px solid red;
+        }
+    </style>
 </head>
 
 <body>
@@ -215,7 +223,7 @@
         <div class="row">
             <div class="col-lg-6">
 
-                <form role="form">
+                <form name="rentForm" role="form">
                     <div class="form-group">
                         <label>Month</label>
                         <select class="form-control" disabled>
@@ -228,19 +236,19 @@
 
                     <div class="form-group">
                         <label>Amount Due</label>
-                        <input class="form-control" placeholder="200.00" disabled>
+                        <input name="amountdue" value="100.00" class="form-control" disabled>
                     </div>
 
                     <div class="form-group">
-                        <label>Current Month Amount</label>
-                        <input class="form-control" placeholder="2500.00" disabled>
+                        <label>Current Month Rent</label>
+                        <input name="currentmonthrent" value="2500.00" class="form-control" disabled>
                     </div>
 
                     <div class="form-group">
                         <label>Total Amount</label>
-                        <input class="form-control" placeholder="Enter 2700.00">
+                        <input name="totalamount" id="totalamount" class="form-control" placeholder="Enter Emount">
                     </div>
-                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <button type="submit" class="btn btn-primary" id="submit" disabled>Submit</button>
                     <button type="reset" class="btn btn-primary">Reset</button>
                     <br></br>
 
@@ -260,7 +268,6 @@
 </div>
 <!-- /#wrapper -->
 
-
 <!-- jQuery -->
 <script src="<c:url value='/js/jquery.js' />"></script>
 
@@ -271,6 +278,12 @@
 <script src="<c:url value='/js/plugins/morris/raphael.min.js' />"></script>
 <script src="<c:url value='/js/plugins/morris/morris.min.js' />"></script>
 <script src="<c:url value='/js/plugins/morris/morris-data.js' />"></script>
+
+<!-- Validation-->
+<script src = "https://code.jquery.com/jquery-1.10.2.js"></script>
+<script src="<c:url value='/js/jquery.validate.min.js' />"></script>
+
+<script src="<c:url value='/js/rent.js' />"></script>
 
 
 </body>
