@@ -16,12 +16,12 @@ $(document).ready(function(){
 
                 var div_data="<option value="+value+">"+key+"</option>";
 
-                $(div_data).appendTo('#categoryselector');
+                $(div_data).appendTo('#category');
             });
         },
         error:	function (data) {
             var div_data="<option value="+"1"+">"+"Error"+"</option>";
-            $(div_data).appendTo('#categoryselector');
+            $(div_data).appendTo('#category');
         }
 
     });
@@ -33,7 +33,7 @@ $(document).ready(function(){
                 // The key name on the left side is the name attribute
                 // of an input field. Validation rules are defined
                 // on the right side
-                itemname: "required",
+                itemName: "required",
                 purchasedate: {
                     required: true,
                     date:true,
@@ -51,7 +51,7 @@ $(document).ready(function(){
             },
             // Specify validation error messages
             messages: {
-                itemname: "Please enter Item name",
+                itemName: "Please enter Item name",
                 purchasedate: {
                     required: "Please enter paid date",
                     date:"Please enter a valid date in MM/DD/YYYY format",
