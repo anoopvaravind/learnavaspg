@@ -225,7 +225,7 @@
         <div class="row">
             <div class="col-lg-6">
 
-                <form role="form" name="itemForm">
+                <form role="form" name="itemForm" >
                     <div class="form-group">
                         <label>Item Name</label>
                         <input name="itemname" id="itemname" class="form-control" placeholder="Enter item">
@@ -253,7 +253,7 @@
                         <label>Comments</label>
                         <input class="form-control" placeholder="Enter comment">
                     </div>
-                    <button type="submit" class="btn btn-primary" id="submitButton">Submit</button>
+                    <button type="submit" class="btn btn-primary" id="submitButton" disabled>Submit</button>
                     <button type="reset" class="btn btn-primary" id="resetbutton">Reset</button>
                     <br></br>
 
@@ -277,8 +277,9 @@
 <!-- jQuery -->
 
 
-<!-- jQuery 
-<script src="<c:url value='/js/jquery.js' />"></script>-->
+<!-- jQuery -->
+<script src="<c:url value='/js/jquery.js' />"></script>
+
 
 <!-- Bootstrap Core JavaScript -->
 <script src="<c:url value='/js/bootstrap.min.js' />"></script>
@@ -290,8 +291,8 @@
 
 <!-- Date Picker-->
 
-<script src = "https://code.jquery.com/jquery-1.10.2.js"></script>
 
+<script src = "https://code.jquery.com/jquery-1.10.2.js"></script>
 
 <script src="<c:url value='/js/item.js' />"></script>
 <script src="<c:url value='/js/jquery.validate.min.js' />"></script>
