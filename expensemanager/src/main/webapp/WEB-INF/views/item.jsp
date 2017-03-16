@@ -260,6 +260,39 @@
                 </form>
 
             </div>
+			
+			<div class="col-lg-6">
+                <div class="table-responsive">
+                    <table class="table table-bordered table-hover table-striped">
+                        <thead>
+                        <tr>
+							<th>Sl No</th>
+                            <th>Item Name</th>
+                            <th>Amount</th>
+                            <th>Paid Date</th>
+							<th>Comment</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>Savala</td>
+                            <td>30.00</td>
+                            <td>02/02/2017</td>
+                            <td>No comment</td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td>Rice</td>
+                            <td>130.00</td>
+                            <td>02/02/2017</td>
+                            <td>No comment</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
 
         </div>
     </div>
