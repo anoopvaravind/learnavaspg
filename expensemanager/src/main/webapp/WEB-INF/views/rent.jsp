@@ -255,6 +255,42 @@
                 </form>
 
             </div>
+			
+			            <div class="col-lg-6">
+                <div class="table-responsive">
+                    <table class="table table-bordered table-hover table-striped">
+                        <thead>
+                        <tr>
+                            <th>User</th>
+                            <th>For Month</th>
+                            <th>For Year</th>
+                            <th>Rent Paid</th>
+                            <th>Rent Paid Date</th>
+                            <th>Amount Due</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td>Anoop</td>
+                            <td>January</td>
+                            <td>2017</td>
+                            <td>2500.00</td>
+                            <td>02/02/2017</td>
+                            <td>0.00</td>
+                        </tr>
+                        <tr>
+                            <td>Anoop</td>
+                            <td>February</td>
+                            <td>2017</td>
+                            <td>2400.00</td>
+                            <td>03/03/2017</td>
+                            <td>100.00</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
 
         </div>
         <!-- /.row -->
@@ -279,7 +315,7 @@
 <script src="<c:url value='/js/plugins/morris/morris.min.js' />"></script>
 <script src="<c:url value='/js/plugins/morris/morris-data.js' />"></script>
 
-<!-- Validation-->
+<!-- Validation -->
 <script src = "https://code.jquery.com/jquery-1.10.2.js"></script>
 <script src="<c:url value='/js/jquery.validate.min.js' />"></script>
 
