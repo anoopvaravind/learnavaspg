@@ -228,12 +228,12 @@
                 <form role="form" name="itemForm" >
                     <div class="form-group">
                         <label>Item Name</label>
-                        <input name="itemname" id="itemname" class="form-control" placeholder="Enter item">
+                        <input name="itemName" id="itemName" class="form-control" placeholder="Enter item">
                     </div>
 
                     <div class="form-group">
                         <label>Select Category</label>
-                        <select class="form-control" id="categoryselector">
+                        <select class="form-control" name="category" id="category" >
                             <!--<option>Food</option>
                             <option>Electricity</option>
                             <option>Internet</option>
@@ -251,7 +251,7 @@
                     </div>
                     <div class="form-group">
                         <label>Comments</label>
-                        <input class="form-control" placeholder="Enter comment">
+                        <input class="form-control" placeholder="Enter comment" name="comment" id="comment">
                     </div>
                     <button type="submit" class="btn btn-primary" id="submitButton" disabled>Submit</button>
                     <button type="reset" class="btn btn-primary" id="resetbutton">Reset</button>
