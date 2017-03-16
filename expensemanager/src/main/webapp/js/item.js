@@ -3,6 +3,7 @@
 var token = $("meta[name='_csrf']").attr("content");
 var header = $("meta[name='_csrf_header']").attr("content");
 $(document).ready(function(){
+	$("#submitButton").prop("disabled", false);
     $( "#datepicker" ).datepicker();
 
     $.ajax({
@@ -27,7 +28,7 @@ $(document).ready(function(){
 
     $(function() {
         $("form[name='itemForm']").validate({
-            // Specify validation rules
+            // Specify validation rules			
             rules: {
                 // The key name on the left side is the name attribute
                 // of an input field. Validation rules are defined
@@ -50,7 +51,7 @@ $(document).ready(function(){
             },
             // Specify validation error messages
             messages: {
-                itemname: "Please enter your Item name",
+                itemname: "Please enter Item name",
                 purchasedate: {
                     required: "Please enter paid date",
                     date:"Please enter a valid date in MM/DD/YYYY format",
@@ -63,7 +64,7 @@ $(document).ready(function(){
             },
             // Make sure the form is submitted to the destination defined
             // in the "action" attribute of the form when valid
-            submitHandler: function(form) {
+            submitHandler: function(form) {				
                 form.submit();
             }
         });
