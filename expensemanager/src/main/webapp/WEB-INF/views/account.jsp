@@ -26,7 +26,14 @@
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 
-
+	<style>
+        form label.error {
+            color: red;
+        }
+        form input.error {
+            border: 1px solid red;
+        }
+    </style>
 </head>
 
 <body>
@@ -216,7 +223,7 @@
 
         <div class="row">
             <div class="col-lg-6">
-                <form role="form">
+                <form name="accountForm" role="form">
                     <div class="form-group">
                         <label>Month</label>
                         <select class="form-control">
@@ -235,9 +242,9 @@
                     </div>
                     <div class="form-group">
                         <label>Current Rent Amount</label>
-                        <input class="form-control" placeholder="Enter Rent Amount" >
+                        <input name="currentrentamount" class="form-control" placeholder="Enter Rent Amount" >
                     </div>
-                    <button type="submit" class="btn btn-primary">Generate</button>
+                    <button type="submit" id="generate" class="btn btn-primary" disabled>Generate</button>
                     <button type="reset" class="btn btn-primary">Reset</button>
                     <br></br>
                 </form>
@@ -267,6 +274,12 @@
 <script src="<c:url value='/js/plugins/morris/raphael.min.js' />"></script>
 <script src="<c:url value='/js/plugins/morris/morris.min.js' />"></script>
 <script src="<c:url value='/js/plugins/morris/morris-data.js' />"></script>
+
+<!-- Validation-->
+<script src = "https://code.jquery.com/jquery-1.10.2.js"></script>
+<script src="<c:url value='/js/jquery.validate.min.js' />"></script>
+
+<script src="<c:url value='/js/account.js' />"></script>
 
 </body>
 
