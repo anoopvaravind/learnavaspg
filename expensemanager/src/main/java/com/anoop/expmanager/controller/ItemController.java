@@ -4,6 +4,7 @@ import com.anoop.expmanager.model.Item;
 import com.anoop.expmanager.services.service.ItemService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -73,20 +74,26 @@ public class ItemController {
     }
 
     @RequestMapping(value = "/save5", method=RequestMethod.POST)
-    @ResponseBody
-    public List<Item> saveItem5(@ModelAttribute Item item) {
+    public @ResponseBody List<Item> saveItem5(@ModelAttribute(value="item") Item item, BindingResult result) {
         System.out.println("###########################################################"+item);
         System.out.println("###########################################################"+item.getItemName());
         List<Item> items= new ArrayList<Item>() ;
         return  items;
     }
 
-    @RequestMapping(value = "/save6", method=RequestMethod.GET)
-    @ResponseBody
-    public List<Item> saveItem6(@PathVariable(value = "itemName") String itemName) {
+    @RequestMapping(value = "/save6", method=RequestMethod.POST)
+
+    public  @ResponseBody List<Item> saveItem6(@RequestBody String itemName) {
         System.out.println("###########################################################"+itemName);
         List<Item> items= new ArrayList<Item>() ;
         return  items;
+    }
+
+    @RequestMapping(value = "/save7", method=RequestMethod.POST)
+    public  @ResponseBody String saveItem7() {
+        System.out.println("###########################################################7");
+        List<Item> items= new ArrayList<Item>() ;
+        return  "hello";
     }
 
 }
