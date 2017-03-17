@@ -1,14 +1,24 @@
 //csrf tokens for ajax post
-var token = $("meta[name='_csrf']").attr("content");
+/*var token = $("meta[name='_csrf']").attr("content");
 var header = $("meta[name='_csrf_header']").attr("content");
-
 //adding csrf tokens in all ajax
 $.ajaxSetup({
     beforeSend: function (xhr) {
         xhr.setRequestHeader(header, token);
     }
-});
+});*/
+
+
+
 $(document).ready(function(){
+	
+	/*var token = $("meta[name='_csrf']").attr("content");
+	$.ajaxSetup({
+    beforeSend: function(xhr) {
+        xhr.setRequestHeader('X-CSRF-TOKEN', token);
+    }
+});*/
+	
     $("#submitButton").prop("disabled", false);
     $( "#datepicker" ).datepicker();
 
@@ -86,18 +96,25 @@ $(document).ready(function(){
             // Make sure the form is submitted to the destination defined
             // in the "action" attribute of the form when valid
             submitHandler: function(form) {
+				event.preventDefault();
 
-                //var data = {itemName:"testthis"};
-                //alert("Hii");
+                var data = {}
+			//data["id"] = "1";
+			data["itemName"] = "test";
+			alert(JSON.stringify(data));
                 $.ajax({
-                    dataType: "json",
                     type: "POST",
-                    url: "/expmanager/app/item/save",
-                    data: JSON.stringify(data),
+					// type: "GET",
+		             //contentType: "application/json",
+		             url: "/expmanager/app/item/save",
+		             // data: "itemName=" + "test",
+//					  data: {"itemName":"test"},
+		             data: JSON.stringify(data) ,
+		             dataType: 'json',
                     success:  function(response) {
                         alert("success");
                     },
-                    error: alert("error")
+                    error: alert("thidddddd")
                 });
             }
         });
