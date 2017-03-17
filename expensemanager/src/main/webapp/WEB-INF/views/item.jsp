@@ -232,6 +232,11 @@
                     </div>
 
                     <div class="form-group">
+                        <label>Amount Paid</label>
+                        <input name="price" id="price" class="form-control" placeholder="Enter price">
+                    </div>
+
+                    <div class="form-group">
                         <label>Select Category</label>
                         <select class="form-control" name="category" id="category" >
                             <!--<option>Food</option>
@@ -247,7 +252,7 @@
                     </div>
                     <div class="form-group">
                         <label>Date</label>
-                        <input name="purchasedate"  class="form-control" id="datepicker">
+                        <input name="purchasedDate"  class="form-control" id="datepicker">
                     </div>
                     <div class="form-group">
                         <label>Comments</label>

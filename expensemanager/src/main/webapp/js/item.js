@@ -1,9 +1,15 @@
-
 //csrf tokens for ajax post
 var token = $("meta[name='_csrf']").attr("content");
 var header = $("meta[name='_csrf_header']").attr("content");
+
+//adding csrf tokens in all ajax
+$.ajaxSetup({
+    beforeSend: function (xhr) {
+        xhr.setRequestHeader(header, token);
+    }
+});
 $(document).ready(function(){
-	$("#submitButton").prop("disabled", false);
+    $("#submitButton").prop("disabled", false);
     $( "#datepicker" ).datepicker();
 
     $.ajax({
@@ -27,6 +33,14 @@ $(document).ready(function(){
     });
 
     $(function() {
+        jQuery.validator.addMethod(
+            "validateMoney",
+            function(value, element) {
+                var isValidMoney = /^\d{0,4}(\.\d{0,2})?$/.test(value);
+                return this.optional(element) || isValidMoney;
+            },
+            "Please enter a valid amount"
+        );
         $("form[name='itemForm']").validate({
             // Specify validation rules			
             rules: {
@@ -34,9 +48,13 @@ $(document).ready(function(){
                 // of an input field. Validation rules are defined
                 // on the right side
                 itemName: "required",
-                purchasedate: {
+                price:{
+                    required:true,
+                    validateMoney:true
+                },
+                purchasedDate: {
                     required: true,
-                    date:true,
+                    date:true
                 },
                 email: {
                     required: true,
@@ -52,9 +70,12 @@ $(document).ready(function(){
             // Specify validation error messages
             messages: {
                 itemName: "Please enter Item name",
-                purchasedate: {
+                price:{
+                    required:"Please enter amount"
+                },
+                purchasedDate: {
                     required: "Please enter paid date",
-                    date:"Please enter a valid date in MM/DD/YYYY format",
+                    date:"Please enter a valid date in MM/DD/YYYY format"
                 },
                 password: {
                     required: "Please provide a password",
@@ -64,8 +85,20 @@ $(document).ready(function(){
             },
             // Make sure the form is submitted to the destination defined
             // in the "action" attribute of the form when valid
-            submitHandler: function(form) {				
-                form.submit();
+            submitHandler: function(form) {
+
+                //var data = {itemName:"testthis"};
+                //alert("Hii");
+                $.ajax({
+                    dataType: "json",
+                    type: "POST",
+                    url: "/expmanager/app/item/save",
+                    data: JSON.stringify(data),
+                    success:  function(response) {
+                        alert("success");
+                    },
+                    error: alert("error")
+                });
             }
         });
     });
