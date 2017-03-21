@@ -10,6 +10,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
+    <meta name="_csrf" content="${_csrf.token}"/>
+    <!-- default header name is X-CSRF-TOKEN -->
+    <meta name="_csrf_header" content="${_csrf.headerName}"/>
 
     <title>Expense Manager</title>
     <link href="<c:url value='/css/bootstrap.min.css' />" rel="stylesheet"></link>
@@ -225,7 +228,18 @@
         <div class="row">
             <div class="col-lg-6">
 
-                <form role="form" name="itemForm" >
+                <form role="form" name="itemForm" action="/app/item/save">
+
+                   
+										
+										 <div id="successDiv" class="alert alert-success" >
+                                                <p id="success"></p>
+                                            </div>
+											
+											 <div id="errorDiv" class="alert alert-danger">
+                                                  <p id="error"></p>
+                                            </div>
+											
                     <div class="form-group">
                         <label>Item Name</label>
                         <input name="itemName" id="itemName" class="form-control" placeholder="Enter item">
@@ -268,7 +282,7 @@
 			
 			<div class="col-lg-6">
                 <div class="table-responsive">
-                    <table class="table table-bordered table-hover table-striped">
+                    <table class="table table-bordered table-hover table-striped" id = "itemTable" >
                         <thead>
                         <tr>
 							<th>Sl No</th>
@@ -279,6 +293,7 @@
                         </tr>
                         </thead>
                         <tbody>
+						<!--
                         <tr>
                             <td>1</td>
                             <td>Savala</td>
@@ -292,7 +307,7 @@
                             <td>130.00</td>
                             <td>02/02/2017</td>
                             <td>No comment</td>
-                        </tr>
+                        </tr>-->
                         </tbody>
                     </table>
                 </div>
