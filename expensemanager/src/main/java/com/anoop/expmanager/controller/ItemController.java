@@ -2,10 +2,12 @@ package com.anoop.expmanager.controller;
 
 import com.anoop.expmanager.model.Item;
 import com.anoop.expmanager.services.service.ItemService;
+import com.anoop.expmanager.util.Util;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -18,12 +20,15 @@ public class ItemController {
 	private ItemService itemService;
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
-    public String item() {
-        return "item";
+    public ModelAndView item() {
+        ModelAndView mv = new ModelAndView();
+        mv.addObject("notification",Util.createNotificationMessage(true,false,"Initial message"));
+        mv.setViewName("item");
+        return mv;
     }
 
 	@RequestMapping(value = "/finditempermonthyear", method = RequestMethod.GET)
-	public List<Item> findAllItemPerMonthAndYear(@PathVariable("month") int month, @PathVariable("year") int year) {
+	public List<Item> findAllItemPerMonthAndYear(@RequestParam("month") int month, @RequestParam("year") int year) {
 		return itemService.findAll();
 	}
 
@@ -41,7 +46,11 @@ public class ItemController {
         System.out.println("getPurchasedDate"+item.getPurchasedDate());
         System.out.println("getPrice"+item.getPrice());
 		itemService.saveItem(item);
-		return itemService.findAllItemPerUserMonthAndYear(0, 0, 0);
+        return itemService.findAllItemPerUserMonthAndYear(0, 0, 0);
+//		return itemService.findAllItemPerUserMonthAndYear(0, 0, 0);
+        /*ModelAndView mv = new ModelAndView();
+        mv.setViewName("item");mv.
+        return mv;*/
 	}
 
     @RequestMapping(value = "/save2", method=RequestMethod.POST)
@@ -82,7 +91,6 @@ public class ItemController {
     }
 
     @RequestMapping(value = "/save6", method=RequestMethod.POST)
-
     public  @ResponseBody List<Item> saveItem6(@RequestBody String itemName) {
         System.out.println("###########################################################"+itemName);
         List<Item> items= new ArrayList<Item>() ;
