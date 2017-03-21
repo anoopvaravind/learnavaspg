@@ -7,24 +7,29 @@ $.ajaxSetup({
         xhr.setRequestHeader(header, token);
     }
 });*/
-
+$('#errorDiv').hide();
+	$('#successDiv').hide();
 
 
 $(document).ready(function(){
 	
-	/*var token = $("meta[name='_csrf']").attr("content");
+	
+	
+	var token = $("meta[name='_csrf']").attr("content");
 	$.ajaxSetup({
     beforeSend: function(xhr) {
         xhr.setRequestHeader('X-CSRF-TOKEN', token);
     }
-});*/
+});
 	
     $("#submitButton").prop("disabled", false);
     $( "#datepicker" ).datepicker();
+	$("#datepicker").datepicker({dateFormat: 'mm/dd/yy'});
 
     $.ajax({
-        type: "GET",
-        url:"/expmanager/app/category/listAll",
+       type: "GET",
+       url:"/expmanager/app/category/listAll",
+		
         dataType: "json",
         success: function (data) {
             $.each(data.data,function(value,key)
@@ -41,8 +46,10 @@ $(document).ready(function(){
         }
 
     });
+	
+	populateTable();
 
-    $(function() {
+   // $(function() {
         jQuery.validator.addMethod(
             "validateMoney",
             function(value, element) {
@@ -96,31 +103,97 @@ $(document).ready(function(){
             // Make sure the form is submitted to the destination defined
             // in the "action" attribute of the form when valid
             submitHandler: function(form) {
-				event.preventDefault();
 
                 var data = {}
 			//data["id"] = "1";
-			data["itemName"] = "test";
-			alert(JSON.stringify(data));
-                $.ajax({
-                    type: "POST",
-					// type: "GET",
-		             //contentType: "application/json",
-		             url: "/expmanager/app/item/save",
-		             // data: "itemName=" + "test",
-//					  data: {"itemName":"test"},
-		             data: JSON.stringify(data) ,
-		             dataType: 'json',
-                    success:  function(response) {
-                        alert("success");
-                    },
-                    error: alert("thidddddd")
-                });
+			data["itemName"] = $('#itemName').val();
+			data["price"] = $('#price').val();
+			data["purchasedDate"] = $('#purchasedDate').val();
+			//data["category"] = $('#category').val();
+			data["comment"] = $('#comment').val();
+			
+			$('#itemName').val("");
+			$('#price').val("");
+			$('#purchasedDate').val("");
+			//data["category"] = $('#category').val();
+			$('#comment').val("");
+			
+			//var item = "x";
+			
+               $.ajax({
+                   type: "POST",
+                // type: "GET",
+                //contentType: "application/json",
+                url: "/expmanager/app/item/save",
+                // data: "id=" + 1 + "&itemName=" + "test",
+//					data: {"itemName":"test"},
+                data: JSON.stringify(data) ,
+                contentType: "application/json; charset=utf-8",
+				dataType   : "json",
+                   success:  function(item) {
+                        //window.location.href = 'http://localhost:8080/expmanager/app/item/';
+                      // alert("success");
+					   $('#success').text('Item Saved successfully');
+					   	$('#successDiv').show();
+						$('#errorDiv').hide();
+                        var trHTML = '';
+							$('#itemTables tbody').empty();
+							for(var i = 0; i < item.length; i++) {   
+														
+                                trHTML += '<tr><td>' + (i+1) + '</td><td>' + item[i].itemName + '</td><td>' + item[i].price + '</td><td>' + item[i].purchasedDate + '</td><td>' + item[i].comment + '</td></tr>';
+                           }
+
+                           $('#itemTable').append(trHTML);
+	
+                   },
+                   error: function(response) {
+                       alert("Error");
+					   $('#errorDiv').show();			
+						$('#successDiv').hide();					   
+					   $('#error').text('Error Occured while saving data !!');
+                   }
+               });
             }
         });
-    });
-
-
+    //});
 
 });
 
+function populateTable() {
+	               $.ajax({
+                   //type: "POST",
+                type: "GET",
+                //contentType: "application/json",
+                url: "/expmanager/app/item/finditempermonthyear",
+                // data: "id=" + 1 + "&itemName=" + "test",
+				data: { 
+				month: 4, 
+				year: 2
+				},
+              //  data: JSON.stringify(data) ,
+                contentType: "application/json; charset=utf-8",
+				dataType   : "json",
+                   success:  function(item) {
+                        //window.location.href = 'http://localhost:8080/expmanager/app/item/';
+                      // alert("success");
+					   $('#success').text('Item Saved successfully');
+					   	$('#successDiv').show();
+						$('#errorDiv').hide();
+                        var trHTML = '';
+							$('#itemTables tbody').empty();
+							for(var i = 0; i < item.length; i++) {   
+														
+                                trHTML += '<tr><td>' + (i+1) + '</td><td>' + item[i].itemName + '</td><td>' + item[i].price + '</td><td>' + item[i].purchasedDate + '</td><td>' + item[i].comment + '</td></tr>';
+                           }
+
+                           $('#itemTable').append(trHTML);
+	
+                   },
+                   error: function(response) {
+                       alert("Error");
+					   $('#errorDiv').show();			
+						$('#successDiv').hide();					   
+					   $('#error').text('Error Occurred!!');
+                   }
+               });
+}
