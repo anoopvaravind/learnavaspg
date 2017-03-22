@@ -10,6 +10,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
+    <meta name="_csrf" content="${_csrf.token}"/>
+    <!-- default header name is X-CSRF-TOKEN -->
+    <meta name="_csrf_header" content="${_csrf.headerName}"/>
 
     <title>Expense Manager</title>
     <link href="<c:url value='/css/bootstrap.min.css' />" rel="stylesheet"></link>
@@ -224,25 +227,41 @@
         <div class="row">
             <div class="col-lg-6">
                 <form name="accountForm" role="form">
+                 <div id="successDiv" class="alert alert-success" >
+                    <p id="success"></p>
+                </div>
+                 <div id="errorDiv" class="alert alert-danger">
+                      <p id="error"></p>
+                </div>
                     <div class="form-group">
                         <label>Month</label>
-                        <select class="form-control">
-                            <option>January</option>
-                            <option>February</option>
-                            <option>March</option>
-                            <option>April</option>
+                        <select id="month" class="form-control">
+                            <option value="1">January</option>
+                            <option value="2">February</option>
+                            <option value="3">March</option>
+                            <option value="4">April</option>
+                            <option value="5">May</option>
+                            <option value="6">June</option>
+                            <option value="7">July</option>
+                            <option value="8">August</option>
+                            <option value="9">September</option>
+                            <option value="10">October</option>
+                            <option value="11">November</option>
+                            <option value="12">December</option>
                         </select>
                     </div>
                     <div class="form-group">
                         <label>Year</label>
-                        <select class="form-control">
-                            <option>2016</option>
-                            <option>2017</option>
+                        <select id="year" class="form-control">
+                            <option value="2017">2017</option>
+                            <option value="2018">2018</option>
+                            <option value="2019">2019</option>
+                            <option value="2020">2020</option>
                         </select>
                     </div>
                     <div class="form-group">
                         <label>Current Rent Amount</label>
-                        <input name="currentrentamount" class="form-control" placeholder="Enter Rent Amount" >
+                        <input id="currentRentAmount" name="currentRentAmount" class="form-control" placeholder="Enter Rent Amount" >
                     </div>
                     <button type="submit" id="generate" class="btn btn-primary" disabled>Generate</button>
                     <button type="reset" class="btn btn-primary">Reset</button>

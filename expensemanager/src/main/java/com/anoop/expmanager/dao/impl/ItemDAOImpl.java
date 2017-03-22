@@ -1,5 +1,6 @@
 package com.anoop.expmanager.dao.impl;
 
+import java.util.Date;
 import java.util.List;
 
 import org.hibernate.Criteria;
@@ -101,5 +102,25 @@ public class ItemDAOImpl implements ItemDAO {
 		}
 		return null;
 	}
+
+    @Override
+    public List<Item> findAllItemPerUserAndDate(long userID, Date startDate, Date endDate) {
+        Session session = null;
+        try {
+            session = sessionFactory.openSession();
+            Criteria criteria = session.createCriteria(Item.class);
+            criteria.add(Restrictions.eq("user.id", userID));
+//            criteria.add(Restrictions.between("purchasedDate",startDate,endDate));
+            criteria.add(Restrictions.ge("purchasedDate", startDate));
+            criteria.add(Restrictions.le("purchasedDate", endDate));
+            criteria.addOrder(Order.desc("purchasedDate"));
+            return criteria.list();
+        } catch (Exception e) {
+            System.out.println("Caught exception in findAll() : " + e);
+        } finally {
+            session.close();
+        }
+        return null;
+    }
 
 }

@@ -13,5 +13,5 @@ public interface AccountService {
 
 	public void createAccount(Account account);
 
-	public void generateMonthlyStatement(int month, int year);
+	public void generateMonthlyStatement(int month, int year, double currentRentAmount);
 }

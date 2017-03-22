@@ -1,7 +1,14 @@
-
 //csrf tokens for ajax post
 var token = $("meta[name='_csrf']").attr("content");
-var header = $("meta[name='_csrf_header']").attr("content");
+$.ajaxSetup({
+    beforeSend: function(xhr) {
+        xhr.setRequestHeader('X-CSRF-TOKEN', token);
+    }
+});
+
+$('#errorDiv').hide();
+$('#successDiv').hide();
+
 $(document).ready(function(){
 	$("#generate").prop("disabled", false);
 	jQuery.validator.addMethod(
@@ -19,31 +26,37 @@ $(document).ready(function(){
 			// The key name on the left side is the name attribute
 			// of an input field. Validation rules are defined
 			// on the right side
-			currentrentamount:{
+			currentRentAmount:{
 				required:true,
 				validateMoney:true
 			}
 		},
 		// Specify validation error messages
 		messages: {
-			currentrentamount:{
+			currentRentAmount:{
 				required:"Please enter rent amount"
 			}
 		},
 		// Make sure the form is submitted to the destination defined
 		// in the "action" attribute of the form when valid
 		submitHandler: function(form) {
-			e.preventDefault(); /// <--- THIS LINE
+			//e.preventDefault(); /// <--- THIS LINE
     $.ajax({
-        type: 'POST',
-        data: {name: $('#name').val()},
-        url: 'signup_backend.php',
-        success: function(data, textStatus, jqXHR){
+        type: "POST",
+        url: '/expmanager/app/account/generatemonthlystatement',
+        data: {month: $('#month').val(),year:$('#year').val(),currentRentAmount:$('#currentRentAmount').val()},
+       success:  function(notification) {
+          $('#success').text(notification.message);
+           $('#successDiv').show();
+           $('#errorDiv').hide();
 
-        },
-        error: function(jqXHR, textStatus, errorThrown){
-            alert('error');
-        }
+       },
+       error: function(response) {
+           alert("Error");
+           $('#errorDiv').show();
+           $('#successDiv').hide();
+           $('#error').text(notification.message);
+       }
     });
 		}
 	});

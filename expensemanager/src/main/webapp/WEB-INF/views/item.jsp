@@ -228,9 +228,7 @@
         <div class="row">
             <div class="col-lg-6">
 
-                <form role="form" name="itemForm" action="/app/item/save">
-
-                   
+                <form role="form" name="itemForm">
 										
 										 <div id="successDiv" class="alert alert-success" >
                                                 <p id="success"></p>

@@ -1,7 +1,13 @@
-
 //csrf tokens for ajax post
 var token = $("meta[name='_csrf']").attr("content");
-var header = $("meta[name='_csrf_header']").attr("content");
+$.ajaxSetup({
+    beforeSend: function(xhr) {
+        xhr.setRequestHeader('X-CSRF-TOKEN', token);
+    }
+});
+$('#errorDiv').hide();
+$('#successDiv').hide();
+
 $(document).ready(function(){
 	$("#submit").prop("disabled", false);
 

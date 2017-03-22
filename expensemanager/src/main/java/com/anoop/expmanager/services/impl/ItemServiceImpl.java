@@ -1,5 +1,6 @@
 package com.anoop.expmanager.services.impl;
 
+import java.util.Date;
 import java.util.List;
 
 import org.hibernate.Criteria;
@@ -28,7 +29,12 @@ public class ItemServiceImpl implements ItemService {
 		return itemDAO.findAllItemPerUserMonthAndYear(userID, month, year);
 	}
 
-	@Override
+    @Override
+    public List<Item> findAllItemPerUserAndDate(long userID, Date startDate, Date endDate) {
+        return itemDAO.findAllItemPerUserAndDate(userID,startDate,endDate);
+    }
+
+    @Override
 	public void saveItem(Item item) {
 		itemDAO.saveItem(item);
 	}

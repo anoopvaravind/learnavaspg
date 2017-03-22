@@ -1,5 +1,6 @@
 package com.anoop.expmanager.dao;
 
+import java.util.Date;
 import java.util.List;
 
 import com.anoop.expmanager.DO.UserIncommExpenseSummaryDO;
@@ -15,4 +16,6 @@ public interface ItemDAO {
 	public List<Item> findAll();
 
 	public List<UserIncommExpenseSummaryDO> calculateUserExpense(int month, int year);
+
+    List<Item> findAllItemPerUserAndDate(long userID, Date startDate, Date endDate);
 }

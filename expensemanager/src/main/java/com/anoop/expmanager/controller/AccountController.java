@@ -2,12 +2,10 @@ package com.anoop.expmanager.controller;
 
 import java.util.List;
 
+import com.anoop.expmanager.util.Notification;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.anoop.expmanager.model.Account;
 import com.anoop.expmanager.services.service.AccountService;
@@ -42,8 +40,14 @@ public class AccountController {
 	}
 
 	@RequestMapping(value = "/generatemonthlystatement", method = RequestMethod.POST)
-	public void generateMonthlyStatement(@PathVariable("month") int month, @PathVariable("year") int year) {
+    @ResponseBody
+	public Notification generateMonthlyStatement(@RequestParam("month") int month, @RequestParam("year") int year,
+                                         @RequestParam("currentRentAmount") double currentRentAmount) {
+        System.out.println("########"+month);
+        System.out.println(year);
+        System.out.println(currentRentAmount);
 		Account account = null;
-		accountService.generateMonthlyStatement(month, year);
+		accountService.generateMonthlyStatement(month, year,currentRentAmount);
+        return new Notification(true,false,"Successfully generated statement");
 	}
 }

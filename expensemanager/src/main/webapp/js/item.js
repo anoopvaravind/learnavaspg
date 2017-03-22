@@ -5,6 +5,7 @@ $.ajaxSetup({
         xhr.setRequestHeader('X-CSRF-TOKEN', token);
     }
 });
+
 $('#errorDiv').hide();
 $('#successDiv').hide();
 
@@ -98,15 +99,24 @@ $(document).ready(function(){
         // Make sure the form is submitted to the destination defined
         // in the "action" attribute of the form when valid
         submitHandler: function(form) {
-
-            var data = {}
+			 
+           /* var data = {}
             //data["id"] = "1";
             data["itemName"] = $('#itemName').val();
             data["price"] = $('#price').val();
 
-            data["purchasedDate"] = $("input[name=purchasedDate]").val();
+            data["purchasedDate"] = convertDate($("input[name=purchasedDate]").val());
             //data["category"] = $('#category').val();
             data["comment"] = $('#comment').val();
+            //data.category.id = $('#category').val();*/
+			var data = {};
+			var nestedObj={};
+			data.itemName = $('#itemName').val();
+			data.price = $('#price').val();
+			data.purchasedDate = convertDate($("input[name=purchasedDate]").val());
+			data.comment = $('#comment').val();
+			nestedObj.id = $('#category').val();
+			data.category=nestedObj;			
 
             $('#itemName').val("");
             $('#price').val("");
@@ -129,10 +139,8 @@ $(document).ready(function(){
                     var trHTML = '';
                     $('#itemTable tbody').empty();
                     for(var i = 0; i < item.length; i++) {
-
                         trHTML += '<tr><td>' + (i+1) + '</td><td>' + item[i].itemName + '</td><td>' + item[i].price + '</td><td>' + item[i].purchasedDate + '</td><td>' + item[i].comment + '</td></tr>';
                     }
-
                     $('#itemTable').append(trHTML);
 
                 },
@@ -151,15 +159,9 @@ $(document).ready(function(){
 function populateTable() {
     $.ajax({
         type: "GET",
-        url: "/expmanager/app/item/finditempermonthyear",
-        data: {
-            month: 4,
-            year: 2
-        },
+        url: "/expmanager/app/item/findAllItemPerUserAndDate",
         dataType   : "json",
         success:  function(item) {
-            $('#successDiv').show();
-            $('#errorDiv').hide();
             var trHTML = '';
             $('#itemTable tbody').empty();
             for(var i = 0; i < item.length; i++) {
@@ -174,4 +176,9 @@ function populateTable() {
             $('#error').text('Error Occurred while loading items!!');
         }
     });
+}
+
+function convertDate(usDate) {
+  var dateParts = usDate.split(/(\d{1,2})\/(\d{1,2})\/(\d{4})/);
+  return dateParts[3] + "-" + dateParts[1] + "-" + dateParts[2];
 }

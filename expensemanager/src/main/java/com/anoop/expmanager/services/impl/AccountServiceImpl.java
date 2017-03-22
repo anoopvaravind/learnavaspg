@@ -53,7 +53,7 @@ public class AccountServiceImpl implements AccountService {
 	}
 
 	@Override
-	public void generateMonthlyStatement(int month, int year) {
+	public void generateMonthlyStatement(int month, int year, double currentRentAmount) {
 		List<Account> accountAlreadyGenerated = accountDAO.getAccountDetailsPerMonthAndYear(month, year);
 		List<RentSheet> newRentSheetList = new ArrayList<RentSheet>();
 		RentSheet newRentSheet;
@@ -64,10 +64,11 @@ public class AccountServiceImpl implements AccountService {
 			System.out.println("Monthly statement already generated");
 			return;
 		}
+        System.out.println("Going to generate Monthly statement");
 
         HashMap<String, String> settingsMap = settingsDAO.loadSetstingsMap();
 		double originalRentAmount = Double.parseDouble(settingsMap.get("RENT_AMOUNT"));
-
+        originalRentAmount = currentRentAmount;
 		double monthlyExpense = 0.0;
 		double monthlyIncomm = 0.0;
 
