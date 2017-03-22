@@ -1,15 +1,11 @@
 package com.anoop.expmanager.model;
 
+import com.anoop.expmanager.util.CustomDateFormatter;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+
 import java.util.Date;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "item")
@@ -23,7 +19,9 @@ public class Item {
     @ManyToOne
     @JoinColumn(name = "USER_ID")
 	private User user;
+
 	private Date purchasedDate;
+    @Temporal(TemporalType.TIMESTAMP)
 	private Date modifiedDate;
     @ManyToOne
     @JoinColumn(name = "CATEGORY_ID")
@@ -62,6 +60,7 @@ public class Item {
 		this.user = user;
 	}
 
+    @JsonSerialize(using = CustomDateFormatter.class)
 	public Date getPurchasedDate() {
 		return purchasedDate;
 	}

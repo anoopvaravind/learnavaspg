@@ -22,17 +22,24 @@ public class ItemController {
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public ModelAndView item() {
         ModelAndView mv = new ModelAndView();
-        mv.addObject("notification",Util.createNotificationMessage(true,false,"Initial message"));
         mv.setViewName("item");
         return mv;
     }
 
+    @RequestMapping(value = "/findAll", method = RequestMethod.GET)
+    @ResponseBody
+    public List<Item> findAll() {
+        return itemService.findAll();
+    }
+
 	@RequestMapping(value = "/finditempermonthyear", method = RequestMethod.GET)
+    @ResponseBody
 	public List<Item> findAllItemPerMonthAndYear(@RequestParam("month") int month, @RequestParam("year") int year) {
 		return itemService.findAll();
 	}
 
 	@RequestMapping(value = "/finditemperusermonthyear", method = RequestMethod.GET)
+    @ResponseBody
 	public List<Item> findAllItemPerUserMonthAndYear(@PathVariable("month") int month, @PathVariable("year") int year) {
 		return itemService.findAll();
 	}

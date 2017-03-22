@@ -5,6 +5,7 @@ import java.util.List;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -41,9 +42,9 @@ public class ItemDAOImpl implements ItemDAO {
 		try {
 			session = sessionFactory.openSession();
 			Criteria criteria = session.createCriteria(Item.class);
-			criteria.add(Restrictions.eq("month", month));
-			criteria.add(Restrictions.eq("year", year));
-			criteria.add(Restrictions.eq("userID", userID));
+//			criteria.add(Restrictions.eq("month", month));
+//			criteria.add(Restrictions.eq("year", year));
+//			criteria.add(Restrictions.eq("userID", userID));
 			return criteria.list();
 		} catch (Exception e) {
 			System.out.println("Caught exception in findAllItemPerUserMonthAndYear() : " + e);
@@ -73,6 +74,7 @@ public class ItemDAOImpl implements ItemDAO {
 		try {
 			session = sessionFactory.openSession();
 			Criteria criteria = session.createCriteria(Item.class);
+            criteria.addOrder(Order.desc("id"));
 			return criteria.list();
 		} catch (Exception e) {
 			System.out.println("Caught exception in findAll() : " + e);

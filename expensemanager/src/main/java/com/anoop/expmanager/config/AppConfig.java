@@ -7,6 +7,7 @@ package com.anoop.expmanager.config;
  * Time: 8:06 PM
  * To change this template use File | Settings | File Templates.
  */
+import com.anoop.expmanager.util.CustomDateFormatter;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.hibernate4.Hibernate4Module;
 import org.springframework.context.annotation.Bean;
@@ -63,5 +64,11 @@ public class AppConfig extends WebMvcConfigurerAdapter {
         converters.add(jacksonMessageConverter());
         super.configureMessageConverters(converters);
     }
+
+    @Bean
+    public CustomDateFormatter customDateFormatter(){
+        return new CustomDateFormatter();
+    }
+
 
 }
