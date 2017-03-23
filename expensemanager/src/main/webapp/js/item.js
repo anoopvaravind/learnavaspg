@@ -12,13 +12,6 @@ $('#successDiv').hide();
 
 $(document).ready(function(){
 
-    var token = $("meta[name='_csrf']").attr("content");
-    $.ajaxSetup({
-        beforeSend: function(xhr) {
-            xhr.setRequestHeader('X-CSRF-TOKEN', token);
-        }
-    });
-
     $("#submitButton").prop("disabled", false);
     $( "#datepicker" ).datepicker();
     $("#datepicker").datepicker({dateFormat: 'mm/dd/yy'});

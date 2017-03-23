@@ -1,5 +1,6 @@
  #user
- insert into user values(2,NOW(),'Binu',1,NOW(),md5('binu'),'binu',1)
+  insert into user values(1,NOW(),'Anoop',1,NOW(),md5('anoop'),'anoop',1);
+ insert into user values(2,NOW(),'Binu',1,NOW(),md5('binu'),'binu',1);
 
 # Category insert
 insert into category values(1,'Food','Food');

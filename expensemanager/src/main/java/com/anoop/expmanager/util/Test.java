@@ -33,6 +33,7 @@ public class Test {
         System.out.println("getStartDateOfMonth : " + d);
         System.out.println("getStartDateOfMonth : " + getStartDateOfMonth(d));
         System.out.println("getEndDateOfMonth : " + getEndDateOfMonth(d));
+        System.out.println("createStartDateFromMonthAndYear : " + createStartDateFromMonthAndYear(12,2017));
 	}
 
     public static Date getStartDateOfMonth(Date date) {
@@ -57,5 +58,12 @@ public class Test {
             e.printStackTrace();
         }
         return null;
+    }
+
+    public static Date createStartDateFromMonthAndYear(int month, int year) {
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(year, month - 1, 1, 0, 0,0);
+
+        return calendar.getTime();
     }
 }

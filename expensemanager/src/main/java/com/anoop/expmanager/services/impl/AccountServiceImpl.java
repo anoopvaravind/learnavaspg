@@ -5,7 +5,9 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
-import com.sun.javafx.collections.MappingChange;
+import com.anoop.expmanager.model.User;
+import com.anoop.expmanager.util.Notification;
+import com.anoop.expmanager.util.Util;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.anoop.expmanager.DO.UserIncommExpenseSummaryDO;
@@ -53,66 +55,82 @@ public class AccountServiceImpl implements AccountService {
 	}
 
 	@Override
-	public void generateMonthlyStatement(int month, int year, double currentRentAmount) {
+	public Notification generateMonthlyStatement(int month, int year, double currentRentAmount) {
 		List<Account> accountAlreadyGenerated = accountDAO.getAccountDetailsPerMonthAndYear(month, year);
 		List<RentSheet> newRentSheetList = new ArrayList<RentSheet>();
 		RentSheet newRentSheet;
 		RentSheet previousRentSheet;
 		Account monthlyAccountSummary = new Account();
-
-		if (accountAlreadyGenerated == null || accountAlreadyGenerated.isEmpty()) {
+        Date startDate = null;
+        Date endDate = null;
+		if (accountAlreadyGenerated != null && !accountAlreadyGenerated.isEmpty()) {
 			System.out.println("Monthly statement already generated");
-			return;
+            return new Notification(false,true,"Monthly statement already generated");
 		}
         System.out.println("Going to generate Monthly statement");
 
-        HashMap<String, String> settingsMap = settingsDAO.loadSetstingsMap();
-		double originalRentAmount = Double.parseDouble(settingsMap.get("RENT_AMOUNT"));
+//        HashMap<String, String> settingsMap = settingsDAO.loadSetstingsMap();
+//		double originalRentAmount = Double.parseDouble(settingsMap.get("RENT_AMOUNT"));
+        double originalRentAmount;
         originalRentAmount = currentRentAmount;
 		double monthlyExpense = 0.0;
 		double monthlyIncomm = 0.0;
+        double rentDue = 0.0;
 
-		List<UserIncommExpenseSummaryDO> usersIncommExpenseSummary = itemDAO.calculateUserExpense(month,year); // all
-																										// user
-																										// expense
-		for (UserIncommExpenseSummaryDO userIncommExpense : usersIncommExpenseSummary) {
-			previousRentSheet = rentSheetDAO.getLastMonthRentSheetPerUser(userIncommExpense.getUserID());
-			newRentSheet = new RentSheet();
-			if (previousRentSheet == null) {
-				newRentSheet.setAdjustedRent(originalRentAmount - userIncommExpense.getExpensePaid());
-				newRentSheet.setDue(originalRentAmount - userIncommExpense.getExpensePaid());
-			} else {
-				newRentSheet.setAdjustedRent(
-						originalRentAmount - userIncommExpense.getExpensePaid() + previousRentSheet.getDue());
-				newRentSheet
-						.setDue(originalRentAmount - userIncommExpense.getExpensePaid() + previousRentSheet.getDue());
-			}
-			newRentSheet.setOriginalRentAmount(originalRentAmount);
-			newRentSheet.setTotalExpensePaid(userIncommExpense.getExpensePaid());
-			newRentSheet.setRentGeneratedForMonth(month);
-			newRentSheet.setRentGeneratedForYear(year);
-			newRentSheet.setRentGeneratedDate(new Date());
-			newRentSheet.setRentActullyPaid(0);
-			newRentSheet.setRentPaidDate(null);
-			newRentSheet.setModifiedDate(new Date());
-			newRentSheet.setComment("");
+//		List<UserIncommExpenseSummaryDO> usersIncommExpenseSummary = itemDAO.calculateUserExpense(month,year); // all
+        List<User> activeUsers = userDAO.getActiveUsers();
+        System.out.println("activeUsers"+activeUsers);
+        for (User activeUser : activeUsers) {
+            startDate = Util.createStartDateFromMonthAndYear(month,year);
+            endDate = Util.getEndDateOfMonth(startDate);
+            double userExpense = itemDAO.calculateUserExpenseBetweenDate(activeUser.getId(),startDate,endDate);
+            System.out.println("#########################userExpense"+userExpense);
+            previousRentSheet = rentSheetDAO.getLastMonthRentSheetPerUser(activeUser.getId());
+            newRentSheet = new RentSheet();
+            if (previousRentSheet == null) {
+                newRentSheet.setAdjustedRent(originalRentAmount - userExpense);
+                rentDue = 0.0;
+            } else {
+                monthlyIncomm += previousRentSheet.getRentActullyPaid();
+                rentDue = previousRentSheet.getAdjustedRent()-previousRentSheet.getRentActullyPaid();
+                newRentSheet.setAdjustedRent(
+                        originalRentAmount - userExpense + rentDue);
+            }
+            newRentSheet.setUser(activeUser);
+            newRentSheet.setDue(rentDue);
+            newRentSheet.setOriginalRentAmount(originalRentAmount);
+            newRentSheet.setTotalExpensePaid(userExpense);
+            newRentSheet.setRentGeneratedForMonth(month);
+            newRentSheet.setRentGeneratedForYear(year);
+            newRentSheet.setRentGeneratedDate(new Date());
+            newRentSheet.setRentActullyPaid(0);
+            newRentSheet.setRentPaidDate(null);
+            newRentSheet.setModifiedDate(new Date());
+            newRentSheet.setComment("");
 
-			monthlyExpense += userIncommExpense.getExpensePaid();
-			monthlyIncomm += userIncommExpense.getRentPaid();
-			newRentSheetList.add(newRentSheet);
-		}
-
-		rentSheetDAO.saveRentSheet(newRentSheetList);
+            monthlyExpense += userExpense;
+           // newRentSheetList.add(newRentSheet);
+            rentSheetDAO.saveRentSheet(newRentSheet);
+        }
 
 		Account latestAccount = accountDAO.getLatestAccount();
+        System.out.println("latestAccount"+latestAccount);
+        if(latestAccount == null) {
+            monthlyAccountSummary.setOpeningBalance(0);
+            monthlyAccountSummary.setClossingBalance(monthlyIncomm - monthlyExpense);
+        } else {
+            monthlyAccountSummary.setOpeningBalance(latestAccount.getClossingBalance());
+            monthlyAccountSummary.setClossingBalance(latestAccount.getClossingBalance() + monthlyIncomm - monthlyExpense);
+        }
 		monthlyAccountSummary.setMonth(month);
 		monthlyAccountSummary.setYear(year);
 		monthlyAccountSummary.setMonthlyExpense(monthlyExpense);
-		monthlyAccountSummary.setOpeningBalance(latestAccount.getClossingBalance());
 		monthlyAccountSummary.setMonthlyIncomm(monthlyIncomm);
-		monthlyAccountSummary.setClossingBalance(latestAccount.getClossingBalance() + monthlyIncomm - monthlyExpense);
+        monthlyAccountSummary.setCeatedDate(new Date());
+        monthlyAccountSummary.setModifiedDate(new Date());
 
 		accountDAO.createAccount(monthlyAccountSummary);
+        return new Notification(true,false,"Successfully generated statement");
 	}
 
 }

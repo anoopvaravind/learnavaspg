@@ -36,4 +36,9 @@ public class RentServiceImpl implements RentService {
 		rentDAO.saveRentSheet(rentSheet);
 	}
 
+    @Override
+    public List<RentSheet> getRentHistoryForUser(long userId) {
+        return rentDAO.getRentHistoryForUser(userId);  //To change body of implemented methods use File | Settings | File Templates.
+    }
+
 }

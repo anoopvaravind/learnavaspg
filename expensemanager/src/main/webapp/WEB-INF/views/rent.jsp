@@ -9,6 +9,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
+    <meta name="_csrf" content="${_csrf.token}"/>
+    <!-- default header name is X-CSRF-TOKEN -->
+    <meta name="_csrf_header" content="${_csrf.headerName}"/>
 
     <title>Expense Manager</title>
     <link href="<c:url value='/css/bootstrap.min.css' />" rel="stylesheet"></link>
@@ -224,29 +227,37 @@
             <div class="col-lg-6">
 
                 <form name="rentForm" role="form">
+                    <div id="successDiv" class="alert alert-success" >
+                        <p id="success"></p>
+                    </div>
+
+                    <div id="errorDiv" class="alert alert-danger">
+                        <p id="error"></p>
+                    </div>
                     <div class="form-group">
                         <label>Month</label>
-                        <select class="form-control" disabled>
-                            <option>January</option>
-                            <option>February</option>
-                            <option>March</option>
-                            <option>April</option>
+                        <select id="monthselector" class="form-control" disabled>
                         </select>
                     </div>
 
                     <div class="form-group">
                         <label>Amount Due</label>
-                        <input name="amountdue" value="100.00" class="form-control" disabled>
+                        <input id="amountdue" name="amountdue"  class="form-control" disabled>
                     </div>
 
                     <div class="form-group">
                         <label>Current Month Rent</label>
-                        <input name="currentmonthrent" value="2500.00" class="form-control" disabled>
+                        <input id="currentmonthrent" name="currentmonthrent" class="form-control" disabled>
                     </div>
 
                     <div class="form-group">
-                        <label>Total Amount</label>
-                        <input name="totalamount" id="totalamount" class="form-control" placeholder="Enter Emount">
+                        <label>Net Amount</label>
+                        <input id="netamount" name="netamount" class="form-control" disabled>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Pay Amount</label>
+                        <input name="totalamount" id="totalamount" class="form-control" placeholder="Enter Net Amount">
                     </div>
                     <button type="submit" class="btn btn-primary" id="submit" disabled>Submit</button>
                     <button type="reset" class="btn btn-primary">Reset</button>
@@ -258,35 +269,19 @@
 			
 			            <div class="col-lg-6">
                 <div class="table-responsive">
-                    <table class="table table-bordered table-hover table-striped">
+                    <table id="rentsheettable" class="table table-bordered table-hover table-striped">
                         <thead>
                         <tr>
-                            <th>User</th>
-                            <th>For Month</th>
-                            <th>For Year</th>
+                            <th>Month</th>
+                            <th>Year</th>
+                            <th>Expense Paid</th>
+                            <th>Monthly Rent</th>
+                            <th>Due</th>
+                            <th>Net Rent</th>
                             <th>Rent Paid</th>
-                            <th>Rent Paid Date</th>
-                            <th>Amount Due</th>
+                            <th>Paid Date</th>
                         </tr>
                         </thead>
-                        <tbody>
-                        <tr>
-                            <td>Anoop</td>
-                            <td>January</td>
-                            <td>2017</td>
-                            <td>2500.00</td>
-                            <td>02/02/2017</td>
-                            <td>0.00</td>
-                        </tr>
-                        <tr>
-                            <td>Anoop</td>
-                            <td>February</td>
-                            <td>2017</td>
-                            <td>2400.00</td>
-                            <td>03/03/2017</td>
-                            <td>100.00</td>
-                        </tr>
-                        </tbody>
                     </table>
                 </div>
 

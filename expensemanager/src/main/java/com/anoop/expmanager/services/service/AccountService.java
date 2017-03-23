@@ -3,6 +3,7 @@ package com.anoop.expmanager.services.service;
 import java.util.List;
 
 import com.anoop.expmanager.model.Account;
+import com.anoop.expmanager.util.Notification;
 
 public interface AccountService {
 	public Account getCurrentAccountDetails();
@@ -13,5 +14,5 @@ public interface AccountService {
 
 	public void createAccount(Account account);
 
-	public void generateMonthlyStatement(int month, int year, double currentRentAmount);
+	public Notification generateMonthlyStatement(int month, int year, double currentRentAmount);
 }

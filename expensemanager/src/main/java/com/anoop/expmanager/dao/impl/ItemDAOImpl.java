@@ -7,7 +7,10 @@ import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Order;
+import org.hibernate.criterion.ProjectionList;
+import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
+import org.hibernate.type.Type;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.anoop.expmanager.DO.UserIncommExpenseSummaryDO;
@@ -121,6 +124,40 @@ public class ItemDAOImpl implements ItemDAO {
             session.close();
         }
         return null;
+    }
+
+    @Override
+    public double calculateUserExpenseBetweenDate(long userID, Date startDate, Date endDate) {
+        System.out.println("userID : " + userID);
+        System.out.println("startDate" + startDate);
+        System.out.println("endDate" + endDate);
+        Session session = null;
+        Object obj = null;
+        try {
+            session = sessionFactory.openSession();
+            Criteria criteria = session.createCriteria(Item.class);
+            criteria.add(Restrictions.eq("user.id", userID));
+            criteria.add(Restrictions.ge("purchasedDate", startDate));
+            criteria.add(Restrictions.le("purchasedDate", endDate));
+            criteria.addOrder(Order.desc("purchasedDate"));
+
+            ProjectionList projectionList = Projections.projectionList();
+            projectionList.add(Projections.sum("price"));
+            criteria.setProjection(projectionList);
+
+            System.out.println("criteria.uniqueResult() : " +criteria.uniqueResult());
+            obj = criteria.uniqueResult();
+            if(obj == null) {
+                return 0.0;
+            }
+            return (Double) obj;
+        } catch (Exception e) {
+            System.out.println("Caught exception in calculateUserExpenseBetweenDate() : " + e);
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
+        return 0;
     }
 
 }

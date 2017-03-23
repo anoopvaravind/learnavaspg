@@ -45,4 +45,10 @@ public class Util {
         }
         return null;
     }
+
+    public static Date createStartDateFromMonthAndYear(int month, int year) {
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(year, month - 1, 1, 0, 0, 0);
+        return calendar.getTime();
+    }
 }

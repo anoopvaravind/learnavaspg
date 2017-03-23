@@ -20,7 +20,7 @@ public class UserDAOImpl implements UserDAO {
 	SessionFactory sessionFactory;
 
 	@Override
-	public List<User> getactiveUsers() {
+	public List<User> getActiveUsers() {
 		Session session = null;
 		try {
 			session = sessionFactory.openSession();

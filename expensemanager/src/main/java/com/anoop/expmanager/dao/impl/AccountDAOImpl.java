@@ -55,10 +55,11 @@ public class AccountDAOImpl implements AccountDAO {
 	public void createAccount(Account account) {
 		Session session = null;
 		try {
-			session = sessionFactory.getCurrentSession();
+			session = sessionFactory.openSession();
 			session.saveOrUpdate(account);
 		} catch (Exception e) {
 			System.out.println("Caught exception in createAccount() : " + e);
+            e.printStackTrace();
 		} finally {
 			session.close();
 		}

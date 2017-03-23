@@ -18,4 +18,6 @@ public interface ItemDAO {
 	public List<UserIncommExpenseSummaryDO> calculateUserExpense(int month, int year);
 
     List<Item> findAllItemPerUserAndDate(long userID, Date startDate, Date endDate);
+
+    double calculateUserExpenseBetweenDate(long userID, Date startDate, Date endDate);
 }

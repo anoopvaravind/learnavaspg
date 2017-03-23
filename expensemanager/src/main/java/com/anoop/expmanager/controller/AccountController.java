@@ -47,7 +47,6 @@ public class AccountController {
         System.out.println(year);
         System.out.println(currentRentAmount);
 		Account account = null;
-		accountService.generateMonthlyStatement(month, year,currentRentAmount);
-        return new Notification(true,false,"Successfully generated statement");
+		return accountService.generateMonthlyStatement(month, year,currentRentAmount);
 	}
 }

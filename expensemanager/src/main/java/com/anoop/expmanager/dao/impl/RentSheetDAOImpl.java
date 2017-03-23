@@ -69,13 +69,14 @@ public class RentSheetDAOImpl implements RentSheetDAO {
 	}
 
 	@Override
-	public void saveRentSheet(Object rentPaid) {
+	public void saveRentSheet(RentSheet rentSheet) {
 		Session session = null;
 		try {
 			session = sessionFactory.openSession();
-			session.saveOrUpdate(rentPaid);
+			session.saveOrUpdate(rentSheet);
 		} catch (Exception e) {
 			System.out.println("Caught exception in saveRentPaid() : " + e);
+            e.printStackTrace();
 		} finally {
 			session.close();
 		}
@@ -98,5 +99,22 @@ public class RentSheetDAOImpl implements RentSheetDAO {
 		}
 		return null;
 	}
+
+    @Override
+    public List<RentSheet> getRentHistoryForUser(long userId) {
+        Session session = null;
+        try {
+            session = sessionFactory.openSession();
+            Criteria criteria = session.createCriteria(RentSheet.class);
+            criteria.add(Restrictions.eq("user.id", userId));
+            criteria.addOrder(Order.desc("rentGeneratedDate"));
+            return criteria.list();
+        } catch (Exception e) {
+            System.out.println("Caught exception in getRentHistoryForUser() : " + e);
+        } finally {
+            session.close();
+        }
+        return null;
+    }
 
 }

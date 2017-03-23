@@ -46,16 +46,21 @@ $(document).ready(function(){
         url: '/expmanager/app/account/generatemonthlystatement',
         data: {month: $('#month').val(),year:$('#year').val(),currentRentAmount:$('#currentRentAmount').val()},
        success:  function(notification) {
+       if(notification.success ==true) {
           $('#success').text(notification.message);
            $('#successDiv').show();
            $('#errorDiv').hide();
+           } else {
+                $('#errorDiv').show();
+                $('#successDiv').hide();
+                $('#error').text(notification.message);
+           }
 
        },
        error: function(response) {
-           alert("Error");
            $('#errorDiv').show();
            $('#successDiv').hide();
-           $('#error').text(notification.message);
+           $('#error').text("Error occurred !!");
        }
     });
 		}

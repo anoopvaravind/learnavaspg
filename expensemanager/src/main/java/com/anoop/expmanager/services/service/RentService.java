@@ -13,4 +13,6 @@ public interface RentService {
 
 	public void saveRentSheet(RentSheet rentSheet);
 
+    public List<RentSheet> getRentHistoryForUser(long userId);
+
 }
