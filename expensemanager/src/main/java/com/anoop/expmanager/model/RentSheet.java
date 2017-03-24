@@ -1,5 +1,8 @@
 package com.anoop.expmanager.model;
 
+import com.anoop.expmanager.util.CustomDateFormatter;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -28,6 +31,7 @@ public class RentSheet {
 	private int rentGeneratedForYear;
 	private Date rentGeneratedDate;
 	private double due;
+    private double advancePayment;
 	private double rentActullyPaid;
 	private Date rentPaidDate;
 	private Date modifiedDate;
@@ -90,7 +94,8 @@ public class RentSheet {
 		this.rentGeneratedForYear = rentGeneratedForYear;
 	}
 
-	public Date getRentGeneratedDate() {
+    @JsonSerialize(using = CustomDateFormatter.class)
+    public Date getRentGeneratedDate() {
 		return rentGeneratedDate;
 	}
 
@@ -114,7 +119,8 @@ public class RentSheet {
 		this.rentActullyPaid = rentActullyPaid;
 	}
 
-	public Date getRentPaidDate() {
+    @JsonSerialize(using = CustomDateFormatter.class)
+    public Date getRentPaidDate() {
 		return rentPaidDate;
 	}
 
@@ -122,7 +128,8 @@ public class RentSheet {
 		this.rentPaidDate = rentPaidDate;
 	}
 
-	public Date getModifiedDate() {
+    @JsonSerialize(using = CustomDateFormatter.class)
+    public Date getModifiedDate() {
 		return modifiedDate;
 	}
 
@@ -137,4 +144,12 @@ public class RentSheet {
 	public void setComment(String comment) {
 		this.comment = comment;
 	}
+
+    public double getAdvancePayment() {
+        return advancePayment;
+    }
+
+    public void setAdvancePayment(double advancePayment) {
+        this.advancePayment = advancePayment;
+    }
 }

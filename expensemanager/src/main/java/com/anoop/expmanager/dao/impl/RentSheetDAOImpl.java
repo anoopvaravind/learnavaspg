@@ -5,6 +5,7 @@ import java.util.List;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -71,9 +72,12 @@ public class RentSheetDAOImpl implements RentSheetDAO {
 	@Override
 	public void saveRentSheet(RentSheet rentSheet) {
 		Session session = null;
+        Transaction tx = null;
 		try {
 			session = sessionFactory.openSession();
-			session.saveOrUpdate(rentSheet);
+            tx = session.beginTransaction();
+            session.saveOrUpdate(rentSheet);
+            tx.commit();
 		} catch (Exception e) {
 			System.out.println("Caught exception in saveRentPaid() : " + e);
             e.printStackTrace();

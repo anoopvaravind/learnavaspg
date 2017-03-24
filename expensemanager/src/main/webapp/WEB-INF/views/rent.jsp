@@ -241,7 +241,7 @@
                     </div>
 
                     <div class="form-group">
-                        <label>Amount Due</label>
+                        <label>Previous Due</label>
                         <input id="amountdue" name="amountdue"  class="form-control" disabled>
                     </div>
 
@@ -276,7 +276,7 @@
                             <th>Year</th>
                             <th>Expense Paid</th>
                             <th>Monthly Rent</th>
-                            <th>Due</th>
+                            <th>Previous Due</th>
                             <th>Net Rent</th>
                             <th>Rent Paid</th>
                             <th>Paid Date</th>

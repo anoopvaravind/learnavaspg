@@ -48,7 +48,12 @@ $(document).ready(function(){
         // Make sure the form is submitted to the destination defined
         // in the "action" attribute of the form when valid
         submitHandler: function(form) {
-
+            if(latestRentSheet.rentActullyPaid > 0) {
+                $('#errorDiv').show();
+                $('#successDiv').hide();
+                $('#error').text('You can pay rent only one time per month !!');
+                return;
+            }
             latestRentSheet.rentActullyPaid = $('#totalamount').val();
             alert(JSON.stringify(latestRentSheet));
             $.ajax({

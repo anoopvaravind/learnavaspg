@@ -32,7 +32,9 @@ public class RentServiceImpl implements RentService {
 
 	@Override
 	public void saveRentSheet(RentSheet rentSheet) {
-		
+        if(rentSheet.getRentActullyPaid()<rentSheet.getAdjustedRent()) {
+        }
+
 		rentDAO.saveRentSheet(rentSheet);
 	}
 
