@@ -94,12 +94,13 @@ public class RentSheet {
 		this.rentGeneratedForYear = rentGeneratedForYear;
 	}
 
-    @JsonSerialize(using = CustomDateFormatter.class)
+
     public Date getRentGeneratedDate() {
 		return rentGeneratedDate;
 	}
 
-	public void setRentGeneratedDate(Date rentGeneratedDate) {
+
+    public void setRentGeneratedDate(Date rentGeneratedDate) {
 		this.rentGeneratedDate = rentGeneratedDate;
 	}
 
@@ -128,7 +129,7 @@ public class RentSheet {
 		this.rentPaidDate = rentPaidDate;
 	}
 
-    @JsonSerialize(using = CustomDateFormatter.class)
+
     public Date getModifiedDate() {
 		return modifiedDate;
 	}

@@ -30,10 +30,6 @@ public class LoginService implements UserDetailsService {
         try {
             System.out.println("userName"+userName);
             User user = userDao.getUserByUserName(userName);
-            System.out.println("user"+user);
-            System.out.println("user"+user.getUsername());
-            System.out.println("getRoles"+user.getRoles());
-
             String role = user.getRoles().getRolename();
             List<GrantedAuthority> rolesList = new ArrayList<GrantedAuthority>();
             rolesList.add(new SimpleGrantedAuthority(role));

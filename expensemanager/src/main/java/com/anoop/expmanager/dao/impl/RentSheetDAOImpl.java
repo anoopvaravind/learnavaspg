@@ -58,8 +58,8 @@ public class RentSheetDAOImpl implements RentSheetDAO {
 		try {
 			session = sessionFactory.openSession();
 			Criteria criteria = session.createCriteria(RentSheet.class);
-			criteria.add(Restrictions.eq("month", month));
-			criteria.add(Restrictions.eq("year", year));
+			criteria.add(Restrictions.eq("rentGeneratedForMonth", month));
+			criteria.add(Restrictions.eq("rentGeneratedForYear", year));
 			return criteria.list();
 		} catch (Exception e) {
 			System.out.println("Caught exception in getRentPaidHistoryPerMonthAndYear() : " + e);

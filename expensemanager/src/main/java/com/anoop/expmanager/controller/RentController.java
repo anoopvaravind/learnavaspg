@@ -42,21 +42,16 @@ public class RentController {
 		return rentService.getRentSheetHistory();
 	}
 
-	@RequestMapping(value = "/historypermonthandyear", method = RequestMethod.GET)
-	public List<RentSheet> getRentPaidHistoryPerMonthAndYear(@PathVariable("month") int month,
-			@PathVariable("year") int year) {
-		return rentService.getRentSheetHistoryPerMonthAndYear(0, 0);
-	}
+
 
 	@RequestMapping(value = "/pay", method = RequestMethod.POST)
     @ResponseBody
 	public Notification saveRentPaid(@RequestBody RentSheet rentSheet) {
-        System.out.println("##################################################" + rentSheet.getRentActullyPaid());
-        System.out.println("##################################################" + rentSheet.getId());
         rentSheet.setRentPaidDate(new Date());
         rentSheet.setModifiedDate(new Date());
 		rentService.saveRentSheet(rentSheet);
         return new Notification(true,false,"Rent paid Successfully");
 	}
+
 
 }

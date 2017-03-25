@@ -10,6 +10,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
+	<meta name="_csrf" content="${_csrf.token}"/>
+    <!-- default header name is X-CSRF-TOKEN -->
+    <meta name="_csrf_header" content="${_csrf.headerName}"/>
 
     <title>Expense Manager</title>
     <link href="<c:url value='/css/bootstrap.min.css' />" rel="stylesheet"></link>
@@ -215,25 +218,41 @@
 
         <div class="row">
             <div class="col-lg-6">
-                <form role="form">
+                <form id="rentReportForm" role="form" name="rentReportForm">
+				<div id="successDiv" class="alert alert-success" >
+                    <p id="success"></p>
+                </div>
+                 <div id="errorDiv" class="alert alert-danger">
+                      <p id="error"></p>
+                </div>
                     <div class="form-group">
                         <label>Month</label>
-                        <select class="form-control">
-                            <option>January</option>
-                            <option>February</option>
-                            <option>March</option>
-                            <option>April</option>
+                        <select id="month" class="form-control">
+                            <option value="1">January</option>
+                            <option value="2">February</option>
+                            <option value="3">March</option>
+                            <option value="4">April</option>
+                            <option value="5">May</option>
+                            <option value="6">June</option>
+                            <option value="7">July</option>
+                            <option value="8">August</option>
+                            <option value="9">September</option>
+                            <option value="10">October</option>
+                            <option value="11">November</option>
+                            <option value="12">December</option>
                         </select>
                     </div>
                     <div class="form-group">
                         <label>Year</label>
-                        <select class="form-control">
-                            <option>2016</option>
-                            <option>2017</option>
+                        <select id="year" class="form-control">
+                            <option value="2017">2017</option>
+                            <option value="2018">2018</option>
+                            <option value="2019">2019</option>
+                            <option value="2020">2020</option>
                         </select>
                     </div>
                     <div class="form-group">
-                        <button type="submit" class="btn btn-primary">Submit</button>
+                        <button id="submit" type="submit" class="btn btn-primary" disabled>Submit</button>
                         <button type="reset" class="btn btn-primary">Reset</button>
                     </div>
                     <br></br>
@@ -243,35 +262,18 @@
             </div>
             <div class="col-lg-6">
                 <div class="table-responsive">
-                    <table class="table table-bordered table-hover table-striped">
+                    <table id="rentsheettable" class="table table-bordered table-hover table-striped">
                         <thead>
                         <tr>
                             <th>User</th>
-                            <th>For Month</th>
-                            <th>For Year</th>
+                            <th>Expense Paid</th>
+                            <th>Monthly Rent</th>
+                            <th>Previous Due</th>
+                            <th>Net Rent</th>
                             <th>Rent Paid</th>
-                            <th>Rent Paid Date</th>
-                            <th>Amount Due</th>
+                            <th>Paid Date</th>
                         </tr>
                         </thead>
-                        <tbody>
-                        <tr>
-                            <td>Anoop</td>
-                            <td>January</td>
-                            <td>2017</td>
-                            <td>2500.00</td>
-                            <td>02/02/2017</td>
-                            <td>0.00</td>
-                        </tr>
-                        <tr>
-                            <td>Jose</td>
-                            <td>January</td>
-                            <td>2017</td>
-                            <td>2400.00</td>
-                            <td>03/02/2017</td>
-                            <td>100.00</td>
-                        </tr>
-                        </tbody>
                     </table>
                 </div>
 
@@ -299,6 +301,12 @@
 <script src="<c:url value='/js/plugins/morris/raphael.min.js' />"></script>
 <script src="<c:url value='/js/plugins/morris/morris.min.js' />"></script>
 <script src="<c:url value='/js/plugins/morris/morris-data.js' />"></script>
+
+<!-- Validation-->
+<script src = "https://code.jquery.com/jquery-1.10.2.js"></script>
+<script src="<c:url value='/js/jquery.validate.min.js' />"></script>
+
+<script src="<c:url value='/js/rentreport.js' />"></script>
 
 </body>
 

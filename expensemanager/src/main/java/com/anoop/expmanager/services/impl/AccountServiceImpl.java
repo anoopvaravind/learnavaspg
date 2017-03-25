@@ -77,14 +77,12 @@ public class AccountServiceImpl implements AccountService {
 		double monthlyIncomm = 0.0;
         double rentDue = 0.0;
 
-//		List<UserIncommExpenseSummaryDO> usersIncommExpenseSummary = itemDAO.calculateUserExpense(month,year); // all
         List<User> activeUsers = userDAO.getActiveUsers();
         System.out.println("activeUsers"+activeUsers);
         for (User activeUser : activeUsers) {
             startDate = Util.createStartDateFromMonthAndYear(month,year);
             endDate = Util.getEndDateOfMonth(startDate);
             double userExpense = itemDAO.calculateUserExpenseBetweenDate(activeUser.getId(),startDate,endDate);
-            System.out.println("#########################userExpense"+userExpense);
             previousRentSheet = rentSheetDAO.getLastMonthRentSheetPerUser(activeUser.getId());
             newRentSheet = new RentSheet();
             if (previousRentSheet == null) {

@@ -35,15 +35,12 @@ public class SessionObjectsService {
         request.getSession().setAttribute("userSession",userSession);
         UserSession usr = (UserSession)request.getSession().getAttribute("userSession");
         System.out.println("user session >>"+usr.getUser().getDisplayName());
-
     }
-
 
     public void setCurrentUser() throws Exception{
         authentication = SecurityContextHolder.getContext().getAuthentication();
         if(authentication !=null)
             userSession.setUser(userService.getUserByUserName(authentication.getName().toString()));
-
         else
             System.out.println("Authentication is null");
     }

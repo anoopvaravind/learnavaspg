@@ -7,9 +7,9 @@ import com.anoop.expmanager.DO.UserIncommExpenseSummaryDO;
 import com.anoop.expmanager.model.Item;
 
 public interface ItemDAO {
-	public List<Item> findAllItemPerMonthAndYear(int month, int year);
+	public List<Item> findAllItemBetweenDate(Date startDate, Date endDate);
 
-	public List<Item> findAllItemPerUserMonthAndYear(long userID, int month, int year);
+    public List<Item> findAllItemPerUserMonthAndYear(long userID, int month, int year);
 
 	public void saveItem(Item item);
 

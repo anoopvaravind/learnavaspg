@@ -24,20 +24,23 @@ public class ItemDAOImpl implements ItemDAO {
 	SessionFactory sessionFactory;
 
 	@Override
-	public List<Item> findAllItemPerMonthAndYear(int month, int year) {
-		Session session = null;
-		try {
-			session = sessionFactory.openSession();
-			Criteria criteria = session.createCriteria(Item.class);
-			criteria.add(Restrictions.eq("month", month));
-			criteria.add(Restrictions.eq("year", year));
-			return criteria.list();
-		} catch (Exception e) {
-			System.out.println("Caught exception in findAllItemPerMonthAndYear() : " + e);
-		} finally {
-			session.close();
-		}
-		return null;
+	public List<Item> findAllItemBetweenDate(Date startDate, Date endDate) {
+        Session session = null;
+        try {
+            session = sessionFactory.openSession();
+            Criteria criteria = session.createCriteria(Item.class);
+            criteria.add(Restrictions.ge("purchasedDate", startDate));
+            criteria.add(Restrictions.le("purchasedDate", endDate));
+            criteria.createAlias("user", "u");
+            criteria.addOrder(Order.asc("u.displayName"));
+            criteria.addOrder(Order.desc("purchasedDate"));
+            return criteria.list();
+        } catch (Exception e) {
+            System.out.println("Caught exception in findAll() : " + e);
+        } finally {
+            session.close();
+        }
+        return null;
 	}
 
 	@Override

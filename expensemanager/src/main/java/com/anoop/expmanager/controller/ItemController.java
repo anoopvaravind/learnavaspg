@@ -50,7 +50,6 @@ public class ItemController {
 	@RequestMapping(value = "/save", method=RequestMethod.POST)
     @ResponseBody
 	public List<Item> saveItem(@RequestBody Item item, HttpServletRequest request) {
-        System.out.println("###########################################################");
         System.out.println("getItemName"+item.getItemName());
         System.out.println("getCategory"+item.getCategory());
         System.out.println("getPurchasedDate"+item.getPurchasedDate());

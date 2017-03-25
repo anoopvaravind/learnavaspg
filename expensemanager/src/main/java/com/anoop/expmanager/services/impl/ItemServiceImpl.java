@@ -3,6 +3,7 @@ package com.anoop.expmanager.services.impl;
 import java.util.Date;
 import java.util.List;
 
+import com.anoop.expmanager.model.RentSheet;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -20,8 +21,8 @@ public class ItemServiceImpl implements ItemService {
 	private ItemDAO itemDAO;
 
 	@Override
-	public List<Item> findAllItemPerMonthAndYear(int month, int year) {
-		return itemDAO.findAllItemPerMonthAndYear(month, year);
+	public List<Item> findAllItemBetweenDate(Date startDate, Date endDate) {
+		return itemDAO.findAllItemBetweenDate(startDate, endDate);
 	}
 
 	@Override
