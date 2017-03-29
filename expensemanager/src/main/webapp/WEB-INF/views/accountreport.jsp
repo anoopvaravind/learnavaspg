@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <html lang="en">
 
 <head>
@@ -13,6 +14,8 @@
     <meta name="_csrf" content="${_csrf.token}"/>
     <!-- default header name is X-CSRF-TOKEN -->
     <meta name="_csrf_header" content="${_csrf.headerName}"/>
+    <!-- Expense Manager CSS -->
+    <link href="<c:url value='/css/expensemanager.css' />" rel="stylesheet"></link>
 
     <title>Expense Manager</title>
     <link href="<c:url value='/css/bootstrap.min.css' />" rel="stylesheet"></link>
@@ -206,11 +209,11 @@
         <div class="row">
             <div class="col-lg-12">
                 <h2 class="page-header">
-                    Rent Report
+                    Account Summary
                 </h2>
                 <ol class="breadcrumb">
                     <li>
-                        <i class="fa fa-dashboard"></i> <a href="welcome.jsp">Dashboard</a>
+                        <i class="fa fa-dashboard"></i> <a href="<c:url value="/app/" />">Dashboard</a>
                     </li>
                     <li class="active">
                         <i class="fa fa-edit"></i> Account Summary
@@ -237,7 +240,7 @@
                             <th>Monthly Expense</th>
                             <th>Opening Balance</th>
                             <th>Closing Balance</th>
-                            <th>Tally Date</th>
+                            <th>Generated Date</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -250,7 +253,7 @@
                                 <td>${list.monthlyExpense}</td>
                                 <td>${list.openingBalance}</td>
                                 <td>${list.clossingBalance}</td>
-                                <td>${list.ceatedDate}</td>
+                                <td nowrap><fmt:formatDate value="${list.ceatedDate}" pattern="MM-dd-yyyy"/></td>
                             </tr>
                         </c:forEach>
                         </tbody>
@@ -288,6 +291,9 @@
 <script src="<c:url value='/js/jquery.validate.min.js' />"></script>
 
 <script src="<c:url value='/js/rentreport.js' />"></script>
+
+<div class="modal"><!-- Place at bottom of page --></div>
+<script src="<c:url value='/js/expensemanager.js' />"></script>
 
 </body>
 

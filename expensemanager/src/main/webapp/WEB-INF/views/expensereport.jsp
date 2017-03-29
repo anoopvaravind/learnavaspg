@@ -22,6 +22,9 @@
     <link href="<c:url value='/css/plugins/morris.css' />" rel="stylesheet"></link>
     <!-- Bootstrap Core CSS -->
 
+    <!-- Expense Manager CSS -->
+    <link href="<c:url value='/css/expensemanager.css' />" rel="stylesheet"></link>
+
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -212,7 +215,7 @@
                 </h2>
                 <ol class="breadcrumb">
                     <li>
-                        <i class="fa fa-dashboard"></i> <a href="welcome.jsp">Dashboard</a>
+                        <i class="fa fa-dashboard"></i> <a href="<c:url value="/app/" />">Dashboard</a>
                     </li>
                     <li class="active">
                         <i class="fa fa-edit"></i> Expense Report
@@ -312,6 +315,9 @@
 <script src="<c:url value='/js/jquery.validate.min.js' />"></script>
 
 <script src="<c:url value='/js/expensereport.js' />"></script>
+
+<div class="modal"><!-- Place at bottom of page --></div>
+<script src="<c:url value='/js/expensemanager.js' />"></script>
 
 </body>
 

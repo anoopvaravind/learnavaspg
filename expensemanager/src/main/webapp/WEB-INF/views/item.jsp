@@ -211,7 +211,7 @@
                 </h2>
                 <ol class="breadcrumb">
                     <li>
-                        <i class="fa fa-dashboard"></i> <a href="welcome.jsp">Dashboard</a>
+                        <i class="fa fa-dashboard"></i> <a href="<c:url value="/app/" />">Dashboard</a>
                     </li>
                     <li class="active">
                         <i class="fa fa-edit"></i> Expense

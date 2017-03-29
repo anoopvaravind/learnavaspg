@@ -42,7 +42,7 @@ public class AccountDAOImpl implements AccountDAO {
         try {
             session = sessionFactory.openSession();
             Criteria criteria = session.createCriteria(Account.class);
-            criteria.addOrder(Order.desc("ceatedDate"));
+//            criteria.addOrder(Order.desc("ceatedDate"));
             return criteria.list();
         } catch (Exception e) {
             System.out.println("Caught exception in getAccountHistory() : " + e);

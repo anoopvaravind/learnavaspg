@@ -8,6 +8,10 @@
     <link href="<c:url value='/static/css/app.css' />" rel="stylesheet"></link>
     <link rel="stylesheet" type="text/css"
           href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.2.0/css/font-awesome.css"/>
+    <!-- Expense Manager CSS -->
+    <link href="<c:url value='/css/expensemanager.css' />" rel="stylesheet"></link>
+
+
 </head>
 
 <body>
@@ -49,5 +53,7 @@
     </div>
 </div>
 
+<div class="modal"><!-- Place at bottom of page --></div>
+<script src="<c:url value='/js/expensemanager.js' />"></script>
 </body>
 </html>

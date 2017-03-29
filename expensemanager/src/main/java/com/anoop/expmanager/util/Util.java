@@ -72,4 +72,10 @@ public class Util {
         cal.setTime(date);
         return cal.get(Calendar.YEAR);
     }
+
+    public static String getMonthNameFromMonthNumber(int month) {
+        String[] months ={"0", "January", "February", "March", "April", "May", "June",
+                "July", "August", "September", "October", "November", "December" };
+        return months[month];
+    }
 }
