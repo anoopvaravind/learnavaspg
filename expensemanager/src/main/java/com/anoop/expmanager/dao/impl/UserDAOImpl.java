@@ -16,24 +16,24 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public class UserDAOImpl implements UserDAO {
-	@Autowired
-	SessionFactory sessionFactory;
+    @Autowired
+    SessionFactory sessionFactory;
 
-	@Override
-	public List<User> getActiveUsers() {
-		Session session = null;
-		try {
-			session = sessionFactory.openSession();
-			Criteria criteria = session.createCriteria(User.class);
-			criteria.add(Restrictions.eq("enabled", true));
-			return criteria.list();
-		} catch (Exception e) {
-			System.out.println("Caught exception in getactiveUsers() : " + e);
-		} finally {
-			session.close();
-		}
-		return null;
-	}
+    @Override
+    public List<User> getActiveUsers() {
+        Session session = null;
+        try {
+            session = sessionFactory.openSession();
+            Criteria criteria = session.createCriteria(User.class);
+            criteria.add(Restrictions.eq("enabled", true));
+            return criteria.list();
+        } catch (Exception e) {
+            System.out.println("Caught exception in getactiveUsers() : " + e);
+        } finally {
+            session.close();
+        }
+        return null;
+    }
 
     @Override
     public User getUserByUserName(String userName) {
@@ -42,7 +42,7 @@ public class UserDAOImpl implements UserDAO {
             session = sessionFactory.openSession();
             Criteria criteria = session.createCriteria(User.class);
             criteria.add(Restrictions.eq("username", userName));
-            return (User)criteria.uniqueResult();
+            return (User) criteria.uniqueResult();
         } catch (Exception e) {
             System.out.println("Caught exception in getUserByUserName() : " + e);
         } finally {

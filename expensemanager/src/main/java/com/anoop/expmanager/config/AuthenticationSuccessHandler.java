@@ -68,5 +68,4 @@ public class AuthenticationSuccessHandler extends SimpleUrlAuthenticationSuccess
     }
 
 
-
 }

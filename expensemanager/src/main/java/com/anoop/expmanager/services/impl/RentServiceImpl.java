@@ -12,31 +12,31 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class RentServiceImpl implements RentService {
-	@Autowired
-	RentSheetDAO rentDAO;
+    @Autowired
+    RentSheetDAO rentDAO;
 
-	@Override
-	public List<RentSheet> getCurrentMonthRentSheetDetails() {
-		return rentDAO.getCurrentMonthRentSheetDetails();
-	}
+    @Override
+    public List<RentSheet> getCurrentMonthRentSheetDetails() {
+        return rentDAO.getCurrentMonthRentSheetDetails();
+    }
 
-	@Override
-	public List<RentSheet> getRentSheetHistory() {
-		return rentDAO.getRentSheetHistory();
-	}
+    @Override
+    public List<RentSheet> getRentSheetHistory() {
+        return rentDAO.getRentSheetHistory();
+    }
 
-	@Override
-	public List<RentSheet> getRentSheetHistoryPerMonthAndYear(int month, int year) {
-		return rentDAO.getRentSheetHistoryPerMonthAndYear(month, year);
-	}
+    @Override
+    public List<RentSheet> getRentSheetHistoryPerMonthAndYear(int month, int year) {
+        return rentDAO.getRentSheetHistoryPerMonthAndYear(month, year);
+    }
 
-	@Override
-	public void saveRentSheet(RentSheet rentSheet) {
-        if(rentSheet.getRentActullyPaid()<rentSheet.getAdjustedRent()) {
+    @Override
+    public void saveRentSheet(RentSheet rentSheet) {
+        if (rentSheet.getRentActullyPaid() < rentSheet.getAdjustedRent()) {
         }
 
-		rentDAO.saveRentSheet(rentSheet);
-	}
+        rentDAO.saveRentSheet(rentSheet);
+    }
 
     @Override
     public List<RentSheet> getRentHistoryForUser(long userId) {

@@ -1,6 +1,6 @@
 <!DOCTYPE html>
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html lang="en">
 
 <head>
@@ -12,7 +12,7 @@
     <meta name="author" content="">
 
     <title>SB Admin - Bootstrap Admin Template</title>
-    <link href="<c:url value='/css/bootstrap.min.css' />"  rel="stylesheet"></link>
+    <link href="<c:url value='/css/bootstrap.min.css' />" rel="stylesheet"></link>
     <link href="<c:url value='/css/sb-admin.css' />" rel="stylesheet"></link>
     <link href="<c:url value='/font-awesome/css/font-awesome.min.css' />" rel="stylesheet"></link>
     <link href="<c:url value='/css/plugins/morris.css' />" rel="stylesheet"></link>
@@ -47,7 +47,8 @@
     <!-- Top Menu Items -->
     <ul class="nav navbar-right top-nav">
         <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-envelope"></i> <b class="caret"></b></a>
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-envelope"></i> <b
+                    class="caret"></b></a>
             <ul class="dropdown-menu message-dropdown">
                 <li class="message-preview">
                     <a href="#">
@@ -55,10 +56,13 @@
                                     <span class="pull-left">
                                         <img class="media-object" src="http://placehold.it/50x50" alt="">
                                     </span>
+
                             <div class="media-body">
                                 <h5 class="media-heading"><strong>John Smith</strong>
                                 </h5>
+
                                 <p class="small text-muted"><i class="fa fa-clock-o"></i> Yesterday at 4:32 PM</p>
+
                                 <p>Lorem ipsum dolor sit amet, consectetur...</p>
                             </div>
                         </div>
@@ -70,10 +74,13 @@
                                     <span class="pull-left">
                                         <img class="media-object" src="http://placehold.it/50x50" alt="">
                                     </span>
+
                             <div class="media-body">
                                 <h5 class="media-heading"><strong>John Smith</strong>
                                 </h5>
+
                                 <p class="small text-muted"><i class="fa fa-clock-o"></i> Yesterday at 4:32 PM</p>
+
                                 <p>Lorem ipsum dolor sit amet, consectetur...</p>
                             </div>
                         </div>
@@ -85,10 +92,13 @@
                                     <span class="pull-left">
                                         <img class="media-object" src="http://placehold.it/50x50" alt="">
                                     </span>
+
                             <div class="media-body">
                                 <h5 class="media-heading"><strong>John Smith</strong>
                                 </h5>
+
                                 <p class="small text-muted"><i class="fa fa-clock-o"></i> Yesterday at 4:32 PM</p>
+
                                 <p>Lorem ipsum dolor sit amet, consectetur...</p>
                             </div>
                         </div>
@@ -127,7 +137,8 @@
             </ul>
         </li>
         <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> ${session.userSession.user.displayName}<b class="caret"></b></a>
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i
+                    class="fa fa-user"></i> ${session.userSession.user.displayName}<b class="caret"></b></a>
             <ul class="dropdown-menu">
                 <li>
                     <a href="#"><i class="fa fa-fw fa-user"></i> Profile</a>
@@ -158,7 +169,8 @@
                 <a href="forms.html"><i class="fa fa-fw fa-edit"></i> Pay Rent</a>
             </li>
             <li>
-                <a href="javascript:;" data-toggle="collapse" data-target="#demo"><i class="fa fa-fw fa-table"></i> Reports <i class="fa fa-fw fa-caret-down"></i></a>
+                <a href="javascript:;" data-toggle="collapse" data-target="#demo"><i class="fa fa-fw fa-table"></i>
+                    Reports <i class="fa fa-fw fa-caret-down"></i></a>
                 <ul id="demo" class="collapse">
                     <li>
                         <a href="#">Rent</a>
@@ -203,7 +215,8 @@
 <div class="row">
     <div class="col-lg-12">
         <h1 class="page-header">
-            Dashboard <small>Statistics Overview</small>
+            Dashboard
+            <small>Statistics Overview</small>
         </h1>
         <ol class="breadcrumb">
             <li class="active">
@@ -218,7 +231,9 @@
     <div class="col-lg-12">
         <div class="alert alert-info alert-dismissable">
             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-            <i class="fa fa-info-circle"></i>  <strong>Like SB Admin?</strong> Try out <a href="http://startbootstrap.com/template-overviews/sb-admin-2" class="alert-link">SB Admin 2</a> for additional features!
+            <i class="fa fa-info-circle"></i> <strong>Like SB Admin?</strong> Try out <a
+                href="http://startbootstrap.com/template-overviews/sb-admin-2" class="alert-link">SB Admin 2</a> for
+            additional features!
         </div>
     </div>
 </div>
@@ -242,6 +257,7 @@
                 <div class="panel-footer">
                     <span class="pull-left">View Details</span>
                     <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+
                     <div class="clearfix"></div>
                 </div>
             </a>
@@ -264,6 +280,7 @@
                 <div class="panel-footer">
                     <span class="pull-left">View Details</span>
                     <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+
                     <div class="clearfix"></div>
                 </div>
             </a>
@@ -286,6 +303,7 @@
                 <div class="panel-footer">
                     <span class="pull-left">View Details</span>
                     <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+
                     <div class="clearfix"></div>
                 </div>
             </a>
@@ -308,6 +326,7 @@
                 <div class="panel-footer">
                     <span class="pull-left">View Details</span>
                     <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+
                     <div class="clearfix"></div>
                 </div>
             </a>

@@ -1,6 +1,6 @@
 <!DOCTYPE html>
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html lang="en">
 
 <head>
@@ -10,7 +10,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
-	<meta name="_csrf" content="${_csrf.token}"/>
+    <meta name="_csrf" content="${_csrf.token}"/>
     <!-- default header name is X-CSRF-TOKEN -->
     <meta name="_csrf_header" content="${_csrf.headerName}"/>
 
@@ -184,10 +184,14 @@
                         <li>
                             <a href="<c:url value="/app/report/expense" />">Expense</a>
                         </li>
+                        <li>
+                            <a href="<c:url value="/app/report/account" />">Account Summary</a>
+                        </li>
                     </ul>
                 </li>
                 <li>
-                    <a href="<c:url value="/app/account/" />"><i class="fa fa-fw fa-dashboard"></i> Generate Monthly Bill</a>
+                    <a href="<c:url value="/app/account/" />"><i class="fa fa-fw fa-dashboard"></i> Generate Monthly
+                        Bill</a>
                 </li>
             </ul>
     </div>
@@ -219,12 +223,12 @@
         <div class="row">
             <div class="col-lg-6">
                 <form id="rentReportForm" role="form" name="rentReportForm">
-				<div id="successDiv" class="alert alert-success" >
-                    <p id="success"></p>
-                </div>
-                 <div id="errorDiv" class="alert alert-danger">
-                      <p id="error"></p>
-                </div>
+                    <div id="successDiv" class="alert alert-success">
+                        <p id="success"></p>
+                    </div>
+                    <div id="errorDiv" class="alert alert-danger">
+                        <p id="error"></p>
+                    </div>
                     <div class="form-group">
                         <label>Month</label>
                         <select id="month" class="form-control">
@@ -303,7 +307,7 @@
 <script src="<c:url value='/js/plugins/morris/morris-data.js' />"></script>
 
 <!-- Validation-->
-<script src = "https://code.jquery.com/jquery-1.10.2.js"></script>
+<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
 <script src="<c:url value='/js/jquery.validate.min.js' />"></script>
 
 <script src="<c:url value='/js/rentreport.js' />"></script>

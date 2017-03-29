@@ -3,6 +3,7 @@ package com.anoop.expmanager.controller;
 import com.anoop.expmanager.model.Item;
 import com.anoop.expmanager.model.User;
 import com.anoop.expmanager.services.service.ItemService;
+import com.anoop.expmanager.util.Notification;
 import com.anoop.expmanager.util.UserSession;
 import com.anoop.expmanager.util.Util;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,8 +18,8 @@ import java.util.*;
 @Controller
 @RequestMapping(value = "/app/item")
 public class ItemController {
-	@Autowired
-	private ItemService itemService;
+    @Autowired
+    private ItemService itemService;
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public ModelAndView item() {
@@ -33,35 +34,46 @@ public class ItemController {
         return itemService.findAll();
     }
 
-	@RequestMapping(value = "/finditempermonthyear", method = RequestMethod.GET)
+    @RequestMapping(value = "/finditempermonthyear", method = RequestMethod.GET)
     @ResponseBody
-	public List<Item> findAllItemPerMonthAndYear(@RequestParam("month") int month, @RequestParam("year") int year) {
-		return itemService.findAll();
-	}
+    public List<Item> findAllItemPerMonthAndYear(@RequestParam("month") int month, @RequestParam("year") int year) {
+        return itemService.findAll();
+    }
 
-	@RequestMapping(value = "/findAllItemPerUserAndDate", method = RequestMethod.GET)
+    @RequestMapping(value = "/findAllItemPerUserAndDate", method = RequestMethod.GET)
     @ResponseBody
-	public List<Item> findAllItemPerUserAndDate(HttpServletRequest request) {
-        UserSession userSession = (UserSession)request.getSession().getAttribute("userSession");
-		return itemService.findAllItemPerUserAndDate(userSession.getUser().getId(),
-                Util.getStartDateOfMonth(new Date()),Util.getEndDateOfMonth(new Date()));
-	}
-
-	@RequestMapping(value = "/save", method=RequestMethod.POST)
-    @ResponseBody
-	public List<Item> saveItem(@RequestBody Item item, HttpServletRequest request) {
-        System.out.println("getItemName"+item.getItemName());
-        System.out.println("getCategory"+item.getCategory());
-        System.out.println("getPurchasedDate"+item.getPurchasedDate());
-        System.out.println("getPrice"+item.getPrice());
-        System.out.println("getCategory"+item.getCategory());
-        System.out.println("getCategory().getId()"+item.getCategory().getId());
-        item.setPurchasedDate(Util.removeTimeFromDate(item.getPurchasedDate()));
-        UserSession userSession = (UserSession)request.getSession().getAttribute("userSession");
-        item.setUser(userSession.getUser());
-		itemService.saveItem(item);
+    public List<Item> findAllItemPerUserAndDate(HttpServletRequest request) {
+        UserSession userSession = (UserSession) request.getSession().getAttribute("userSession");
         return itemService.findAllItemPerUserAndDate(userSession.getUser().getId(),
-                Util.getStartDateOfMonth(new Date()),Util.getEndDateOfMonth(new Date()) );
-	}
+                Util.getStartDateOfMonth(new Date()), Util.getEndDateOfMonth(new Date()));
+    }
+
+    @RequestMapping(value = "/save", method = RequestMethod.POST)
+    @ResponseBody
+    public Notification saveItem(@RequestBody Item item, HttpServletRequest request) {
+        System.out.println("#######ItemController saveItem");
+        item.setPurchasedDate(Util.removeTimeFromDate(item.getPurchasedDate()));
+        System.out.println("#######v" + item.getPurchasedDate());
+        UserSession userSession = (UserSession) request.getSession().getAttribute("userSession");
+        item.setUser(userSession.getUser());
+        System.out.println("####### item.setUser" + item.getUser());
+        return itemService.saveItem(item);
+    }
+
+    @RequestMapping(value = "/delete", method = RequestMethod.POST)
+    @ResponseBody
+    public Object deleteItem(@RequestBody Item item, HttpServletRequest request) {
+        System.out.println("################" + item.getItemName());
+
+        UserSession userSession = (UserSession) request.getSession().getAttribute("userSession");
+        if (item.getUser().getId() != userSession.getUser().getId()) {
+            System.out.println("You don't have permission to delete this item!!!");
+            return new Notification(false, true, "You don't have permission to delete this item!!!", null);
+        }
+        itemService.deleteItem(item);
+        return new Notification(true, false, "Deleted Successfully !!!", itemService.findAllItemPerUserAndDate(userSession.getUser().getId(),
+                Util.getStartDateOfMonth(new Date()), Util.getEndDateOfMonth(new Date())));
+
+    }
 
 }

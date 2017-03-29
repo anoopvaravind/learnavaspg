@@ -21,7 +21,7 @@ import javax.servlet.http.HttpServletResponse;
 @Controller
 public class MainController {
 
-   @RequestMapping(value = {"/app", "/app/","/app/home"})
+    @RequestMapping(value = {"/app", "/app/", "/app/home"})
     public String home(Model model) {
         return "home";
     }
@@ -31,10 +31,10 @@ public class MainController {
         return "login";
     }
 
-    @RequestMapping(value="/logout", method = RequestMethod.GET)
-    public String logoutPage (HttpServletRequest request, HttpServletResponse response) {
+    @RequestMapping(value = "/logout", method = RequestMethod.GET)
+    public String logoutPage(HttpServletRequest request, HttpServletResponse response) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        if (auth != null){
+        if (auth != null) {
             new SecurityContextLogoutHandler().logout(request, response, auth);
         }
         return "redirect:/login?logout";

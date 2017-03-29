@@ -1,6 +1,6 @@
 <!DOCTYPE html>
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html lang="en">
 
 <head>
@@ -185,10 +185,14 @@
                         <li>
                             <a href="<c:url value="/app/report/expense" />">Expense</a>
                         </li>
+                        <li>
+                            <a href="<c:url value="/app/report/account" />">Account Summary</a>
+                        </li>
                     </ul>
                 </li>
                 <li>
-                    <a href="<c:url value="/app/account/" />"><i class="fa fa-fw fa-dashboard"></i> Generate Monthly Bill</a>
+                    <a href="<c:url value="/app/account/" />"><i class="fa fa-fw fa-dashboard"></i> Generate Monthly
+                        Bill</a>
                 </li>
 
             </ul>
@@ -223,12 +227,12 @@
 
                 <form id="expenseReportForm" role="form" name="expenseReportForm">
 
-                    <div id="successDiv" class="alert alert-success" >
-                    <p id="success"></p>
-                </div>
-                 <div id="errorDiv" class="alert alert-danger">
-                      <p id="error"></p>
-                </div>
+                    <div id="successDiv" class="alert alert-success">
+                        <p id="success"></p>
+                    </div>
+                    <div id="errorDiv" class="alert alert-danger">
+                        <p id="error"></p>
+                    </div>
                     <div class="form-group">
                         <label>Month</label>
                         <select id="month" class="form-control">
@@ -304,7 +308,7 @@
 <script src="<c:url value='/js/plugins/morris/morris-data.js' />"></script>
 
 <!-- Validation-->
-<script src = "https://code.jquery.com/jquery-1.10.2.js"></script>
+<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
 <script src="<c:url value='/js/jquery.validate.min.js' />"></script>
 
 <script src="<c:url value='/js/expensereport.js' />"></script>

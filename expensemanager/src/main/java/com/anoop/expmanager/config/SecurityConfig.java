@@ -43,7 +43,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
 
         http.authorizeRequests()
-               // .antMatchers("/app/**").permitAll()
+                // .antMatchers("/app/**").permitAll()
                 .antMatchers("/app/**").access("hasAnyAuthority('Administrator','Manager','Tester','Developer','Reporter')")
 //                .antMatchers("/app/**").access("hasRole('Administrator')")
 //                .antMatchers("/app/**").access("hasRole('Tester')")
@@ -64,7 +64,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
     @Bean
-    public Md5PasswordEncoder passwordEncoder(){
+    public Md5PasswordEncoder passwordEncoder() {
         Md5PasswordEncoder encoder = new Md5PasswordEncoder();
         return encoder;
     }

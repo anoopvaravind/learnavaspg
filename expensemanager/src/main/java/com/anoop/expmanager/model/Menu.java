@@ -23,11 +23,11 @@ public class Menu implements Serializable {
     private Roles roles;
     private Set<SubMenu> subMenuSet = new HashSet<SubMenu>();
 
-    public Menu(){
+    public Menu() {
 
     }
 
-    public Menu(String name, String link, String icon, Roles roles, Set<SubMenu> subMenuSet){
+    public Menu(String name, String link, String icon, Roles roles, Set<SubMenu> subMenuSet) {
 
         this.name = name;
         this.link = link;
@@ -74,7 +74,7 @@ public class Menu implements Serializable {
         this.icon = icon;
     }
 
-    @OneToMany(fetch = FetchType.EAGER,mappedBy = "menu")
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "menu")
     public Set<SubMenu> getSubMenuSet() {
         return subMenuSet;
     }

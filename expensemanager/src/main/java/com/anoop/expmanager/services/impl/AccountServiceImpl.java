@@ -23,66 +23,66 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class AccountServiceImpl implements AccountService {
-	@Autowired
-	AccountDAO accountDAO;
-	@Autowired
-	UserDAO userDAO;
-	@Autowired
-	ItemDAO itemDAO;
-	@Autowired
-	RentSheetDAO rentSheetDAO;
-	@Autowired
-	SettingsDAO settingsDAO;
+    @Autowired
+    AccountDAO accountDAO;
+    @Autowired
+    UserDAO userDAO;
+    @Autowired
+    ItemDAO itemDAO;
+    @Autowired
+    RentSheetDAO rentSheetDAO;
+    @Autowired
+    SettingsDAO settingsDAO;
 
-	@Override
-	public Account getCurrentAccountDetails() {
-		return accountDAO.getCurrentAccountDetails();
-	}
+    @Override
+    public Account getCurrentAccountDetails() {
+        return accountDAO.getCurrentAccountDetails();
+    }
 
-	@Override
-	public List<Account> getAccountDetailsPerMonthAndYear(int month, int year) {
-		return accountDAO.getAccountDetailsPerMonthAndYear(month, year);
-	}
+    @Override
+    public List<Account> getAccountDetailsPerMonthAndYear(int month, int year) {
+        return accountDAO.getAccountDetailsPerMonthAndYear(month, year);
+    }
 
-	@Override
-	public List<Account> getAccountHistory() {
-		return accountDAO.getAccountHistory();
-	}
+    @Override
+    public List<Account> getAccountHistory() {
+        return accountDAO.getAccountHistory();
+    }
 
-	@Override
-	public void createAccount(Account account) {
-		accountDAO.createAccount(account);
-	}
+    @Override
+    public void createAccount(Account account) {
+        accountDAO.createAccount(account);
+    }
 
-	@Override
-	public Notification generateMonthlyStatement(int month, int year, double currentRentAmount) {
-		List<Account> accountAlreadyGenerated = accountDAO.getAccountDetailsPerMonthAndYear(month, year);
-		List<RentSheet> newRentSheetList = new ArrayList<RentSheet>();
-		RentSheet newRentSheet;
-		RentSheet previousRentSheet;
-		Account monthlyAccountSummary = new Account();
+    @Override
+    public Notification generateMonthlyStatement(int month, int year, double currentRentAmount) {
+        List<Account> accountAlreadyGenerated = accountDAO.getAccountDetailsPerMonthAndYear(month, year);
+        List<RentSheet> newRentSheetList = new ArrayList<RentSheet>();
+        RentSheet newRentSheet;
+        RentSheet previousRentSheet;
+        Account monthlyAccountSummary = new Account();
         Date startDate = null;
         Date endDate = null;
-		if (accountAlreadyGenerated != null && !accountAlreadyGenerated.isEmpty()) {
-			System.out.println("Monthly statement already generated");
-            return new Notification(false,true,"Monthly statement already generated");
-		}
+        if (accountAlreadyGenerated != null && !accountAlreadyGenerated.isEmpty()) {
+            System.out.println("Monthly statement already generated");
+            return new Notification(false, true, "Monthly statement already generated", null);
+        }
         System.out.println("Going to generate Monthly statement");
 
 //        HashMap<String, String> settingsMap = settingsDAO.loadSetstingsMap();
 //		double originalRentAmount = Double.parseDouble(settingsMap.get("RENT_AMOUNT"));
         double originalRentAmount;
         originalRentAmount = currentRentAmount;
-		double monthlyExpense = 0.0;
-		double monthlyIncomm = 0.0;
+        double monthlyExpense = 0.0;
+        double monthlyIncomm = 0.0;
         double rentDue = 0.0;
 
         List<User> activeUsers = userDAO.getActiveUsers();
-        System.out.println("activeUsers"+activeUsers);
+        System.out.println("activeUsers" + activeUsers);
         for (User activeUser : activeUsers) {
-            startDate = Util.createStartDateFromMonthAndYear(month,year);
+            startDate = Util.createStartDateFromMonthAndYear(month, year);
             endDate = Util.getEndDateOfMonth(startDate);
-            double userExpense = itemDAO.calculateUserExpenseBetweenDate(activeUser.getId(),startDate,endDate);
+            double userExpense = itemDAO.calculateUserExpenseBetweenDate(activeUser.getId(), startDate, endDate);
             previousRentSheet = rentSheetDAO.getLastMonthRentSheetPerUser(activeUser.getId());
             newRentSheet = new RentSheet();
             if (previousRentSheet == null) {
@@ -90,7 +90,7 @@ public class AccountServiceImpl implements AccountService {
                 rentDue = 0.0;
             } else {
                 monthlyIncomm += previousRentSheet.getRentActullyPaid();
-                rentDue = previousRentSheet.getAdjustedRent()-previousRentSheet.getRentActullyPaid();
+                rentDue = previousRentSheet.getAdjustedRent() - previousRentSheet.getRentActullyPaid();
                 newRentSheet.setAdjustedRent(
                         originalRentAmount - userExpense + rentDue);
             }
@@ -107,28 +107,28 @@ public class AccountServiceImpl implements AccountService {
             newRentSheet.setComment("");
 
             monthlyExpense += userExpense;
-           // newRentSheetList.add(newRentSheet);
+            // newRentSheetList.add(newRentSheet);
             rentSheetDAO.saveRentSheet(newRentSheet);
         }
 
-		Account latestAccount = accountDAO.getLatestAccount();
-        System.out.println("latestAccount"+latestAccount);
-        if(latestAccount == null) {
+        Account latestAccount = accountDAO.getLatestAccount();
+        System.out.println("latestAccount" + latestAccount);
+        if (latestAccount == null) {
             monthlyAccountSummary.setOpeningBalance(0);
             monthlyAccountSummary.setClossingBalance(monthlyIncomm - monthlyExpense);
         } else {
             monthlyAccountSummary.setOpeningBalance(latestAccount.getClossingBalance());
             monthlyAccountSummary.setClossingBalance(latestAccount.getClossingBalance() + monthlyIncomm - monthlyExpense);
         }
-		monthlyAccountSummary.setMonth(month);
-		monthlyAccountSummary.setYear(year);
-		monthlyAccountSummary.setMonthlyExpense(monthlyExpense);
-		monthlyAccountSummary.setMonthlyIncomm(monthlyIncomm);
+        monthlyAccountSummary.setMonth(month);
+        monthlyAccountSummary.setYear(year);
+        monthlyAccountSummary.setMonthlyExpense(monthlyExpense);
+        monthlyAccountSummary.setMonthlyIncomm(monthlyIncomm);
         monthlyAccountSummary.setCeatedDate(new Date());
         monthlyAccountSummary.setModifiedDate(new Date());
 
-		accountDAO.createAccount(monthlyAccountSummary);
-        return new Notification(true,false,"Successfully generated statement");
-	}
+        accountDAO.createAccount(monthlyAccountSummary);
+        return new Notification(true, false, "Successfully generated statement", null);
+    }
 
 }

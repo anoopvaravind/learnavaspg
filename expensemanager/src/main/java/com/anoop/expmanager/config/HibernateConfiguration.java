@@ -24,8 +24,8 @@ import java.util.Properties;
  */
 @Configuration
 @EnableTransactionManagement
-@ComponentScan({ "com.websystique.spring.configuration" })
-@PropertySource(value = { "classpath:application.properties" })
+@ComponentScan({"com.websystique.spring.configuration"})
+@PropertySource(value = {"classpath:application.properties"})
 public class HibernateConfiguration {
 
     @Autowired
@@ -35,7 +35,7 @@ public class HibernateConfiguration {
     public LocalSessionFactoryBean sessionFactory() {
         LocalSessionFactoryBean sessionFactory = new LocalSessionFactoryBean();
         sessionFactory.setDataSource(dataSource());
-        sessionFactory.setPackagesToScan(new String[] { "com.anoop.expmanager.model" });
+        sessionFactory.setPackagesToScan(new String[]{"com.anoop.expmanager.model"});
         sessionFactory.setHibernateProperties(hibernateProperties());
         return sessionFactory;
     }

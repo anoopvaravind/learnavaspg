@@ -7,11 +7,13 @@ public class Notification {
     boolean success;
     boolean error;
     String message;
+    Object response;
 
-    public Notification(boolean success, boolean error, String message) {
+    public Notification(boolean success, boolean error, String message, Object response) {
         this.success = success;
         this.error = error;
         this.message = message;
+        this.response = response;
     }
 
     public boolean isError() {
@@ -36,5 +38,13 @@ public class Notification {
 
     public void setMessage(String message) {
         this.message = message;
+    }
+
+    public Object getResponse() {
+        return response;
+    }
+
+    public void setResponse(Object response) {
+        this.response = response;
     }
 }

@@ -1,6 +1,6 @@
 <!DOCTYPE html>
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html lang="en">
 
 <head>
@@ -29,10 +29,11 @@
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 
-	<style>
+    <style>
         form label.error {
             color: red;
         }
+
         form input.error {
             border: 1px solid red;
         }
@@ -185,17 +186,21 @@
                     <a href="javascript:;" data-toggle="collapse" data-target="#demo"><i
                             class="fa fa-fw fa-table"></i> Reports <i class="fa fa-fw fa-caret-down"></i></a>
                     <ul id="demo" class="collapse">
-                        <li >
+                        <li>
                             <a href="<c:url value="/app/report/rent" />">Rent</a>
                         </li>
                         <li>
                             <a href="<c:url value="/app/report/expense" />">Expense</a>
                         </li>
+                        <li>
+                            <a href="<c:url value="/app/report/account" />">Account Summary</a>
+                        </li>
                     </ul>
                 </li>
 
                 <li class="active">
-                    <a href="<c:url value="/app/account/" />"><i class="fa fa-fw fa-dashboard"></i> Generate Monthly Bill</a>
+                    <a href="<c:url value="/app/account/" />"><i class="fa fa-fw fa-dashboard"></i> Generate Monthly
+                        Bill</a>
                 </li>
             </ul>
     </div>
@@ -227,12 +232,12 @@
         <div class="row">
             <div class="col-lg-6">
                 <form name="accountForm" role="form">
-                 <div id="successDiv" class="alert alert-success" >
-                    <p id="success"></p>
-                </div>
-                 <div id="errorDiv" class="alert alert-danger">
-                      <p id="error"></p>
-                </div>
+                    <div id="successDiv" class="alert alert-success">
+                        <p id="success"></p>
+                    </div>
+                    <div id="errorDiv" class="alert alert-danger">
+                        <p id="error"></p>
+                    </div>
                     <div class="form-group">
                         <label>Month</label>
                         <select id="month" class="form-control">
@@ -261,7 +266,8 @@
                     </div>
                     <div class="form-group">
                         <label>Current Rent Amount</label>
-                        <input id="currentRentAmount" name="currentRentAmount" class="form-control" placeholder="Enter Rent Amount" >
+                        <input id="currentRentAmount" name="currentRentAmount" class="form-control"
+                               placeholder="Enter Rent Amount">
                     </div>
                     <button type="submit" id="generate" class="btn btn-primary" disabled>Generate</button>
                     <button type="reset" class="btn btn-primary">Reset</button>
@@ -295,7 +301,7 @@
 <script src="<c:url value='/js/plugins/morris/morris-data.js' />"></script>
 
 <!-- Validation-->
-<script src = "https://code.jquery.com/jquery-1.10.2.js"></script>
+<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
 <script src="<c:url value='/js/jquery.validate.min.js' />"></script>
 
 <script src="<c:url value='/js/account.js' />"></script>

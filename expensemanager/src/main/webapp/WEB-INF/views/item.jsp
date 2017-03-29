@@ -1,6 +1,6 @@
 <!DOCTYPE html>
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html lang="en">
 
 <head>
@@ -19,10 +19,11 @@
     <link href="<c:url value='/css/sb-admin.css' />" rel="stylesheet"></link>
     <link href="<c:url value='/font-awesome/css/font-awesome.min.css' />" rel="stylesheet"></link>
     <link href="<c:url value='/css/plugins/morris.css' />" rel="stylesheet"></link>
-    <link href = "https://code.jquery.com/ui/1.10.4/themes/ui-lightness/jquery-ui.css"
-          rel = "stylesheet">
-    <!-- Bootstrap Core CSS -->
+    <link href="https://code.jquery.com/ui/1.10.4/themes/ui-lightness/jquery-ui.css"
+          rel="stylesheet">
 
+    <!-- Expense Manager CSS -->
+    <link href="<c:url value='/css/expensemanager.css' />" rel="stylesheet"></link>
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -30,15 +31,6 @@
     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
-
-    <style>
-        form label.error {
-            color: red;
-        }
-        form input.error {
-            border: 1px solid red;
-        }
-    </style>
 
 </head>
 
@@ -193,10 +185,14 @@
                     <li>
                         <a href="<c:url value="/app/report/expense" />">Expense</a>
                     </li>
+                    <li>
+                        <a href="<c:url value="/app/report/account" />">Account Summary</a>
+                    </li>
                 </ul>
             </li>
             <li>
-                <a href="<c:url value="/app/account/" />"><i class="fa fa-fw fa-dashboard"></i> Generate Monthly Bill</a>
+                <a href="<c:url value="/app/account/" />"><i class="fa fa-fw fa-dashboard"></i> Generate Monthly
+                    Bill</a>
             </li>
         </ul>
     </div>
@@ -229,15 +225,16 @@
             <div class="col-lg-6">
 
                 <form role="form" name="itemForm">
-										
-										 <div id="successDiv" class="alert alert-success" >
-                                                <p id="success"></p>
-                                            </div>
-											
-											 <div id="errorDiv" class="alert alert-danger">
-                                                  <p id="error"></p>
-                                            </div>
-											
+
+                    <div id="successDiv" class="alert alert-success">
+                        <p id="success"></p>
+                    </div>
+
+                    <div id="errorDiv" class="alert alert-danger">
+                        <p id="error"></p>
+                    </div>
+                    <input id="hiddenField" type="hidden" value=""/>
+
                     <div class="form-group">
                         <label>Item Name</label>
                         <input name="itemName" id="itemName" class="form-control" placeholder="Enter item">
@@ -250,7 +247,7 @@
 
                     <div class="form-group">
                         <label>Select Category</label>
-                        <select class="form-control" name="category" id="category" >
+                        <select class="form-control" name="category" id="category">
                             <!--<option>Food</option>
                             <option>Electricity</option>
                             <option>Internet</option>
@@ -264,7 +261,7 @@
                     </div>
                     <div class="form-group">
                         <label>Date</label>
-                        <input name="purchasedDate"  class="form-control" id="datepicker">
+                        <input name="purchasedDate" class="form-control" id="datepicker">
                     </div>
                     <div class="form-group">
                         <label>Comments</label>
@@ -277,35 +274,21 @@
                 </form>
 
             </div>
-			
-			<div class="col-lg-6">
+
+            <div class="col-lg-6">
                 <div class="table-responsive">
-                    <table class="table table-bordered table-hover table-striped" id = "itemTable" >
+                    <table class="table table-bordered table-hover table-striped" id="itemTable">
                         <thead>
                         <tr>
-							<th>Sl No</th>
+                            <th>Sl No</th>
                             <th>Item Name</th>
                             <th>Amount</th>
                             <th>Paid Date</th>
-							<th>Comment</th>
+                            <th>Comment</th>
+                            <th>Actions</th>
                         </tr>
                         </thead>
                         <tbody>
-						<!--
-                        <tr>
-                            <td>1</td>
-                            <td>Savala</td>
-                            <td>30.00</td>
-                            <td>02/02/2017</td>
-                            <td>No comment</td>
-                        </tr>
-                        <tr>
-                            <td>2</td>
-                            <td>Rice</td>
-                            <td>130.00</td>
-                            <td>02/02/2017</td>
-                            <td>No comment</td>
-                        </tr>-->
                         </tbody>
                     </table>
                 </div>
@@ -325,8 +308,9 @@
 </div>
 <!-- /#wrapper -->
 
-<!-- jQuery -->
+<!-- loading image -->
 
+<div class="modal"><!-- Place at bottom of page --></div>
 
 <!-- jQuery -->
 <script src="<c:url value='/js/jquery.js' />"></script>
@@ -343,11 +327,12 @@
 <!-- Date Picker-->
 
 
-<script src = "https://code.jquery.com/jquery-1.10.2.js"></script>
+<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
 
 <script src="<c:url value='/js/item.js' />"></script>
+<script src="<c:url value='/js/expensemanager.js' />"></script>
 <script src="<c:url value='/js/jquery.validate.min.js' />"></script>
-<script src = "https://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+<script src="https://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
 
 
 </body>

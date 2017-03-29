@@ -18,8 +18,8 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public class SettingsDAOImpl implements SettingsDAO {
-	@Autowired
-	SessionFactory sessionFactory;
+    @Autowired
+    SessionFactory sessionFactory;
 
     @Override
     public HashMap<String, String> loadSetstingsMap() {

@@ -1,6 +1,6 @@
 <!DOCTYPE html>
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html lang="en">
 
 <head>
@@ -11,7 +11,7 @@
     <meta name="author" content="">
 
     <title>Expense Manager</title>
-    <link href="<c:url value='/css/bootstrap.min.css' />"  rel="stylesheet"></link>
+    <link href="<c:url value='/css/bootstrap.min.css' />" rel="stylesheet"></link>
     <link href="<c:url value='/css/sb-admin.css' />" rel="stylesheet"></link>
     <link href="<c:url value='/font-awesome/css/font-awesome.min.css' />" rel="stylesheet"></link>
     <link href="<c:url value='/css/plugins/morris.css' />" rel="stylesheet"></link>
@@ -46,7 +46,8 @@
     <!-- Top Menu Items -->
     <ul class="nav navbar-right top-nav">
         <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-envelope"></i> <b class="caret"></b></a>
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-envelope"></i> <b
+                    class="caret"></b></a>
             <ul class="dropdown-menu message-dropdown">
                 <li class="message-preview">
                     <a href="#">
@@ -54,10 +55,13 @@
                                     <span class="pull-left">
                                         <img class="media-object" src="http://placehold.it/50x50" alt="">
                                     </span>
+
                             <div class="media-body">
                                 <h5 class="media-heading"><strong>John Smith</strong>
                                 </h5>
+
                                 <p class="small text-muted"><i class="fa fa-clock-o"></i> Yesterday at 4:32 PM</p>
+
                                 <p>Lorem ipsum dolor sit amet, consectetur...</p>
                             </div>
                         </div>
@@ -69,10 +73,13 @@
                                     <span class="pull-left">
                                         <img class="media-object" src="http://placehold.it/50x50" alt="">
                                     </span>
+
                             <div class="media-body">
                                 <h5 class="media-heading"><strong>John Smith</strong>
                                 </h5>
+
                                 <p class="small text-muted"><i class="fa fa-clock-o"></i> Yesterday at 4:32 PM</p>
+
                                 <p>Lorem ipsum dolor sit amet, consectetur...</p>
                             </div>
                         </div>
@@ -84,10 +91,13 @@
                                     <span class="pull-left">
                                         <img class="media-object" src="http://placehold.it/50x50" alt="">
                                     </span>
+
                             <div class="media-body">
                                 <h5 class="media-heading"><strong>John Smith</strong>
                                 </h5>
+
                                 <p class="small text-muted"><i class="fa fa-clock-o"></i> Yesterday at 4:32 PM</p>
+
                                 <p>Lorem ipsum dolor sit amet, consectetur...</p>
                             </div>
                         </div>
@@ -126,7 +136,8 @@
             </ul>
         </li>
         <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i>&nbsp;${sessionScope.userSession.user.displayName}<b class="caret"></b></a>
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i
+                    class="fa fa-user"></i>&nbsp;${sessionScope.userSession.user.displayName}<b class="caret"></b></a>
             <ul class="dropdown-menu">
                 <li>
                     <a href="#"><i class="fa fa-fw fa-user"></i> Profile</a>
@@ -157,7 +168,8 @@
                 <a href="item_forms.jsp"><i class="fa fa-fw fa-edit"></i> Pay Rent</a>
             </li>
             <li>
-                <a href="javascript:;" data-toggle="collapse" data-target="#demo"><i class="fa fa-fw fa-table"></i> Reports <i class="fa fa-fw fa-caret-down"></i></a>
+                <a href="javascript:;" data-toggle="collapse" data-target="#demo"><i class="fa fa-fw fa-table"></i>
+                    Reports <i class="fa fa-fw fa-caret-down"></i></a>
                 <ul id="demo" class="collapse">
                     <li>
                         <a href="#">Rent</a>
@@ -206,7 +218,7 @@
         </h1>
         <ol class="breadcrumb">
             <li>
-                <i class="fa fa-dashboard"></i>  <a href="home.jsp">Dashboard</a>
+                <i class="fa fa-dashboard"></i> <a href="home.jsp">Dashboard</a>
             </li>
             <li class="active">
                 <i class="fa fa-edit"></i> Forms
@@ -224,6 +236,7 @@
         <div class="form-group">
             <label>Text Input</label>
             <input class="form-control">
+
             <p class="help-block">Example block-level help text here.</p>
         </div>
 
@@ -234,6 +247,7 @@
 
         <div class="form-group">
             <label>Static Control</label>
+
             <p class="form-control-static">email@example.com</p>
         </div>
 
@@ -249,6 +263,7 @@
 
         <div class="form-group">
             <label>Checkboxes</label>
+
             <div class="checkbox">
                 <label>
                     <input type="checkbox" value="">Checkbox 1
@@ -281,6 +296,7 @@
 
         <div class="form-group">
             <label>Radio Buttons</label>
+
             <div class="radio">
                 <label>
                     <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked>Radio 1
@@ -418,12 +434,14 @@
 
         <div class="form-group input-group">
             <input type="text" class="form-control">
-            <span class="input-group-btn"><button class="btn btn-default" type="button"><i class="fa fa-search"></i></button></span>
+            <span class="input-group-btn"><button class="btn btn-default" type="button"><i class="fa fa-search"></i>
+            </button></span>
         </div>
 
     </form>
 
-    <p>For complete documentation, please visit <a href="http://getbootstrap.com/css/#forms">Bootstrap's Form Documentation</a>.</p>
+    <p>For complete documentation, please visit <a href="http://getbootstrap.com/css/#forms">Bootstrap's Form
+        Documentation</a>.</p>
 
 </div>
 </div>

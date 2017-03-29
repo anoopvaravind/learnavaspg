@@ -32,14 +32,14 @@ public class CategoryController {
     public Response listAll() {
 
         List<Category> categories = categoryService.listAll();
-        if(categories == null || categories.isEmpty()) {
+        if (categories == null || categories.isEmpty()) {
             return new Response("Null");
 //            return null;
         }
 
         HashMap<String, String> categoryMap = new LinkedHashMap<String, String>();
         for (Category category : categories) {
-            categoryMap.put(category.getId()+"",category.getCategoryName());
+            categoryMap.put(category.getId() + "", category.getCategoryName());
         }
         return new Response(categoryMap);
 //        return categoryMap;

@@ -13,40 +13,37 @@ import com.anoop.expmanager.services.service.AccountService;
 @Controller
 @RequestMapping(value = "/app/account")
 public class AccountController {
-	@Autowired
-	private AccountService accountService;
+    @Autowired
+    private AccountService accountService;
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String account() {
         return "account";
     }
 
-	@RequestMapping(value = "/current", method = RequestMethod.GET)
-	public Account getCurrentAccountDetails() {
+    @RequestMapping(value = "/current", method = RequestMethod.GET)
+    public Account getCurrentAccountDetails() {
 
-		return accountService.getCurrentAccountDetails();
-	}
+        return accountService.getCurrentAccountDetails();
+    }
 
-	@RequestMapping(value = "/history", method = RequestMethod.GET)
-	public List<Account> getAccountHistory() {
+    @RequestMapping(value = "/history", method = RequestMethod.GET)
+    public List<Account> getAccountHistory() {
 
-		return accountService.getAccountHistory();
-	}
+        return accountService.getAccountHistory();
+    }
 
-	@RequestMapping(value = "/create", method = RequestMethod.POST)
-	public void createAccount(Account account) {
+    @RequestMapping(value = "/create", method = RequestMethod.POST)
+    public void createAccount(Account account) {
 
-		accountService.createAccount(account);
-	}
+        accountService.createAccount(account);
+    }
 
-	@RequestMapping(value = "/generatemonthlystatement", method = RequestMethod.POST)
+    @RequestMapping(value = "/generatemonthlystatement", method = RequestMethod.POST)
     @ResponseBody
-	public Notification generateMonthlyStatement(@RequestParam("month") int month, @RequestParam("year") int year,
-                                         @RequestParam("currentRentAmount") double currentRentAmount) {
-        System.out.println("########"+month);
-        System.out.println(year);
-        System.out.println(currentRentAmount);
-		Account account = null;
-		return accountService.generateMonthlyStatement(month, year,currentRentAmount);
-	}
+    public Notification generateMonthlyStatement(@RequestParam("month") int month, @RequestParam("year") int year,
+                                                 @RequestParam("currentRentAmount") double currentRentAmount) {
+        Account account = null;
+        return accountService.generateMonthlyStatement(month, year, currentRentAmount);
+    }
 }

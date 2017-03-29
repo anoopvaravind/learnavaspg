@@ -11,13 +11,13 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class UserServiceImpl implements UserService {
-	@Autowired
-	UserDAO userDAO;
+    @Autowired
+    UserDAO userDAO;
 
-	@Override
-	public List<User> getActiveUsers() {
-		return userDAO.getActiveUsers();
-	}
+    @Override
+    public List<User> getActiveUsers() {
+        return userDAO.getActiveUsers();
+    }
 
     @Override
     public User getUserByUserName(String username) {

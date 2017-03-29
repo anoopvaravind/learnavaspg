@@ -28,7 +28,7 @@ public class LoginService implements UserDetailsService {
 
     public UserDetails loadUserByUsername(String userName) throws UsernameNotFoundException {
         try {
-            System.out.println("userName"+userName);
+            System.out.println("userName" + userName);
             User user = userDao.getUserByUserName(userName);
             String role = user.getRoles().getRolename();
             List<GrantedAuthority> rolesList = new ArrayList<GrantedAuthority>();
@@ -36,7 +36,7 @@ public class LoginService implements UserDetailsService {
 
             return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(),
                     true, true, true, true, rolesList);
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
             return null;
         }

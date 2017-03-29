@@ -8,72 +8,72 @@ import javax.persistence.*;
 @Entity
 @Table(name = "user")
 public class User {
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "USER_ID")
-	private long id;
-	private String displayName;
-	private Date createdDate;
-	private Date modifiedDate;
-	private String username;
-	private String password;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "USER_ID")
+    private long id;
+    private String displayName;
+    private Date createdDate;
+    private Date modifiedDate;
+    private String username;
+    private String password;
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "ROLE_ID")
     private Roles roles;
-	private boolean enabled;
+    private boolean enabled;
 
-	/*private Set<RentSheet> rentSheetList;*/
-	/*private Set<Item> items;*/
+    /*private Set<RentSheet> rentSheetList;*/
+    /*private Set<Item> items;*/
 
-	public long getId() {
-		return id;
-	}
+    public long getId() {
+        return id;
+    }
 
-	public void setId(long id) {
-		this.id = id;
-	}
+    public void setId(long id) {
+        this.id = id;
+    }
 
-	public String getDisplayName() {
-		return displayName;
-	}
+    public String getDisplayName() {
+        return displayName;
+    }
 
-	public void setDisplayName(String displayName) {
-		this.displayName = displayName;
-	}
+    public void setDisplayName(String displayName) {
+        this.displayName = displayName;
+    }
 
-	public Date getCreatedDate() {
-		return createdDate;
-	}
+    public Date getCreatedDate() {
+        return createdDate;
+    }
 
-	public void setCreatedDate(Date createdDate) {
-		this.createdDate = createdDate;
-	}
+    public void setCreatedDate(Date createdDate) {
+        this.createdDate = createdDate;
+    }
 
-	public Date getModifiedDate() {
-		return modifiedDate;
-	}
+    public Date getModifiedDate() {
+        return modifiedDate;
+    }
 
-	public void setModifiedDate(Date modifiedDate) {
-		this.modifiedDate = modifiedDate;
-	}
+    public void setModifiedDate(Date modifiedDate) {
+        this.modifiedDate = modifiedDate;
+    }
 
-	public String getUsername() {
-		return username;
-	}
+    public String getUsername() {
+        return username;
+    }
 
-	public void setUsername(String username) {
-		this.username = username;
-	}
+    public void setUsername(String username) {
+        this.username = username;
+    }
 
-	public String getPassword() {
-		return password;
-	}
+    public String getPassword() {
+        return password;
+    }
 
-	public void setPassword(String password) {
-		this.password = password;
-	}
+    public void setPassword(String password) {
+        this.password = password;
+    }
 
-        public Roles getRoles() {
+    public Roles getRoles() {
         return roles;
     }
 
@@ -82,12 +82,12 @@ public class User {
     }
 
     public boolean isEnabled() {
-		return enabled;
-	}
+        return enabled;
+    }
 
-	public void setEnabled(boolean enabled) {
-		this.enabled = enabled;
-	}
+    public void setEnabled(boolean enabled) {
+        this.enabled = enabled;
+    }
 
 /*	@OneToMany(mappedBy = "rentsheet", cascade = CascadeType.ALL)
 	public Set<RentSheet> getRentSheetList() {
@@ -98,7 +98,7 @@ public class User {
 		this.rentSheetList = rentSheetList;
 	}*/
 
-   /* @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    /* @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     public Set<Item> getItems() {
         return items;
     }

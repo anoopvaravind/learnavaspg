@@ -14,12 +14,12 @@ import com.anoop.expmanager.services.service.UserService;
 @RestController
 @RequestMapping(value = "/user")
 public class UserController {
-	@Autowired
-	UserService userService;
+    @Autowired
+    UserService userService;
 
-	@RequestMapping(value = "/activeusers", method = RequestMethod.GET)
-	public List<User> getActiveUsers() {
+    @RequestMapping(value = "/activeusers", method = RequestMethod.GET)
+    public List<User> getActiveUsers() {
 
-		return userService.getActiveUsers();
-	}
+        return userService.getActiveUsers();
+    }
 }

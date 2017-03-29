@@ -6,6 +6,7 @@ import java.util.List;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 import org.hibernate.criterion.Order;
 import org.hibernate.criterion.ProjectionList;
 import org.hibernate.criterion.Projections;
@@ -20,20 +21,89 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public class ItemDAOImpl implements ItemDAO {
-	@Autowired
-	SessionFactory sessionFactory;
+    @Autowired
+    SessionFactory sessionFactory;
 
-	@Override
-	public List<Item> findAllItemBetweenDate(Date startDate, Date endDate) {
+    @Override
+    public List<Item> findAllItemBetweenDate(Date startDate, Date endDate) {
         Session session = null;
         try {
             session = sessionFactory.openSession();
             Criteria criteria = session.createCriteria(Item.class);
+
             criteria.add(Restrictions.ge("purchasedDate", startDate));
             criteria.add(Restrictions.le("purchasedDate", endDate));
+
             criteria.createAlias("user", "u");
             criteria.addOrder(Order.asc("u.displayName"));
             criteria.addOrder(Order.desc("purchasedDate"));
+            return criteria.list();
+        } catch (Exception e) {
+            System.out.println("Caught exception in findAllItemBetweenDate() : " + e);
+        } finally {
+            session.close();
+        }
+        return null;
+    }
+
+    @Override
+    public List<Item> findAllItemPerUserMonthAndYear(long userID, int month, int year) {
+        Session session = null;
+        try {
+            session = sessionFactory.openSession();
+            Criteria criteria = session.createCriteria(Item.class);
+//			criteria.add(Restrictions.eq("month", month));
+//			criteria.add(Restrictions.eq("year", year));
+//			criteria.add(Restrictions.eq("userID", userID));
+            return criteria.list();
+        } catch (Exception e) {
+            System.out.println("Caught exception in findAllItemPerUserMonthAndYear() : " + e);
+        } finally {
+            session.close();
+        }
+        return null;
+    }
+
+    @Override
+    public void saveItem(Item item) {
+        Session session = null;
+        Transaction tx;
+        try {
+            session = sessionFactory.openSession();
+            tx = session.beginTransaction();
+            session.saveOrUpdate(item);
+            tx.commit();
+        } catch (Exception e) {
+            System.out.println("Caught exception in saveItem() : " + e);
+        } finally {
+            session.close();
+        }
+
+    }
+
+    @Override
+    public void deleteItem(Item item) {
+        Session session = null;
+        Transaction tx;
+        try {
+            session = sessionFactory.openSession();
+            tx = session.beginTransaction();
+            session.delete(item);
+            tx.commit();
+        } catch (Exception e) {
+            System.out.println("Caught exception in deleteItem() : " + e);
+        } finally {
+            session.close();
+        }
+    }
+
+    @Override
+    public List<Item> findAll() {
+        Session session = null;
+        try {
+            session = sessionFactory.openSession();
+            Criteria criteria = session.createCriteria(Item.class);
+            criteria.addOrder(Order.desc("id"));
             return criteria.list();
         } catch (Exception e) {
             System.out.println("Caught exception in findAll() : " + e);
@@ -41,81 +111,38 @@ public class ItemDAOImpl implements ItemDAO {
             session.close();
         }
         return null;
-	}
 
-	@Override
-	public List<Item> findAllItemPerUserMonthAndYear(long userID, int month, int year) {
-		Session session = null;
-		try {
-			session = sessionFactory.openSession();
-			Criteria criteria = session.createCriteria(Item.class);
-//			criteria.add(Restrictions.eq("month", month));
-//			criteria.add(Restrictions.eq("year", year));
-//			criteria.add(Restrictions.eq("userID", userID));
-			return criteria.list();
-		} catch (Exception e) {
-			System.out.println("Caught exception in findAllItemPerUserMonthAndYear() : " + e);
-		} finally {
-			session.close();
-		}
-		return null;
-	}
-
-	@Override
-	public void saveItem(Item item) {
-		Session session = null;
-		try {
-			session = sessionFactory.openSession();
-			session.saveOrUpdate(item);
-		} catch (Exception e) {
-			System.out.println("Caught exception in saveItem() : " + e);
-		} finally {
-			session.close();
-		}
-
-	}
-
-	@Override
-	public List<Item> findAll() {
-		Session session = null;
-		try {
-			session = sessionFactory.openSession();
-			Criteria criteria = session.createCriteria(Item.class);
-            criteria.addOrder(Order.desc("id"));
-			return criteria.list();
-		} catch (Exception e) {
-			System.out.println("Caught exception in findAll() : " + e);
-		} finally {
-			session.close();
-		}
-		return null;
-
-	}
-
-	@Override
-	public List<UserIncommExpenseSummaryDO> calculateUserExpense(int month, int year) {
-		Session session = null;
-		try {
-			session = sessionFactory.openSession();
-			Criteria criteria = session.createCriteria(Item.class);
-			criteria.add(Restrictions.eq("month", month));
-			criteria.add(Restrictions.eq("year", year));
-			return criteria.list();
-		} catch (Exception e) {
-			System.out.println("Caught exception in findAll() : " + e);
-		} finally {
-			session.close();
-		}
-		return null;
-	}
+    }
 
     @Override
-    public List<Item> findAllItemPerUserAndDate(long userID, Date startDate, Date endDate) {
+    public List<UserIncommExpenseSummaryDO> calculateUserExpense(int month, int year) {
         Session session = null;
         try {
             session = sessionFactory.openSession();
             Criteria criteria = session.createCriteria(Item.class);
-            criteria.add(Restrictions.eq("user.id", userID));
+            criteria.add(Restrictions.eq("month", month));
+            criteria.add(Restrictions.eq("year", year));
+            return criteria.list();
+        } catch (Exception e) {
+            System.out.println("Caught exception in findAll() : " + e);
+        } finally {
+            session.close();
+        }
+        return null;
+    }
+
+    @Override
+    public List<Item> findAllItemPerUserAndDate(long userID, Date startDate, Date endDate) {
+        System.out.println("userID findAll() : " + userID);
+        System.out.println("startDate in findAll() : " + startDate);
+        System.out.println("endDate in findAll() : " + endDate);
+        Session session = null;
+        try {
+            session = sessionFactory.openSession();
+            Criteria criteria = session.createCriteria(Item.class);
+            if (userID != 0) {
+                criteria.add(Restrictions.eq("user.id", userID));
+            }
 //            criteria.add(Restrictions.between("purchasedDate",startDate,endDate));
             criteria.add(Restrictions.ge("purchasedDate", startDate));
             criteria.add(Restrictions.le("purchasedDate", endDate));
@@ -148,9 +175,9 @@ public class ItemDAOImpl implements ItemDAO {
             projectionList.add(Projections.sum("price"));
             criteria.setProjection(projectionList);
 
-            System.out.println("criteria.uniqueResult() : " +criteria.uniqueResult());
+            System.out.println("criteria.uniqueResult() : " + criteria.uniqueResult());
             obj = criteria.uniqueResult();
-            if(obj == null) {
+            if (obj == null) {
                 return 0.0;
             }
             return (Double) obj;

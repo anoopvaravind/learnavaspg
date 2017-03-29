@@ -24,15 +24,16 @@ import java.util.List;
 public class CategoryDAOImpl implements CategoryDAO {
     @Autowired
     SessionFactory sessionFactory;
+
     @Override
     public List<Category> listAll() {
         Session session = null;
-        List<Category> categories= null;
+        List<Category> categories = null;
         try {
             session = sessionFactory.openSession();
             Criteria criteria = session.createCriteria(Category.class);
-            categories  =criteria.list();
-            if(categories == null || categories.isEmpty()) {
+            categories = criteria.list();
+            if (categories == null || categories.isEmpty()) {
                 System.out.println("category is null");
                 return null;
             }

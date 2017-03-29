@@ -1,5 +1,8 @@
 package com.anoop.expmanager.model;
 
+import com.anoop.expmanager.util.CustomDateFormatter;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -12,89 +15,90 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "account")
 public class Account {
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "ACCOUNT_ID")
-	private long id;
-	private int month;
-	private int year;
-	private double openingBalance;
-	private double clossingBalance;
-	private double monthlyExpense;
-	private double monthlyIncomm;
-	private Date ceatedDate;
-	private Date modifiedDate;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "ACCOUNT_ID")
+    private long id;
+    private int month;
+    private int year;
+    private double openingBalance;
+    private double clossingBalance;
+    private double monthlyExpense;
+    private double monthlyIncomm;
+    private Date ceatedDate;
+    private Date modifiedDate;
 
-	public long getId() {
-		return id;
-	}
+    public long getId() {
+        return id;
+    }
 
-	public void setId(long id) {
-		this.id = id;
-	}
+    public void setId(long id) {
+        this.id = id;
+    }
 
-	public int getMonth() {
-		return month;
-	}
+    public int getMonth() {
+        return month;
+    }
 
-	public void setMonth(int month) {
-		this.month = month;
-	}
+    public void setMonth(int month) {
+        this.month = month;
+    }
 
-	public int getYear() {
-		return year;
-	}
+    public int getYear() {
+        return year;
+    }
 
-	public void setYear(int year) {
-		this.year = year;
-	}
+    public void setYear(int year) {
+        this.year = year;
+    }
 
-	public double getOpeningBalance() {
-		return openingBalance;
-	}
+    public double getOpeningBalance() {
+        return openingBalance;
+    }
 
-	public void setOpeningBalance(double openingBalance) {
-		this.openingBalance = openingBalance;
-	}
+    public void setOpeningBalance(double openingBalance) {
+        this.openingBalance = openingBalance;
+    }
 
-	public double getClossingBalance() {
-		return clossingBalance;
-	}
+    public double getClossingBalance() {
+        return clossingBalance;
+    }
 
-	public void setClossingBalance(double clossingBalance) {
-		this.clossingBalance = clossingBalance;
-	}
+    public void setClossingBalance(double clossingBalance) {
+        this.clossingBalance = clossingBalance;
+    }
 
-	public double getMonthlyExpense() {
-		return monthlyExpense;
-	}
+    public double getMonthlyExpense() {
+        return monthlyExpense;
+    }
 
-	public void setMonthlyExpense(double monthlyExpense) {
-		this.monthlyExpense = monthlyExpense;
-	}
+    public void setMonthlyExpense(double monthlyExpense) {
+        this.monthlyExpense = monthlyExpense;
+    }
 
-	public double getMonthlyIncomm() {
-		return monthlyIncomm;
-	}
+    public double getMonthlyIncomm() {
+        return monthlyIncomm;
+    }
 
-	public void setMonthlyIncomm(double monthlyIncomm) {
-		this.monthlyIncomm = monthlyIncomm;
-	}
+    public void setMonthlyIncomm(double monthlyIncomm) {
+        this.monthlyIncomm = monthlyIncomm;
+    }
 
-	public Date getCeatedDate() {
-		return ceatedDate;
-	}
+    @JsonSerialize(using = CustomDateFormatter.class)
+    public Date getCeatedDate() {
+        return ceatedDate;
+    }
 
-	public void setCeatedDate(Date ceatedDate) {
-		this.ceatedDate = ceatedDate;
-	}
+    public void setCeatedDate(Date ceatedDate) {
+        this.ceatedDate = ceatedDate;
+    }
 
-	public Date getModifiedDate() {
-		return modifiedDate;
-	}
+    public Date getModifiedDate() {
+        return modifiedDate;
+    }
 
-	public void setModifiedDate(Date modifiedDate) {
-		this.modifiedDate = modifiedDate;
-	}
+    public void setModifiedDate(Date modifiedDate) {
+        this.modifiedDate = modifiedDate;
+    }
 
 }

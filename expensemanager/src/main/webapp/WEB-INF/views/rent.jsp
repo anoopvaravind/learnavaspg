@@ -1,6 +1,6 @@
 <!DOCTYPE html>
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html lang="en">
 
 <head>
@@ -30,10 +30,11 @@
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 
-	<style>
+    <style>
         form label.error {
             color: red;
         }
+
         form input.error {
             border: 1px solid red;
         }
@@ -191,10 +192,14 @@
                     <li>
                         <a href="<c:url value="/app/report/expense" />">Expense</a>
                     </li>
+                    <li>
+                        <a href="<c:url value="/app/report/account" />">Account Summary</a>
+                    </li>
                 </ul>
             </li>
             <li>
-                <a href="<c:url value="/app/account/" />"><i class="fa fa-fw fa-dashboard"></i> Generate Monthly Bill</a>
+                <a href="<c:url value="/app/account/" />"><i class="fa fa-fw fa-dashboard"></i> Generate Monthly
+                    Bill</a>
             </li>
 
         </ul>
@@ -228,7 +233,7 @@
             <div class="col-lg-6">
 
                 <form name="rentForm" role="form">
-                    <div id="successDiv" class="alert alert-success" >
+                    <div id="successDiv" class="alert alert-success">
                         <p id="success"></p>
                     </div>
 
@@ -243,7 +248,7 @@
 
                     <div class="form-group">
                         <label>Previous Due</label>
-                        <input id="amountdue" name="amountdue"  class="form-control" disabled>
+                        <input id="amountdue" name="amountdue" class="form-control" disabled>
                     </div>
 
                     <div class="form-group">
@@ -267,8 +272,8 @@
                 </form>
 
             </div>
-			
-			            <div class="col-lg-6">
+
+            <div class="col-lg-6">
                 <div class="table-responsive">
                     <table id="rentsheettable" class="table table-bordered table-hover table-striped">
                         <thead>
@@ -312,7 +317,7 @@
 <script src="<c:url value='/js/plugins/morris/morris-data.js' />"></script>
 
 <!-- Validation -->
-<script src = "https://code.jquery.com/jquery-1.10.2.js"></script>
+<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
 <script src="<c:url value='/js/jquery.validate.min.js' />"></script>
 
 <script src="<c:url value='/js/rent.js' />"></script>
