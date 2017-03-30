@@ -29,7 +29,7 @@ public class CategoryController {
 
     @RequestMapping(value = "/listAll", method = RequestMethod.GET)
     @ResponseBody
-    public Response listAll() {
+    public Response listAll() throws Exception{
 
         List<Category> categories = categoryService.listAll();
         if (categories == null || categories.isEmpty()) {

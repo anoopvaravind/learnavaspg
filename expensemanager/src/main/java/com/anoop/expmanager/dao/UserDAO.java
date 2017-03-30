@@ -7,5 +7,11 @@ import com.anoop.expmanager.model.User;
 public interface UserDAO {
     public List<User> getActiveUsers();
 
-    User getUserByUserName(String userName);
+    public List<User> getAllUsers();
+
+    public User getUserByUserName(String userName);
+
+    public void save(User user);
+
+    public void deleteUser(User user);
 }

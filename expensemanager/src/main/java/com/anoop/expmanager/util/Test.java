@@ -1,42 +1,56 @@
 package com.anoop.expmanager.util;
 
+
+
+
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Properties;
+import javax.mail.*;
+import javax.mail.internet.AddressException;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 
 public class Test {
 
-    public static void main(String[] args) throws ParseException {
+    public static void main(String[] args) throws ParseException, MessagingException {
 
-        /* Calendar cal = Calendar.getInstance();
+        final String username = "mailfromexpman";
+        final String password = "manageradmin";
 
-    cal.set(cal.get(Calendar.YEAR),cal.get(Calendar.MONTH),cal.getActualMinimum(Calendar.DAY_OF_MONTH));
+        Properties props = new Properties();
+        props.put("mail.smtp.auth", "true");
+        props.put("mail.smtp.starttls.enable", "true");
+        props.put("mail.smtp.host", "smtp.gmail.com");
+        props.put("mail.smtp.port", "587");
 
-    Date startDate = cal.getTime();
-    cal.set(cal.get(Calendar.YEAR),cal.get(Calendar.MONTH),cal.getActualMaximum(Calendar.DAY_OF_MONTH));
+        Session session = Session.getInstance(props,
+                new javax.mail.Authenticator() {
+                    protected PasswordAuthentication getPasswordAuthentication() {
+                        return new PasswordAuthentication(username, password);
+                    }
+                });
 
-    Date endDate = cal.getTime();
+        try {
 
-    System.out.println("cal.get(Calendar.MONTH) : " + cal.get(Calendar.MONTH));
+            Message message = new MimeMessage(session);
+            message.setFrom(new InternetAddress("mailfromexpman@gmail.com"));
+            message.setRecipients(Message.RecipientType.TO,
+                    InternetAddress.parse("anooparavindmbit@gmail.com"));
+            message.setSubject("Testing TLS Subject");
+            message.setText("Dear Mail Crawler,"
+                    + "\n\n No spam to my email, please!");
 
-    System.out.println("Start date Year is0 : " + startDate);
+            Transport.send(message);
 
-    System.out.println("End date Year is0 : " + endDate);
-    System.out.println("Current Year is1 : " + cal.getActualMaximum(Calendar.DAY_OF_MONTH));
-    System.out.println("Current Year is2 : " + cal.getActualMinimum(Calendar.DAY_OF_MONTH));
-    Date d= new Date();
-    DateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+            System.out.println("Done");
 
-    d = formatter.parse(formatter.format(d));
-    System.out.println("getStartDateOfMonth : " + d);
-    System.out.println("getStartDateOfMonth : " + getStartDateOfMonth(d));
-    System.out.println("getEndDateOfMonth : " + getEndDateOfMonth(d));
-    System.out.println("createStartDateFromMonthAndYear : " + createStartDateFromMonthAndYear(12,2017));*/
-        int i = 10;
-        System.out.println("####### ready to save !!!" + (i + 1));
-        //System.out.println("getStartDateOfMonth : " + Util.getMonthFromDate(new Date()));
+        } catch (MessagingException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     public static Date getStartDateOfMonth(Date date) {

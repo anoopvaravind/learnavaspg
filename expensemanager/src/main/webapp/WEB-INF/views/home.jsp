@@ -187,10 +187,19 @@
                     </li>
                 </ul>
             </li>
-            <li>
-                <a href="<c:url value="/app/account/" />"><i class="fa fa-fw fa-dashboard"></i> Generate Monthly
-                    Bill</a>
+			<li>
+                <a href="javascript:;" data-toggle="collapse" data-target="#admin"><i class="fa fa-fw fa-dashboard"></i>
+                    Admin <i class="fa fa-fw fa-caret-down"></i></a>
+                <ul id="admin" class="collapse">
+                    <li>
+                        <a href="<c:url value="/admin/user/" />">Customise User</a>
+                    </li>
+                    <li>
+                        <a href="<c:url value="/admin/account/" />">Generate Monthly Bill</a>
+                    </li>
+                </ul>
             </li>
+
 
             <li>
                 <a href="tables.html"><i class="fa fa-fw fa-table"></i> Reports</a>
@@ -348,7 +357,7 @@
     <div class="col-lg-12">
         <div class="panel panel-default">
             <div class="panel-heading">
-                <h3 class="panel-title"><i class="fa fa-bar-chart-o fa-fw"></i> Area Chart</h3>
+                <h3 class="panel-title"><i class="fa fa-bar-chart-o fa-fw"></i> Account Summary</h3>
             </div>
             <div class="panel-body">
                 <div id="morris-area-chart-edited"></div>
@@ -383,8 +392,6 @@
 <!-- Validation -->
 <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
 <script src="<c:url value='/js/jquery.validate.min.js' />"></script>
-
-<script src="<c:url value='/js/rent.js' />"></script>
 
 <div class="modal"><!-- Place at bottom of page --></div>
 <script src="<c:url value='/js/home.js' />"></script>

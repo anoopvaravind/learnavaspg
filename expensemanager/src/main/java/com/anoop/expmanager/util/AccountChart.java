@@ -10,9 +10,8 @@ package com.anoop.expmanager.util;
 public class AccountChart {
     String monthYear;
     double totalExpense;
-   /* double openingBalance;
+    double openingBalance;
     double closingBalance;
-*/
     public String getMonthYear() {
         return monthYear;
     }
@@ -29,7 +28,7 @@ public class AccountChart {
         this.totalExpense = totalExpense;
     }
 
-   /* public double getOpeningBalance() {
+    public double getOpeningBalance() {
         return openingBalance;
     }
 
@@ -43,5 +42,5 @@ public class AccountChart {
 
     public void setClosingBalance(double closingBalance) {
         this.closingBalance = closingBalance;
-    }*/
+    }
 }

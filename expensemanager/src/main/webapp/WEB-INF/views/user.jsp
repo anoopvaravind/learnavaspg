@@ -19,7 +19,8 @@
     <link href="<c:url value='/css/sb-admin.css' />" rel="stylesheet"></link>
     <link href="<c:url value='/font-awesome/css/font-awesome.min.css' />" rel="stylesheet"></link>
     <link href="<c:url value='/css/plugins/morris.css' />" rel="stylesheet"></link>
-    <!-- Bootstrap Core CSS -->
+    <link href="https://code.jquery.com/ui/1.10.4/themes/ui-lightness/jquery-ui.css"
+          rel="stylesheet">
 
     <!-- Expense Manager CSS -->
     <link href="<c:url value='/css/expensemanager.css' />" rel="stylesheet"></link>
@@ -30,7 +31,6 @@
     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
-
 
 </head>
 
@@ -166,46 +166,45 @@
     <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
     <div class="collapse navbar-collapse navbar-ex1-collapse">
         <ul class="nav navbar-nav side-nav">
-            <ul class="nav navbar-nav side-nav">
-                <li>
-                    <a href="<c:url value="/app/" />"><i class="fa fa-fw fa-dashboard"></i> Dashboard</a>
-                </li>
-                <li>
-                    <a href="<c:url value="/app/item/" />"><i class="fa fa-fw fa-edit"></i> Add Expense</a>
-                </li>
-                <li>
-                    <a href="<c:url value="/app/rent/" />"><i class="fa fa-fw fa-edit"></i> Pay Rent</a>
-                </li>
-                <li class="active">
-                    <a href="javascript:;" data-toggle="collapse" data-target="#demo"><i
-                            class="fa fa-fw fa-table"></i> Reports <i class="fa fa-fw fa-caret-down"></i></a>
-                    <ul id="demo" class="collapse">
-                        <li class="active">
-                            <a href="<c:url value="/app/report/rent" />">Rent</a>
+            <li>
+                <a href="<c:url value="/app/" />"><i class="fa fa-fw fa-dashboard"></i> Dashboard</a>
+            </li>
+            <li >
+                <a href="<c:url value="/app/item/" />"><i class="fa fa-fw fa-edit"></i> Add Expense</a>
+            </li>
+            <li>
+                <a href="<c:url value="/app/rent/" />"><i class="fa fa-fw fa-edit"></i> Pay Rent</a>
+            </li>
+            <li>
+                <a href="javascript:;" data-toggle="collapse" data-target="#demo"><i class="fa fa-fw fa-table"></i>
+                    Reports <i class="fa fa-fw fa-caret-down"></i></a>
+                <ul id="demo" class="collapse">
+                    <li>
+                        <a href="<c:url value="/app/report/rent" />">Rent</a>
+                    </li>
+                    <li>
+                        <a href="<c:url value="/app/report/expense" />">Expense</a>
+                    </li>
+                    <li>
+                        <a href="<c:url value="/app/report/account" />">Account Summary</a>
+                    </li>
+                </ul>
+            </li>
+            <li class="active">
+                            <a href="javascript:;" data-toggle="collapse" data-target="#admin"><i class="fa fa-fw fa-dashboard"></i>
+                                Admin <i class="fa fa-fw fa-caret-down"></i></a>
+                            <ul id="admin" class="collapse">
+                                <li class="active">
+                                    <a href="<c:url value="/admin/user/" />">Customise User</a>
+                                </li>
+                                <li>
+                                    <a href="<c:url value="/admin/account/" />">Generate Monthly Bill</a>
+                                </li>
+                            </ul>
                         </li>
-                        <li>
-                            <a href="<c:url value="/app/report/expense" />">Expense</a>
-                        </li>
-                        <li>
-                            <a href="<c:url value="/app/report/account" />">Account Summary</a>
-                        </li>
-                    </ul>
-                </li>
-                <li>
-                                <a href="javascript:;" data-toggle="collapse" data-target="#admin"><i class="fa fa-fw fa-dashboard"></i>
-                                    Admin <i class="fa fa-fw fa-caret-down"></i></a>
-                                <ul id="admin" class="collapse">
-                                    <li>
-                                        <a href="<c:url value="/admin/user/" />">Customise User</a>
-                                    </li>
-                                    <li>
-                                        <a href="<c:url value="/admin/account/" />">Generate Monthly Bill</a>
-                                    </li>
-                                </ul>
-                            </li>
 
 
-            </ul>
+        </ul>
     </div>
     <!-- /.navbar-collapse -->
 </nav>
@@ -218,14 +217,14 @@
         <div class="row">
             <div class="col-lg-12">
                 <h2 class="page-header">
-                    Rent Report
+                    Customise User
                 </h2>
                 <ol class="breadcrumb">
                     <li>
                         <i class="fa fa-dashboard"></i> <a href="<c:url value="/app/" />">Dashboard</a>
                     </li>
                     <li class="active">
-                        <i class="fa fa-edit"></i> Rent Report
+                        <i class="fa fa-edit"></i> Customise User
                     </li>
                 </ol>
             </div>
@@ -234,72 +233,85 @@
 
         <div class="row">
             <div class="col-lg-6">
-                <form id="rentReportForm" role="form" name="rentReportForm">
+
+                <form role="form" name="userForm">
+
                     <div id="successDiv" class="alert alert-success">
                         <p id="success"></p>
                     </div>
+
                     <div id="errorDiv" class="alert alert-danger">
                         <p id="error"></p>
                     </div>
+                    <input id="hiddenField1" type="hidden" value=""/>
+                     <input id="hiddenField2" type="hidden" value=""/>
+
                     <div class="form-group">
-                        <label>Month</label>
-                        <select id="month" class="form-control">
-                            <option value="1">January</option>
-                            <option value="2">February</option>
-                            <option value="3">March</option>
-                            <option value="4">April</option>
-                            <option value="5">May</option>
-                            <option value="6">June</option>
-                            <option value="7">July</option>
-                            <option value="8">August</option>
-                            <option value="9">September</option>
-                            <option value="10">October</option>
-                            <option value="11">November</option>
-                            <option value="12">December</option>
+                        <label>User Display Name</label>
+                        <input name="displayName" id="displayName" class="form-control" placeholder="Enter user display name">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Username</label>
+                        <input name="username" id="username" class="form-control" placeholder="Enter username">
+                    </div>
+					
+					 <div class="form-group">
+                        <label>Email</label>
+                        <input name="email" id="email" class="form-control" placeholder="Enter email">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Select Role</label>
+                        <select class="form-control" name="roles" id="roles">
+                        <option value="1">Normal User</option>
+                        <option value="2">Admin</option>
                         </select>
                     </div>
                     <div class="form-group">
-                        <label>Year</label>
-                        <select id="year" class="form-control">
-                            <option value="2017">2017</option>
-                            <option value="2018">2018</option>
-                            <option value="2019">2019</option>
-                            <option value="2020">2020</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <button id="submit" type="submit" class="btn btn-primary" disabled>Submit</button>
-                        <button type="reset" class="btn btn-primary">Reset</button>
-                    </div>
+                                <label>User Status</label>
+                                <label class="radio-inline">
+                                    <input type="radio" name="optionsRadiosInline" id="optionsRadiosInline1" value="1" checked>Enabled
+                                </label>
+                                <label class="radio-inline">
+                                    <input type="radio" name="optionsRadiosInline" id="optionsRadiosInline2" value="0">disabled
+                                </label>
+                            </div>
+                    
+                    <button type="submit" class="btn btn-primary" id="submitButton" disabled>Submit</button>
+                    <button type="reset" class="btn btn-primary" id="resetbutton">Reset</button>
                     <br></br>
 
                 </form>
 
             </div>
+
             <div class="col-lg-6">
                 <div class="table-responsive">
-                    <table id="rentsheettable" class="table table-bordered table-hover table-striped">
+                    <table class="table table-bordered table-hover table-striped" id="userTable">
                         <thead>
                         <tr>
-                            <th>User</th>
-                            <th>Expense Paid</th>
-                            <th>Monthly Rent</th>
-                            <th>Previous Due</th>
-                            <th>Net Rent</th>
-                            <th>Rent Paid</th>
-                            <th>Paid Date</th>
+                            <th>Display Name</th>
+                            <th>Username</th>
+                            <th>Email</th>
+                            <th>Role</th>
+                            <th>Status</th>
+                            <th>Actions</th>
                         </tr>
                         </thead>
+                        <tbody>
+                        </tbody>
                     </table>
                 </div>
 
             </div>
 
         </div>
-        <!-- /.row -->
-
     </div>
-    <!-- /.container-fluid -->
+    <!-- /.row -->
+
+</div>
+<!-- /.container-fluid -->
 
 </div>
 <!-- /#page-wrapper -->
@@ -307,8 +319,13 @@
 </div>
 <!-- /#wrapper -->
 
+<!-- loading image -->
+
+<div class="modal"><!-- Place at bottom of page --></div>
+
 <!-- jQuery -->
 <script src="<c:url value='/js/jquery.js' />"></script>
+
 
 <!-- Bootstrap Core JavaScript -->
 <script src="<c:url value='/js/bootstrap.min.js' />"></script>
@@ -318,14 +335,16 @@
 <script src="<c:url value='/js/plugins/morris/morris.min.js' />"></script>
 <script src="<c:url value='/js/plugins/morris/morris-data.js' />"></script>
 
-<!-- Validation-->
+<!-- Date Picker-->
+
+
 <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
-<script src="<c:url value='/js/jquery.validate.min.js' />"></script>
 
-<script src="<c:url value='/js/rentreport.js' />"></script>
-
-<div class="modal"><!-- Place at bottom of page --></div>
+<script src="<c:url value='/js/user.js' />"></script>
 <script src="<c:url value='/js/expensemanager.js' />"></script>
+<script src="<c:url value='/js/jquery.validate.min.js' />"></script>
+<script src="https://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+
 
 </body>
 

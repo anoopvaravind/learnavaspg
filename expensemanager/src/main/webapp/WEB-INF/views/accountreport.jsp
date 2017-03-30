@@ -177,25 +177,36 @@
                 <li>
                     <a href="<c:url value="/app/rent/" />"><i class="fa fa-fw fa-edit"></i> Pay Rent</a>
                 </li>
-                <li>
+                <li class="active">
                     <a href="javascript:;" data-toggle="collapse" data-target="#demo"><i
                             class="fa fa-fw fa-table"></i> Reports <i class="fa fa-fw fa-caret-down"></i></a>
                     <ul id="demo" class="collapse">
-                        <li class="active">
+                        <li >
                             <a href="<c:url value="/app/report/rent" />">Rent</a>
                         </li>
                         <li>
                             <a href="<c:url value="/app/report/expense" />">Expense</a>
                         </li>
-                        <li>
+                        <li class="active">
                             <a href="<c:url value="/app/report/account" />">Account Summary</a>
                         </li>
                     </ul>
                 </li>
                 <li>
-                    <a href="<c:url value="/app/account/" />"><i class="fa fa-fw fa-dashboard"></i> Generate Monthly
-                        Bill</a>
-                </li>
+                                <a href="javascript:;" data-toggle="collapse" data-target="#admin"><i class="fa fa-fw fa-dashboard"></i>
+                                    Admin <i class="fa fa-fw fa-caret-down"></i></a>
+                                <ul id="admin" class="collapse">
+                                    <li>
+                                        <a href="<c:url value="/admin/user/" />">Customise User</a>
+                                    </li>
+                                    <li>
+                                        <a href="<c:url value="/admin/account/" />">Generate Monthly Bill</a>
+                                    </li>
+                                </ul>
+                            </li>
+
+
+
             </ul>
     </div>
     <!-- /.navbar-collapse -->

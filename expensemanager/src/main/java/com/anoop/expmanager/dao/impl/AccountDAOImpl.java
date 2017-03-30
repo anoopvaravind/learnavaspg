@@ -29,7 +29,7 @@ public class AccountDAOImpl implements AccountDAO {
             criteria.add(Restrictions.eq("year", Util.getCurrentYear()));
             return (Account) criteria.uniqueResult();
         } catch (Exception e) {
-            System.out.println("Caught exception in getAccountHistory() : " + e);
+            System.out.println("Caught exception in getCurrentAccountDetails() : " + e);
         } finally {
             session.close();
         }
@@ -77,7 +77,7 @@ public class AccountDAOImpl implements AccountDAO {
             criteria.add(Restrictions.eq("year", year));
             return criteria.list();
         } catch (Exception e) {
-            System.out.println("Caught exception in getAccountHistory() : " + e);
+            System.out.println("Caught exception in getAccountDetailsPerMonthAndYear() : " + e);
         } finally {
             session.close();
         }
@@ -91,9 +91,10 @@ public class AccountDAOImpl implements AccountDAO {
             session = sessionFactory.openSession();
             Criteria criteria = session.createCriteria(Account.class);
             criteria.addOrder(Order.desc("ceatedDate"));
+            criteria.setMaxResults(1);
             return (Account) criteria.uniqueResult();
         } catch (Exception e) {
-            System.out.println("Caught exception in getAccountHistory() : " + e);
+            System.out.println("Caught exception in getLatestAccount() : " + e);
         } finally {
             session.close();
         }

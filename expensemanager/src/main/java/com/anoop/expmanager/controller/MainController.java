@@ -22,17 +22,28 @@ import javax.servlet.http.HttpServletResponse;
 public class MainController {
 
     @RequestMapping(value = {"/app", "/app/", "/app/home"})
-    public String home(Model model) {
+    public String home(Model model) throws Exception{
         return "home";
     }
 
     @RequestMapping(value = "/login", method = RequestMethod.GET)
-    public String loginPage() {
+    public String loginPage() throws Exception{
         return "login";
     }
 
+    @RequestMapping(value = "/403", method = RequestMethod.GET)
+    public String accessDenied() throws Exception{
+        return "403";
+    }
+
+    @RequestMapping(value = "/404", method = RequestMethod.GET)
+    public String pageNotFound() throws Exception{
+        return "404";
+    }
+
+
     @RequestMapping(value = "/logout", method = RequestMethod.GET)
-    public String logoutPage(HttpServletRequest request, HttpServletResponse response) {
+    public String logoutPage(HttpServletRequest request, HttpServletResponse response) throws Exception{
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         if (auth != null) {
             new SecurityContextLogoutHandler().logout(request, response, auth);

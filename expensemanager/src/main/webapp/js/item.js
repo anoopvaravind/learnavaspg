@@ -128,6 +128,7 @@ $(document).ready(function () {
                         $('#purchasedDate').val("");
                         //data["category"] = $('#category').val();
                         $('#comment').val("");
+						$('#hiddenField').val("");
                     }
 
                 },

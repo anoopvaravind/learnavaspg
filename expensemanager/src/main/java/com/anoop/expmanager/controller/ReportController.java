@@ -41,24 +41,24 @@ public class ReportController {
     private AccountService accountService;
 
     @RequestMapping(value = "/rent", method = RequestMethod.GET)
-    public String rentReport() {
+    public String rentReport() throws Exception{
         return "rentreport";
     }
 
     @RequestMapping(value = "/expense", method = RequestMethod.GET)
-    public String expenseReport() {
+    public String expenseReport() throws Exception{
         return "expensereport";
     }
 
     @RequestMapping(value = "/renthistorypermonthandyear", method = RequestMethod.GET)
     @ResponseBody
-    public List<RentSheet> getRentPaidHistoryPerMonthAndYear(@RequestParam("month") int month, @RequestParam("year") int year) {
+    public List<RentSheet> getRentPaidHistoryPerMonthAndYear(@RequestParam("month") int month, @RequestParam("year") int year) throws Exception{
         return rentService.getRentSheetHistoryPerMonthAndYear(month, year);
     }
 
     @RequestMapping(value = "/expensehistorypermonthandyear", method = RequestMethod.GET)
     @ResponseBody
-    public List<Item> getExpenseHistoryPerMonthAndYear(@RequestParam("month") int month, @RequestParam("year") int year) {
+    public List<Item> getExpenseHistoryPerMonthAndYear(@RequestParam("month") int month, @RequestParam("year") int year) throws Exception{
         Date startDate = Util.createStartDateFromMonthAndYear(month, year);
         Date endDate = Util.getEndDateOfMonth(startDate);
         return itemService.findAllItemBetweenDate(startDate, endDate);
@@ -66,7 +66,7 @@ public class ReportController {
 
     @RequestMapping(value = "/account", method = RequestMethod.GET)
 //    @ResponseBody
-    public ModelAndView getAccountHistory() {
+    public ModelAndView getAccountHistory() throws Exception{
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("accountreport");
         modelAndView.getModelMap().addAttribute("account", accountService.getAccountHistory());
@@ -75,16 +75,20 @@ public class ReportController {
 
     @RequestMapping(value = "/accountsummary", method = RequestMethod.GET)
     @ResponseBody
-    public List<AccountChart> getAccountSummary() {
+    public List<AccountChart> getAccountSummary() throws Exception{
         List<Account> accounts =  accountService.getAccountHistory();
         List<AccountChart> accountCharts = new ArrayList<AccountChart>();
         AccountChart accountChart;
-        for (Account account : accounts) {
+        int startIndex = 0;
+        if(accounts.size() > 5) {
+            startIndex = accounts.size() - 5;
+        }
+        for(int index=startIndex; index<accounts.size();index++) {
             accountChart = new AccountChart();
-            accountChart.setMonthYear(Util.getMonthNameFromMonthNumber(account.getMonth())+"-"+account.getYear());
-            accountChart.setTotalExpense(account.getMonthlyExpense());
-//            accountChart.setOpeningBalance(account.getOpeningBalance());
-//            accountChart.setClosingBalance(account.getClossingBalance());
+            accountChart.setMonthYear(Util.getMonthNameFromMonthNumber(accounts.get(index).getMonth())+"-"+accounts.get(index).getYear());
+            accountChart.setTotalExpense(accounts.get(index).getMonthlyExpense());
+            accountChart.setOpeningBalance(accounts.get(index).getOpeningBalance());
+            accountChart.setClosingBalance(accounts.get(index).getClossingBalance());
             accountCharts.add(accountChart);
         }
         return accountCharts;

@@ -22,7 +22,7 @@ public class ItemController {
     private ItemService itemService;
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
-    public ModelAndView item() {
+    public ModelAndView item() throws Exception{
         ModelAndView mv = new ModelAndView();
         mv.setViewName("item");
         return mv;
@@ -30,19 +30,19 @@ public class ItemController {
 
     @RequestMapping(value = "/findAll", method = RequestMethod.GET)
     @ResponseBody
-    public List<Item> findAll() {
+    public List<Item> findAll() throws Exception{
         return itemService.findAll();
     }
 
     @RequestMapping(value = "/finditempermonthyear", method = RequestMethod.GET)
     @ResponseBody
-    public List<Item> findAllItemPerMonthAndYear(@RequestParam("month") int month, @RequestParam("year") int year) {
+    public List<Item> findAllItemPerMonthAndYear(@RequestParam("month") int month, @RequestParam("year") int year) throws Exception{
         return itemService.findAll();
     }
 
     @RequestMapping(value = "/findAllItemPerUserAndDate", method = RequestMethod.GET)
     @ResponseBody
-    public List<Item> findAllItemPerUserAndDate(HttpServletRequest request) {
+    public List<Item> findAllItemPerUserAndDate(HttpServletRequest request) throws Exception{
         UserSession userSession = (UserSession) request.getSession().getAttribute("userSession");
         return itemService.findAllItemPerUserAndDate(userSession.getUser().getId(),
                 Util.getStartDateOfMonth(new Date()), Util.getEndDateOfMonth(new Date()));
@@ -50,7 +50,7 @@ public class ItemController {
 
     @RequestMapping(value = "/save", method = RequestMethod.POST)
     @ResponseBody
-    public Notification saveItem(@RequestBody Item item, HttpServletRequest request) {
+    public Notification saveItem(@RequestBody Item item, HttpServletRequest request) throws Exception{
         System.out.println("#######ItemController saveItem");
         item.setPurchasedDate(Util.removeTimeFromDate(item.getPurchasedDate()));
         System.out.println("#######v" + item.getPurchasedDate());
@@ -62,7 +62,7 @@ public class ItemController {
 
     @RequestMapping(value = "/delete", method = RequestMethod.POST)
     @ResponseBody
-    public Object deleteItem(@RequestBody Item item, HttpServletRequest request) {
+    public Object deleteItem(@RequestBody Item item, HttpServletRequest request) throws Exception{
         System.out.println("################" + item.getItemName());
 
         UserSession userSession = (UserSession) request.getSession().getAttribute("userSession");

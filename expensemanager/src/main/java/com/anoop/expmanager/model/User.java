@@ -21,6 +21,8 @@ public class User {
     @JoinColumn(name = "ROLE_ID")
     private Roles roles;
     private boolean enabled;
+    private String email;
+
 
     /*private Set<RentSheet> rentSheetList;*/
     /*private Set<Item> items;*/
@@ -89,6 +91,13 @@ public class User {
         this.enabled = enabled;
     }
 
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
 /*	@OneToMany(mappedBy = "rentsheet", cascade = CascadeType.ALL)
 	public Set<RentSheet> getRentSheetList() {
 		return rentSheetList;

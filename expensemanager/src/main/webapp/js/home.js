@@ -22,11 +22,13 @@ $(document).on({
 $(document).ready(function () {
     var chart = Morris.Area({
         element: 'morris-area-chart-edited',
+        parseTime: false,
         data: [],
         xkey: 'monthYear',
-        ykeys: ['totalExpense'],
-        labels: ['Total Expense']
+        ykeys: ['totalExpense','openingBalance','closingBalance'],
+        labels: ['Total Expense','Op. Balance','Cl. Balance']
     });
+	
 
     $.ajax({
         type:"GET",

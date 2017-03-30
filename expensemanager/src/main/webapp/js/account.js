@@ -43,7 +43,7 @@ $(document).ready(function () {
             //e.preventDefault(); /// <--- THIS LINE
             $.ajax({
                 type:"POST",
-                url:'/expmanager/app/account/generatemonthlystatement',
+                url:'/expmanager/admin/account/generatemonthlystatement',
                 data:{month:$('#month').val(), year:$('#year').val(), currentRentAmount:$('#currentRentAmount').val()},
                 success:function (notification) {
                     if (notification.success == true) {

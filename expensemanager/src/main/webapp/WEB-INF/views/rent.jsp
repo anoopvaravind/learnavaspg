@@ -199,10 +199,20 @@
                     </li>
                 </ul>
             </li>
+
             <li>
-                <a href="<c:url value="/app/account/" />"><i class="fa fa-fw fa-dashboard"></i> Generate Monthly
-                    Bill</a>
-            </li>
+                            <a href="javascript:;" data-toggle="collapse" data-target="#admin"><i class="fa fa-fw fa-dashboard"></i>
+                                Admin <i class="fa fa-fw fa-caret-down"></i></a>
+                            <ul id="admin" class="collapse">
+                                <li>
+                                    <a href="<c:url value="/admin/user/" />">Customise User</a>
+                                </li>
+                                <li>
+                                    <a href="<c:url value="/admin/account/" />">Generate Monthly Bill</a>
+                                </li>
+                            </ul>
+                        </li>
+
 
         </ul>
     </div>

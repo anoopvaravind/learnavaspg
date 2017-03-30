@@ -90,7 +90,14 @@ function populateRentTable() {
         url:"/expmanager/app/rent/renthistoryforuser",
 
         dataType:"json",
-        success:function (rentsheet) {
+        success:function (rentsheet) {        
+        if(rentsheet == '') {
+                    $('#errorDiv').show();
+                    $('#successDiv').hide();
+                    $('#error').text('Rent is not generated yet, you have nothing to pay!!');
+					 $("#submit").prop("disabled", true);
+            return;
+        }
             var trHTML = '';
             $('#rentsheettable tbody').empty();
             latestRentSheet = rentsheet[0];

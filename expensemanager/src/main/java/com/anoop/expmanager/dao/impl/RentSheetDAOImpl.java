@@ -115,7 +115,7 @@ public class RentSheetDAOImpl implements RentSheetDAO {
             criteria.add(Restrictions.eq("user.id", userID));
 //            criteria.setProjection(Projections.max("rentGeneratedDate"));
             criteria.addOrder(Order.desc("rentGeneratedDate"));
-            //criteria.setFetchSize(1);
+            criteria.setMaxResults(1);
             return (RentSheet) criteria.uniqueResult();
         } catch (Exception e) {
             System.out.println("Caught exception in getLastMonthRentSheetPerUser() : " + e);
