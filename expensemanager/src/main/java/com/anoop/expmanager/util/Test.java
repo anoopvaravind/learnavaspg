@@ -9,15 +9,15 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Properties;
-import javax.mail.*;
+/*import javax.mail.*;
 import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
-import javax.mail.internet.MimeMessage;
+import javax.mail.internet.MimeMessage;*/
 
 public class Test {
 
-    public static void main(String[] args) throws ParseException, MessagingException {
-
+    public static void main(String[] args) throws ParseException/*, MessagingException*/ {
+/*
         final String username = "mailfromexpman";
         final String password = "manageradmin";
 
@@ -50,7 +50,7 @@ public class Test {
 
         } catch (MessagingException e) {
             throw new RuntimeException(e);
-        }
+        }*/
     }
 
     public static Date getStartDateOfMonth(Date date) {

@@ -91,7 +91,6 @@ $(document).ready(function () {
             data.comment = $('#comment').val();
             nestedObj.id = $('#category').val();
             data.category = nestedObj;
-            alert(JSON.stringify(data));
 
             $.ajax({
                 type:"POST",
@@ -133,7 +132,6 @@ $(document).ready(function () {
 
                 },
                 error:function (response) {
-                    alert("Error");
                     $('#errorDiv').show();
                     $('#successDiv').hide();
                     $('#error').text('Error Occured while saving data !!');
@@ -200,7 +198,6 @@ function deleteItem(i) {
 
                     //globalItem[i].purchasedDate = convertDate(globalItem[i].purchasedDate);
                     globalItem[i].purchasedDate = null;
-                    alert(globalItem[i].purchasedDate);
                     $.ajax({
                         type:"POST",
                         url:"/expmanager/app/item/delete",

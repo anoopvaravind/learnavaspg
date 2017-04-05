@@ -7,17 +7,17 @@ package com.anoop.expmanager.util; /**
  */
 import java.util.Properties;
 
-import javax.mail.Message;
+/*import javax.mail.Message;
 import javax.mail.MessagingException;
 import javax.mail.PasswordAuthentication;
 import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
-import javax.mail.internet.MimeMessage;
+import javax.mail.internet.MimeMessage;*/
 
 public class SendMailTLS {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) {/*
 
         final String username = "anooparavindmbit";
         final String password = "cherupushpam*$";
@@ -51,6 +51,6 @@ public class SendMailTLS {
 
         } catch (MessagingException e) {
             throw new RuntimeException(e);
-        }
+        }*/
     }
 }

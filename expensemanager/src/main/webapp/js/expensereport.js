@@ -48,7 +48,6 @@ $(document).ready(function () {
 
                 },
                 error:function (response) {
-                    alert("Error");
                     $('#errorDiv').show();
                     $('#successDiv').hide();
                     $('#error').text('Error Occurred retrieving data !!');

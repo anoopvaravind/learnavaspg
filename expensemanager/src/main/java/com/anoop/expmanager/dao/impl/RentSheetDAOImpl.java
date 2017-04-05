@@ -7,7 +7,6 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.criterion.Order;
-import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -71,15 +70,15 @@ public class RentSheetDAOImpl implements RentSheetDAO {
     }
 
     @Override
-    public RentSheet getRentSheetHistoryPerMonthYearUser(int month, int year, long userId) {
+    public List<RentSheet> getRentSheetHistoryPerMonthYearUser(int month, int year, long userId) {
         Session session = null;
         try {
             session = sessionFactory.openSession();
             Criteria criteria = session.createCriteria(RentSheet.class);
             criteria.add(Restrictions.eq("rentGeneratedForMonth", month));
             criteria.add(Restrictions.eq("rentGeneratedForYear", year));
-            criteria.add(Restrictions.eq("user.id", userId));
-            return (RentSheet) criteria.uniqueResult();
+//            criteria.add(Restrictions.eq("user.id", userId));
+            return criteria.list();
         } catch (Exception e) {
             System.out.println("Caught exception in getRentSheetHistoryPerMonthYearUser() : " + e);
         } finally {

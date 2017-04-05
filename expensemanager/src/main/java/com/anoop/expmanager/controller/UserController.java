@@ -3,6 +3,7 @@ package com.anoop.expmanager.controller;
 import java.util.List;
 
 import com.anoop.expmanager.util.Notification;
+import com.anoop.expmanager.util.Util;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -41,6 +42,9 @@ public class UserController {
     @RequestMapping(value = "/save", method = RequestMethod.POST)
     @ResponseBody
     public Notification saveUser(@RequestBody User user, HttpServletRequest request) throws Exception{
+        if(user.getId() == 0) {
+            user.setPassword(Util.convertStringToMD5(user.getUsername()));
+        }
         userService.saveUser(user);
         return new Notification(true,false,"User saved successfully",userService.getAllUsers());
     }

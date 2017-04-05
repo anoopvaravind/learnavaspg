@@ -56,7 +56,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="<c:url value="/app/" />">Exp Man</a>
+        <a class="navbar-brand" href="<c:url value="/app/" />">Expense Manager</a>
     </div>
     <!-- Top Menu Items -->
     <ul class="nav navbar-right top-nav">
@@ -159,7 +159,7 @@
                     <a href="#"><i class="fa fa-fw fa-user"></i> Profile</a>
                 </li>
                 <li>
-                    <a href="#"><i class="fa fa-fw fa-envelope"></i> Inbox</a>
+                     <a href="<c:url value="/app/changepassword" />"><i class="fa fa-fw fa-user"></i>Change Password</a>
                 </li>
                 <li>
                     <a href="#"><i class="fa fa-fw fa-gear"></i> Settings</a>
@@ -277,7 +277,7 @@
                         </select>
                     </div>
                     <div class="form-group">
-                        <label>Current Rent Amount</label>
+                        <label>Current Rent Amount Per User</label>
                         <input id="currentRentAmount" name="currentRentAmount" class="form-control"
                                placeholder="Enter Rent Amount">
                     </div>
@@ -297,7 +297,15 @@
 
 </div>
 <!-- /#page-wrapper -->
-
+<nav class=" navbar-inverse navbar-bottom" style="line-height: 0.9;font-size:10px;color:#9d9d9d">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-footer">
+        <br>
+        <center>
+            <strong>&copy; 2008 - 2017, Expense Manager . All rights reserved.</strong>
+        </center>
+    </div>
+</nav>
 </div>
 <!-- /#wrapper -->
 <!-- loading image -->

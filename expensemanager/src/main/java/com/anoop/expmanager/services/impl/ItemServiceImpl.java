@@ -43,14 +43,11 @@ public class ItemServiceImpl implements ItemService {
 
     @Override
     public Notification saveItem(Item item) {
-        RentSheet currentRentSheet = rentSheetDAO.getRentSheetHistoryPerMonthYearUser(Util.getMonthFromDate(item.getPurchasedDate()) + 1, Util.getYearFromDate(item.getPurchasedDate()), item.getUser().getId());
-        if (currentRentSheet != null) {
-            System.out.println("####### ready to save !!!" + currentRentSheet.getRentGeneratedForMonth());
-            System.out.println("####### ready to save !!!" + (Util.getMonthFromDate(item.getPurchasedDate()) + 1));
-            System.out.println("####### ready to save !!!" + currentRentSheet.getRentGeneratedForYear());
+        List<RentSheet> currentRentSheet = rentSheetDAO.getRentSheetHistoryPerMonthYearUser(Util.getMonthFromDate(item.getPurchasedDate()) + 1, Util.getYearFromDate(item.getPurchasedDate()), item.getUser().getId());
+        if (currentRentSheet != null || !currentRentSheet.isEmpty()) {
             System.out.println("####### ready to save !!!" + Util.getYearFromDate(item.getPurchasedDate()));
-            System.out.println("You can't add expense for this month since Rent is already generated !!!");
-            return new Notification(false, true, "You can't add expense for this month since Rent is already generated !!!", null);
+            System.out.println("You can't add expense since Account tally process completed for the selected month !!!");
+            return new Notification(false, true, "You can't add expense since Account tally process completed for the selected month !!!", null);
         }
         System.out.println("####### currentRentSheet !!!" + currentRentSheet);
         itemDAO.saveItem(item);

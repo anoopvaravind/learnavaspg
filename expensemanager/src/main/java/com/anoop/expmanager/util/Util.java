@@ -1,5 +1,8 @@
 package com.anoop.expmanager.util;
 
+import java.math.BigInteger;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -77,5 +80,17 @@ public class Util {
         String[] months ={"0", "January", "February", "March", "April", "May", "June",
                 "July", "August", "September", "October", "November", "December" };
         return months[month];
+    }
+
+    public static String convertStringToMD5(String normalString) {
+        MessageDigest md = null;
+        try {
+            md = MessageDigest.getInstance("MD5");
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        }
+        byte[] messageDigest = md.digest(normalString.getBytes());
+        BigInteger number = new BigInteger(1, messageDigest);
+        return number.toString(16);
     }
 }

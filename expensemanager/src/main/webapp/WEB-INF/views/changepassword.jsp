@@ -151,7 +151,7 @@
                     <a href="#"><i class="fa fa-fw fa-user"></i> Profile</a>
                 </li>
                 <li>
-                    <a href="<c:url value="/app/changepassword" />"><i class="fa fa-fw fa-user"></i>Change Password</a>
+                    <a href="<c:url value="/app/changepassword" />"><i class="fa fa-fw fa-envelope"></i>Change Password</a>
                 </li>
                 <li>
                     <a href="#"><i class="fa fa-fw fa-gear"></i> Settings</a>
@@ -234,7 +234,7 @@
         <div class="row">
             <div class="col-lg-6">
 
-                <form role="form" name="userForm">
+                <form role="form" name="changepasswordForm">
 
                     <div id="successDiv" class="alert alert-success">
                         <p id="success"></p>
@@ -247,65 +247,26 @@
                      <input id="hiddenField2" type="hidden" value=""/>
 
                     <div class="form-group">
-                        <label>User Display Name</label>
-                        <input name="displayName" id="displayName" class="form-control" placeholder="Enter user display name">
+                        <label>Existing Password</label>
+                        <input type="password" name="password" id="password" class="form-control" placeholder="Enter existing password">
                     </div>
 
                     <div class="form-group">
-                        <label>Username</label>
-                        <input name="username" id="username" class="form-control" placeholder="Enter username">
+                        <label>New password</label>
+                        <input type="password" name="newPassword" id="newPassword" class="form-control" placeholder="Enter new password">
                     </div>
 					
 					 <div class="form-group">
-                        <label>Email</label>
-                        <input name="email" id="email" class="form-control" placeholder="Enter email">
+                        <label>Confirm password</label>
+                        <input type="password" name="changePassword" id="changePassword" class="form-control" placeholder="Enter confirm password">
                     </div>
-
-                    <div class="form-group">
-                        <label>Select Role</label>
-                        <select class="form-control" name="roles" id="roles">
-                        <option value="1">Normal User</option>
-                        <option value="2">Admin</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                                <label>User Status</label>
-                                <label class="radio-inline">
-                                    <input type="radio" name="optionsRadiosInline" id="optionsRadiosInline1" value="1" checked>Enabled
-                                </label>
-                                <label class="radio-inline">
-                                    <input type="radio" name="optionsRadiosInline" id="optionsRadiosInline2" value="0">disabled
-                                </label>
-                            </div>
-                    
-                    <button type="submit" class="btn btn-primary" id="submitButton" disabled>Submit</button>
+                    <button type="submit" class="btn btn-primary" id="submitButton" disabled>Change Password</button>
                     <button type="reset" class="btn btn-primary" id="resetbutton">Reset</button>
                     <br></br>
 
                 </form>
 
             </div>
-
-            <div class="col-lg-6">
-                <div class="table-responsive">
-                    <table class="table table-bordered table-hover table-striped" id="userTable">
-                        <thead>
-                        <tr>
-                            <th>Display Name</th>
-                            <th>Username</th>
-                            <th>Email</th>
-                            <th>Role</th>
-                            <th>Status</th>
-                            <th>Actions</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        </tbody>
-                    </table>
-                </div>
-
-            </div>
-
         </div>
     </div>
     <!-- /.row -->
@@ -348,7 +309,7 @@
 
 <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
 
-<script src="<c:url value='/js/user.js' />"></script>
+<script src="<c:url value='/js/changepassword.js' />"></script>
 <script src="<c:url value='/js/expensemanager.js' />"></script>
 <script src="<c:url value='/js/jquery.validate.min.js' />"></script>
 <script src="https://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>

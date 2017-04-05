@@ -6,6 +6,7 @@ package com.anoop.expmanager.util; /**
  * To change this template use File | Settings | File Templates.
  */
 import java.util.Properties;
+/*
 import javax.mail.Message;
 import javax.mail.MessagingException;
 import javax.mail.PasswordAuthentication;
@@ -13,9 +14,10 @@ import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
+*/
 
 public class SendMailSSL {
-    public static void main(String[] args) {
+    public static void main(String[] args) {/*
         Properties props = new Properties();
         props.put("mail.smtp.host", "smtp.gmail.com");
         props.put("mail.smtp.socketFactory.port", "465");
@@ -323,6 +325,6 @@ public class SendMailSSL {
 
         } catch (MessagingException e) {
             throw new RuntimeException(e);
-        }
+        }*/
     }
 }

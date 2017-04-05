@@ -51,11 +51,10 @@ $(document).ready(function () {
             if (latestRentSheet.rentActullyPaid > 0) {
                 $('#errorDiv').show();
                 $('#successDiv').hide();
-                $('#error').text('You can pay rent only one time per month !!');
+                $('#error').text('You can pay rent only once in a month, contact admin if you need any change !!');
                 return;
             }
             latestRentSheet.rentActullyPaid = $('#totalamount').val();
-            alert(JSON.stringify(latestRentSheet));
             $.ajax({
                 type:"POST",
                 url:"/expmanager/app/rent/pay",
@@ -64,7 +63,6 @@ $(document).ready(function () {
                 contentType:"application/json; charset=utf-8",
                 dataType:"json",
                 success:function (notification) {
-                    alert("Success");
                     $('#success').text(notification.message);
                     populateRentTable();
                     $('#successDiv').show();
@@ -72,10 +70,9 @@ $(document).ready(function () {
 
                 },
                 error:function (response) {
-                    alert("Error");
                     $('#errorDiv').show();
                     $('#successDiv').hide();
-                    $('#error').text('Error Occured while saving data !!');
+                    $('#error').text('Error Occurred while saving data !!');
                 }
             });
         }

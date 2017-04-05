@@ -17,5 +17,5 @@ public interface RentSheetDAO {
 
     public List<RentSheet> getRentHistoryForUser(long userId);
 
-    public RentSheet getRentSheetHistoryPerMonthYearUser(int month, int year, long userId);
+    public List<RentSheet> getRentSheetHistoryPerMonthYearUser(int month, int year, long userId);
 }

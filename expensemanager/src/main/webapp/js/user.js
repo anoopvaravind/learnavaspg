@@ -57,7 +57,6 @@ $(document).ready(function () {
                 data.enabled = 0;
             }
             data.roles = nestedObj;
-            alert(JSON.stringify(data));
 
             $.ajax({
                 type:"POST",
@@ -99,7 +98,6 @@ $(document).ready(function () {
 
                 },
                 error:function (response) {
-                    alert("Error");
                     $('#errorDiv').show();
                     $('#successDiv').hide();
                     $('#error').text('Error Occurred while saving data !!');
@@ -150,7 +148,6 @@ function editUser(i) {
     $('#roles').val(globalusers[i].roles.id);
     $('#hiddenField1').val(globalusers[i].id);
      $('#hiddenField2').val(globalusers[i].password);
-	alert(globalusers[i].enabled);
     if(globalusers[i].enabled == true) {
         $('#optionsRadiosInline1').prop('checked', true);
     }else {

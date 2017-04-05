@@ -25,8 +25,8 @@ $(document).ready(function () {
         parseTime: false,
         data: [],
         xkey: 'monthYear',
-        ykeys: ['totalExpense','openingBalance','closingBalance'],
-        labels: ['Total Expense','Op. Balance','Cl. Balance']
+        ykeys: ['openingBalance','closingBalance','totalExpense'],
+        labels: ['Op. Balance','Cl. Balance','Total Expense']
     });
 	
 

@@ -44,7 +44,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="<c:url value="/app/" />">Exp Man</a>
+        <a class="navbar-brand" href="<c:url value="/app/" />">Expense Manager</a>
     </div>
     <!-- Top Menu Items -->
     <ul class="nav navbar-right top-nav">
@@ -60,12 +60,12 @@
                                     </span>
 
                             <div class="media-body">
-                                <h5 class="media-heading"><strong>John Smith</strong>
+                                <h5 class="media-heading"><strong>Anoop Aravind</strong>
                                 </h5>
 
                                 <p class="small text-muted"><i class="fa fa-clock-o"></i> Yesterday at 4:32 PM</p>
 
-                                <p>Lorem ipsum dolor sit amet, consectetur...</p>
+                                <p>Rent sheet generated...</p>
                             </div>
                         </div>
                     </a>
@@ -78,30 +78,12 @@
                                     </span>
 
                             <div class="media-body">
-                                <h5 class="media-heading"><strong>John Smith</strong>
+                                <h5 class="media-heading"><strong>Anoop Aravind</strong>
                                 </h5>
 
                                 <p class="small text-muted"><i class="fa fa-clock-o"></i> Yesterday at 4:32 PM</p>
 
-                                <p>Lorem ipsum dolor sit amet, consectetur...</p>
-                            </div>
-                        </div>
-                    </a>
-                </li>
-                <li class="message-preview">
-                    <a href="#">
-                        <div class="media">
-                                    <span class="pull-left">
-                                        <img class="media-object" src="http://placehold.it/50x50" alt="">
-                                    </span>
-
-                            <div class="media-body">
-                                <h5 class="media-heading"><strong>John Smith</strong>
-                                </h5>
-
-                                <p class="small text-muted"><i class="fa fa-clock-o"></i> Yesterday at 4:32 PM</p>
-
-                                <p>Lorem ipsum dolor sit amet, consectetur...</p>
+                                <p>Account summary generated...</p>
                             </div>
                         </div>
                     </a>
@@ -148,7 +130,7 @@
                     <a href="#"><i class="fa fa-fw fa-user"></i> Profile</a>
                 </li>
                 <li>
-                    <a href="#"><i class="fa fa-fw fa-envelope"></i> Inbox</a>
+                    <a href="<c:url value="/app/changepassword" />"><i class="fa fa-fw fa-user"></i>Change Password</a>
                 </li>
                 <li>
                     <a href="#"><i class="fa fa-fw fa-gear"></i> Settings</a>
@@ -200,28 +182,6 @@
                 </ul>
             </li>
 
-
-            <li>
-                <a href="tables.html"><i class="fa fa-fw fa-table"></i> Reports</a>
-            </li>
-            <li>
-                <a href="charts.html"><i class="fa fa-fw fa-bar-chart-o"></i> Charts</a>
-            </li>
-
-
-            <li>
-                <a href="bootstrap-elements.html"><i class="fa fa-fw fa-desktop"></i> Bootstrap Elements</a>
-            </li>
-            <li>
-                <a href="bootstrap-grid.html"><i class="fa fa-fw fa-wrench"></i> Bootstrap Grid</a>
-            </li>
-
-            <li>
-                <a href="blank-page.html"><i class="fa fa-fw fa-file"></i> Blank Page</a>
-            </li>
-            <li>
-                <a href="index-rtl.html"><i class="fa fa-fw fa-dashboard"></i> RTL Dashboard</a>
-            </li>
         </ul>
     </div>
     <!-- /.navbar-collapse -->
@@ -374,7 +334,15 @@
 
 </div>
 <!-- /#page-wrapper -->
-
+<nav class=" navbar-inverse navbar-bottom" style="line-height: 0.9;font-size:10px;color:#9d9d9d">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-footer">
+        <br>
+        <center>
+            <strong>&copy; 2008 - 2017, Expense Manager . All rights reserved.</strong>
+        </center>
+    </div>
+</nav>
 </div>
 <!-- /#wrapper -->
 

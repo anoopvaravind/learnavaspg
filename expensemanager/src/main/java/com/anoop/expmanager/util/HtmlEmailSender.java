@@ -1,9 +1,6 @@
 package com.anoop.expmanager.util;
 
-import javax.mail.*;
-import javax.mail.internet.AddressException;
-import javax.mail.internet.InternetAddress;
-import javax.mail.internet.MimeMessage;
+
 import java.util.Date;
 import java.util.Properties;
 
@@ -16,9 +13,9 @@ import java.util.Properties;
  */
 public class HtmlEmailSender {
 
-    public static void main(String[] args) throws MessagingException {
+    public static void main(String[] args) /*throws MessagingException */{
 
-        Properties props = new Properties();
+      /*  Properties props = new Properties();
         props.put("mail.smtp.host", "smtp.gmail.com");
         props.put("mail.smtp.socketFactory.port", "465");
         props.put("mail.smtp.socketFactory.class",
@@ -47,7 +44,7 @@ public class HtmlEmailSender {
 
             Transport.send(message);
 
-            System.out.println("Done");
+            System.out.println("Done");*/
     //}
 }
 }
