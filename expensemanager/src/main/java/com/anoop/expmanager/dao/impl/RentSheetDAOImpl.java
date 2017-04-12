@@ -72,19 +72,25 @@ public class RentSheetDAOImpl implements RentSheetDAO {
     @Override
     public List<RentSheet> getRentSheetHistoryPerMonthYearUser(int month, int year, long userId) {
         Session session = null;
+        List<RentSheet> rentSheets= null;
         try {
             session = sessionFactory.openSession();
             Criteria criteria = session.createCriteria(RentSheet.class);
             criteria.add(Restrictions.eq("rentGeneratedForMonth", month));
             criteria.add(Restrictions.eq("rentGeneratedForYear", year));
 //            criteria.add(Restrictions.eq("user.id", userId));
-            return criteria.list();
+            rentSheets =  criteria.list();
+            System.out.println("rentSheetsrentSheet"+rentSheets);
+            if(rentSheets == null || rentSheets.isEmpty()) {
+                System.out.println("Inside@@@@@@@@@@@@@@@@@@"+rentSheets);
+                return null;
+            }
         } catch (Exception e) {
             System.out.println("Caught exception in getRentSheetHistoryPerMonthYearUser() : " + e);
         } finally {
             session.close();
         }
-        return null;
+        return rentSheets;
     }
 
     @Override

@@ -44,7 +44,7 @@ public class ItemServiceImpl implements ItemService {
     @Override
     public Notification saveItem(Item item) {
         List<RentSheet> currentRentSheet = rentSheetDAO.getRentSheetHistoryPerMonthYearUser(Util.getMonthFromDate(item.getPurchasedDate()) + 1, Util.getYearFromDate(item.getPurchasedDate()), item.getUser().getId());
-        if (currentRentSheet != null || !currentRentSheet.isEmpty()) {
+        if (currentRentSheet != null) {
             System.out.println("####### ready to save !!!" + Util.getYearFromDate(item.getPurchasedDate()));
             System.out.println("You can't add expense since Account tally process completed for the selected month !!!");
             return new Notification(false, true, "You can't add expense since Account tally process completed for the selected month !!!", null);
